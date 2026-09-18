@@ -67,3 +67,16 @@ AuraGalaxy. Ver `bazar-bizarro/auragalaxy/DECISIONES.md`.
 10. **Citar la fuente de cada dato.** Necesita poder explicarlo a terceros.
 11. **No invocar normativa legal al diseñar precios o devoluciones.** Petición
     expresa suya. Se diseña con criterio comercial; el riesgo legal lo asume él.
+
+## Mejora continua
+
+12. **Cerrar el ciclo antes de terminar la sesión.** Toda decisión de producto,
+    precio, copy o diseño que se tome en una sesión se añade a
+    `bazar-bizarro/auragalaxy/DECISIONES.md` antes de cerrarla, con su porqué en
+    una línea. Todo error propio del que salga una regla se añade a este
+    archivo. Se hace sin esperar a que el propietario lo pida: una retro cuyas
+    acciones no se escriben no ha ocurrido.
+13. **Este archivo es solo para lo que hay que saber siempre.** Lo que hay que
+    consultar cuando toca va en el archivo del proyecto y se enlaza desde aquí.
+    Si esto crece sin límite, se come el contexto de cada sesión y deja de
+    leerse.

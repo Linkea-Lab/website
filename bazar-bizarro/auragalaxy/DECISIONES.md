@@ -43,6 +43,16 @@ Producto: `gid://shopify/Product/16327347568975` · SKU `PROYECTOR HUEVO-24476`
 | 17 | Reseña rotativa bajo la galería + 3 dudas desplegables bajo el botón | Copiado de Bonjour: todo lo decisivo sin hacer scroll | `B00b` y `B07b` |
 | 18 | Reseñas largas, no cortas, y cada una empieza con una duda que resuelve | Parece escrita por una persona. Patrón verificado en el testimonio de Bonjour | `B00b` y `S09` |
 
+## Vídeo
+
+| # | Decisión | Por qué | Estado |
+|---|---|---|---|
+| 19 | Los vídeos se exportan **siempre en 9:16**, nunca en el formato de la caja | El recorte lo hace el navegador con `object-fit:cover`. Exportar recortado pierde píxeles de verdad en lugar de solo ocultarlos | Aplicado |
+| 20 | Proporción de caja **3:4**, no 4:5 ni 9:16 | 3:4 recorta el 25 % frente al 30 % de 4:5. 9:16 no recorta nada pero deja tres vídeos de 658 px de alto en fila, un muro que obliga a hacer scroll para ver una sola fila | Aplicado en `trio-videos` y `S04` |
+| 21 | El recorte se come **todo por abajo** (`object-position: center top`) | Lo que vende es el techo proyectado, que está en la parte alta del encuadre. Recortar por el centro se comía el 15 % superior | Aplicado |
+| 22 | El encuadre se elige **por vídeo**, no global | Cada plano pide una cosa: el techo pide arriba, unas manos piden centro, un texto quemado pide abajo. Un ajuste único obliga a estropear dos de cada tres | `crop_1..3` en `trio-videos` |
+| 23 | SEO title y description escritos vía API | 58 y 138 caracteres, por debajo del corte de Google. El title lleva la marca delante y las palabras que se teclean detrás; la description promete resultado y mete envió rápido y pago al recibir en el propio snippet | Escrito en Shopify |
+
 ## Medidas copiadas del CSS real de Bonjour
 
 Descargadas de `custom.css` y `enfant-new.css` de su tema (no inventadas).
