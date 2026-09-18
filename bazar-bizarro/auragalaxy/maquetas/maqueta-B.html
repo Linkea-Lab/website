@@ -1,0 +1,1238 @@
+<title>AuraGalaxy PDP v21-B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   MAQUETA v3 · Proyector Galaxy Aurora Boreal · Bazar Bizarro
+   v3: página CLARA con tu sistema real (Nunito + azules #38B6FF).
+   El negro se reserva para donde vive el producto: la galería,
+   la sección de la aurora y el cierre.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  /* Tu sistema, tal cual está en tus bloques Liquid */
+  --azul:      #38B6FF;
+  --azul-osc:  #009BF0;
+  --azul-txt:  #0B6FA8;
+  --azul-luz:  #E6F6FF;
+  --verde:     #1FA463;
+  --tinta:     #444444;
+  --tinta-tit: #222222;
+  --gris:      #F5F5F5;
+  --linea:     #E5E5E5;
+  --blanco:    #FFFFFF;
+
+  /* Añadidos para esta ficha */
+  --noche:     #0F1430;   /* solo en bloques de producto encendido */
+  --noche-2:   #1A2148;
+  --oro:       #FFC65C;
+  --oro-txt:   #5A3F00;
+  --tp:        #00B67A;   /* verde Trustpilot */
+  --aurora-v:  #16B98C;
+
+  --texto: "Nunito", system-ui, -apple-system, sans-serif;
+  --radio:   10px;
+  --radio-s: 6px;
+  --ancho:   1140px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:var(--blanco);
+  color:var(--tinta);
+  font-family:var(--texto);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; }
+
+h1,h2,h3{ font-family:var(--texto); color:var(--tinta-tit); text-wrap:balance; margin:0; line-height:1.2; }
+h1{ font-size:clamp(1.8rem, 4vw, 2.5rem); font-weight:900; letter-spacing:-.02em; }
+h2{ font-size:clamp(1.45rem, 3.2vw, 2rem); font-weight:800; letter-spacing:-.015em; }
+h3{ font-size:1.08rem; font-weight:800; }
+p{ margin:0; }
+
+.seccion{ padding-block:clamp(44px, 7vw, 74px); }
+.seccion--gris{ background:var(--gris); }
+.seccion--azul{ background:var(--azul-luz); }
+.seccion--noche{ background:var(--noche); }
+.seccion--noche h2, .seccion--noche h3{ color:#FFFFFF; }
+.seccion--noche .entradilla, .seccion--noche .duo__texto p{ color:#B9C2E8; }
+.seccion--noche .duo__texto .remate{ color:#FFFFFF; }
+.seccion--noche .eyebrow{ color:var(--azul); }
+.envoltura{ max-width:var(--ancho); margin-inline:auto; padding-inline:16px; }
+
+.eyebrow{ font-size:.7rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--azul-txt); margin-bottom:10px; }
+.entradilla{ color:var(--tinta); max-width:62ch; margin-top:12px; }
+
+/* ── Chips de mapa ────────────────────────────────────────── */
+.mapa-chip{
+  display:none; align-items:center; gap:8px;
+  font-size:.7rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  color:#8B3FD1; border:1px dashed #C79CEB; border-radius:99px;
+  padding:4px 11px; margin-bottom:14px; background:#F6EDFF;
+}
+body.con-mapa .mapa-chip{ display:inline-flex; }
+.boton-mapa{
+  position:fixed; right:14px; top:calc(14px + env(safe-area-inset-top, 0px)); z-index:60;
+  font-family:var(--texto); font-size:.74rem; font-weight:800;
+  color:var(--tinta-tit); background:rgba(255,255,255,.93);
+  border:1px solid var(--linea); border-radius:99px; padding:8px 14px; cursor:pointer;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+.boton-mapa:hover{ border-color:var(--azul); color:var(--azul-txt); }
+.boton-mapa:focus-visible{ outline:2px solid var(--azul); outline-offset:2px; }
+
+/* ── Aviso + cabecera ─────────────────────────────────────── */
+.aviso{
+    background:var(--noche); color:#fff; text-align:center;
+    padding:12px 16px calc(12px + env(safe-area-inset-top, 0px));
+    display:flex; flex-direction:column; gap:3px; align-items:center;
+  }
+  .aviso__linea1{
+    font-size:clamp(.95rem, 2.4vw, 1.18rem); font-weight:900;
+    letter-spacing:.02em; text-transform:uppercase; color:var(--azul);
+    line-height:1.2; margin:0;
+  }
+  .aviso__linea2{
+    font-size:clamp(.78rem, 1.9vw, .92rem); font-weight:800;
+    letter-spacing:.03em; color:#fff; line-height:1.2; margin:0;
+  }
+.cabecera{ border-bottom:1px solid var(--linea); background:var(--blanco); }
+.cabecera__fila{ max-width:var(--ancho); margin-inline:auto; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.logo{ font-weight:900; font-size:1.05rem; letter-spacing:-.02em; color:var(--tinta-tit); }
+.logo span{ color:var(--azul-osc); }
+.cabecera__nav{ display:flex; gap:20px; font-size:.86rem; color:var(--tinta); font-weight:700; }
+@media (max-width:768px){ .cabecera__nav{ display:none; } }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero{ padding-block:clamp(24px, 4vw, 42px); }
+.hero__grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px, 3.4vw, 46px); align-items:start; }
+@media (max-width:900px){ .hero__grid{ grid-template-columns:1fr; } }
+
+.galeria{ position:sticky; top:20px; display:flex; flex-direction:column; gap:12px; }
+@media (max-width:900px){ .galeria{ position:static; } }
+
+.hueco{
+  position:relative; width:100%;
+  border:1px dashed var(--linea); border-radius:var(--radio); background:var(--gris);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:6px; text-align:center; padding:18px; color:#9AA0B4; font-size:.78rem; font-weight:700;
+}
+.hueco b{ color:var(--tinta); font-size:.84rem; display:block; }
+.hueco--4-3{ aspect-ratio:4/3; }
+.seccion--noche .hueco{ background:var(--noche-2); border-color:#39427A; color:#7C86BC; }
+.seccion--noche .hueco b{ color:#B9C2E8; }
+
+/* Escena (producto encendido → fondo oscuro, siempre) */
+.escena{
+  position:relative; aspect-ratio:1/1; border-radius:var(--radio); overflow:hidden;
+  border:1px solid var(--linea);
+  background:radial-gradient(120% 90% at 50% 105%, #232C63 0%, #0B1029 68%);
+  display:grid; place-items:center; margin:0;
+}
+.escena svg{ width:86%; height:auto; display:block; }
+.escena__pie{
+  position:absolute; left:12px; bottom:12px; font-size:.68rem; font-weight:800;
+  letter-spacing:.08em; text-transform:uppercase; color:#B9C2E8;
+  background:rgba(11,16,41,.72); border:1px solid #39427A; border-radius:99px; padding:4px 10px;
+}
+@media (prefers-reduced-motion: no-preference){
+  .haz{ animation:respira 7s ease-in-out infinite; transform-origin:50% 88%; }
+  @keyframes respira{ 0%,100%{ opacity:.55; } 50%{ opacity:.95; } }
+}
+.tiras{ display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; }
+.tiras .hueco{ aspect-ratio:1/1; font-size:.66rem; padding:8px; border-radius:var(--radio-s); }
+
+.compra{ display:flex; flex-direction:column; gap:17px; }
+
+/* ── Trustpilot ───────────────────────────────────────────── */
+.trustpilot{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.tp-estrellas{ display:flex; gap:3px; }
+.tp-estrella{ width:23px; height:23px; background:var(--tp); display:grid; place-items:center; border-radius:2px; }
+.tp-estrella svg{ width:15px; height:15px; fill:#fff; display:block; }
+.tp-estrella--off{ background:#DCDCE6; }
+.tp-nota{ font-weight:700; font-size:1rem; color:var(--tinta-tit); white-space:nowrap; }
+.tp-marca{ display:flex; align-items:center; gap:5px; font-weight:900; font-size:.92rem; letter-spacing:-.02em; color:var(--tinta-tit); }
+.tp-marca svg{ width:17px; height:17px; fill:var(--tp); display:block; }
+
+/* ── Tres tarjetas con icono ──────────────────────────────── */
+.tarjetas-ben{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+@media (max-width:520px){ .tarjetas-ben{ grid-template-columns:1fr; } }
+.tarjeta-ben{
+  background:var(--azul-luz); border-radius:var(--radio); padding:16px 12px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+}
+.tarjeta-ben__icono{
+  width:64px; height:64px; border-radius:50%; flex:none;
+  border:1px dashed #9ED8F8; background:var(--blanco);
+  display:grid; place-items:center; font-size:1.7rem; line-height:1;
+}
+.tarjeta-ben span{ font-size:.86rem; font-weight:800; line-height:1.35; color:var(--azul-txt); }
+.tarjeta-ben small{ display:block; font-size:.6rem; color:#8AB6D0; font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-top:4px; }
+
+  .marca{ font-weight:900; color:var(--azul-osc); white-space:nowrap; }
+  .tm{ font-size:.42em; font-weight:700; vertical-align:top; position:relative; top:.15em; margin-left:.06em; margin-right:.04em; }
+  .frase{ font-size:1.02rem; font-weight:600; line-height:1.55; color:var(--tinta); margin:0; max-width:60ch; }
+  .frase b{ font-weight:800; color:var(--tinta-tit); }
+  .ventajas{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .ventajas li{ display:flex; align-items:flex-start; gap:10px; font-size:1rem; font-weight:600; line-height:1.5; }
+  .ventajas b{ font-weight:800; color:var(--tinta-tit); }
+  .vcheck{ width:21px; height:21px; border-radius:50%; background:var(--azul); display:flex; align-items:center; justify-content:center; flex:none; margin-top:2px; }
+  .vcheck svg{ width:12px; height:12px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; display:block; }
+  .enlace-prueba{ display:inline-block; margin:0; padding:0; border:0; background:none; font-family:var(--texto); font-size:.95rem; font-weight:700; color:var(--azul-txt); text-decoration:underline; text-underline-offset:4px; cursor:pointer; align-self:flex-start; }
+  .enlace-prueba:hover{ text-decoration-thickness:2px; }
+  .enlace-prueba:focus-visible{ outline:2px solid var(--azul); outline-offset:3px; }
+  .pv-fondo{ display:none; position:fixed; inset:0; z-index:9999; background:rgba(12,16,38,.72); -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px); padding:16px; overflow-y:auto; }
+  .pv-fondo.abierto{ display:flex; align-items:center; justify-content:center; }
+  .pv-caja{ background:var(--blanco); border-radius:14px; width:100%; max-width:560px; position:relative; overflow:hidden; box-shadow:0 18px 48px rgba(0,0,0,.3); }
+  .pv-cerrar{ position:absolute; top:10px; right:10px; z-index:2; width:34px; height:34px; border:0; border-radius:50%; background:rgba(255,255,255,.92); font-size:1.3rem; font-weight:700; line-height:1; cursor:pointer; }
+  .pv-hueco{ aspect-ratio:4/3; background:var(--noche); color:#7C86BC; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; text-align:center; padding:18px; font-size:.8rem; font-weight:700; }
+  .pv-hueco b{ display:block; color:#B9C2E8; font-size:.86rem; }
+  .pv-cuerpo{ padding:20px 20px 22px; }
+  .pv-cuerpo h2{ font-size:1.2rem; margin:0; }
+  .pv-entrada{ margin:8px 0 0; font-size:.88rem; }
+  .pv-cuerpo .ventajas{ margin-top:16px; }
+  .pv-cuerpo .ventajas li{ font-size:.94rem; }
+  .pv-remate{ margin:16px 0 0; background:var(--azul-luz); border-radius:8px; padding:12px 14px; font-size:.9rem; font-weight:700; color:var(--tinta-tit); }
+  .pv-ok{ width:100%; margin-top:16px; border:0; border-radius:10px; background:var(--azul-osc); color:#fff; font-family:var(--texto); font-size:1rem; font-weight:800; padding:13px 18px; cursor:pointer; }
+
+/* ── La pregunta ──────────────────────────────────────────── */
+.pregunta__label{ font-weight:800; font-size:1.05rem; color:var(--tinta-tit); margin-bottom:10px; display:block; }
+.pildora{ display:grid; grid-template-columns:repeat(3, 1fr); gap:4px; border:1.5px solid var(--linea); border-radius:99px; padding:5px; background:var(--blanco); }
+.op{
+  border:none; background:transparent; color:var(--tinta-tit);
+  border-radius:99px; padding:11px 4px; cursor:pointer;
+  font-family:var(--texto); font-weight:800; font-size:1rem;
+  transition:background .15s ease, color .15s ease;
+}
+.op:hover{ background:var(--azul-luz); }
+.op[aria-pressed="true"]{ background:var(--azul); color:#fff; box-shadow:0 2px 8px rgba(56,182,255,.45); }
+.op:focus-visible{ outline:2px solid var(--azul); outline-offset:2px; }
+
+/* ── Caja única de oferta ─────────────────────────────────── */
+.oferta{ border:2px solid var(--oro); border-radius:var(--radio); overflow:hidden; background:var(--blanco); }
+.oferta__banner{ background:var(--oro); color:var(--oro-txt); text-align:center; font-weight:900; font-size:.82rem; letter-spacing:.03em; padding:9px 12px; }
+.oferta__cuerpo{ padding:18px 17px; display:flex; flex-direction:column; gap:13px; }
+.oferta__cabeza{ display:grid; grid-template-columns:24px 1fr auto; gap:12px; align-items:start; }
+.marca-radio{ width:21px; height:21px; border-radius:50%; border:2px solid var(--azul-osc); display:grid; place-items:center; margin-top:3px; }
+.marca-radio::after{ content:""; width:11px; height:11px; border-radius:50%; background:var(--azul-osc); }
+.oferta__nombre{ font-weight:900; font-size:1.2rem; color:var(--tinta-tit); }
+.oferta__sub{ font-size:.87rem; color:var(--tinta); font-weight:600; }
+.oferta__precios{ text-align:right; }
+.oferta__precio{ font-weight:900; font-size:1.5rem; color:var(--tinta-tit); font-variant-numeric:tabular-nums; }
+  .oferta__linea{ display:flex; align-items:baseline; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
+  .oferta__antes{
+    color:#9AA0B4; text-decoration:line-through; text-decoration-thickness:2px;
+    font-weight:700; font-size:1rem; font-variant-numeric:tabular-nums;
+  }
+  .oferta__ahorro{
+    display:inline-flex; align-items:stretch; margin-top:9px;
+    border-radius:999px; overflow:hidden; white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  .oferta__pct{
+    background:var(--verde); color:#fff;
+    font-size:.78rem; font-weight:900; letter-spacing:.02em;
+    padding:4px 9px;
+  }
+  .oferta__eur{
+    background:#E4F6EC; color:#0F7A46;
+    font-size:.74rem; font-weight:800;
+    padding:4px 10px;
+  }
+  @media (max-width:768px){
+    .oferta__linea{ justify-content:flex-start; }
+  }
+.oferta__unidad{ display:block; margin-top:2px; font-size:.82rem; color:var(--verde); font-weight:800; font-variant-numeric:tabular-nums; }
+
+.checks{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.checks li{ display:flex; gap:10px; align-items:flex-start; font-size:.92rem; font-weight:600; }
+.tick{ color:var(--verde); flex:none; font-weight:900; }
+
+  .regalos__titulo{ font-weight:900; font-size:1rem; color:var(--tinta-tit); margin:0 0 15px; display:flex; align-items:center; gap:7px; }
+  .regalos__rejilla{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3, 1fr); gap:9px; line-height:1.2; }
+  .regalo{
+    position:relative; border:1px dashed #F0C97A; border-radius:8px; background:#FFF8EA;
+    padding:20px 9px 12px; text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    transition:opacity .2s ease;
+  }
+  .regalo.bloqueado{ opacity:.4; -webkit-filter:grayscale(1); filter:grayscale(1); }
+  .regalo__etq{
+    position:absolute; top:-8px; left:50%;
+    -webkit-transform:translateX(-50%); transform:translateX(-50%);
+    background:var(--oro); color:var(--oro-txt); white-space:nowrap;
+    font-size:.6rem; font-weight:900; letter-spacing:.04em; padding:3px 8px; border-radius:999px;
+  }
+  .regalo.bloqueado .regalo__etq{ background:#D8DCE4; color:#5A6070; }
+  .regalo__foto{ width:46px; height:46px; display:flex; align-items:center; justify-content:center; font-size:1.55rem; flex:none; }
+  .reg-svg{ width:100%; height:100%; display:block; }
+  .regalos__rejilla .regalo .regalo__nombre{ display:block; font-size:.78rem; font-weight:900; line-height:1.18; letter-spacing:-.01em; color:var(--tinta-tit); text-wrap:balance; }
+  .regalos__rejilla .regalo .regalo__nombre small{ display:block; font-size:.71rem; font-weight:600; line-height:1.3; margin-top:5px; letter-spacing:0; color:var(--tinta); }
+  @media (max-width:480px){
+    .regalos__rejilla{ grid-template-columns:1fr; gap:18px; }
+    .regalo{ flex-direction:row; text-align:left; gap:12px; padding:16px 12px 12px; }
+    .regalo__etq{ left:14px; -webkit-transform:none; transform:none; }
+  }
+
+.entrega{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:.9rem; font-weight:700; border-top:1px solid var(--linea); padding-top:15px; color:var(--tinta-tit); }
+.punto-ok{ width:8px; height:8px; border-radius:50%; background:var(--verde); flex:none; box-shadow:0 0 0 4px rgba(31,164,99,.18); }
+.entrega b{ color:var(--verde); }
+
+.cta{
+  display:block; width:100%; text-align:center;
+  font-family:var(--texto); font-weight:900; font-size:1.1rem; color:#fff;
+  background:var(--azul-osc); border:none; border-radius:var(--radio);
+  padding:16px 20px; cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,155,240,.32);
+  transition:transform .12s ease, background .15s ease;
+}
+.cta:hover{ background:#00A9FF; transform:translateY(-1px); }
+.cta:focus-visible{ outline:2px solid var(--tinta-tit); outline-offset:3px; }
+.cta small{ display:block; font-size:.78rem; font-weight:700; opacity:.9; margin-top:2px; }
+.cta--fantasma{ background:transparent; color:var(--azul-txt); border:1.5px solid var(--azul); box-shadow:none; }
+.cta--fantasma:hover{ background:var(--azul-luz); }
+.seccion--noche .cta--fantasma{ color:#fff; border-color:#5BC5FF; }
+.seccion--noche .cta--fantasma:hover{ background:rgba(91,197,255,.15); }
+
+.zona-plugin{
+    position:relative; border:1px dashed #C9CEDB; border-radius:var(--radio);
+    padding:16px 14px 14px; background:var(--gris);
+  }
+  .zona-plugin__etq{
+    position:absolute; top:-9px; left:14px; background:var(--gris);
+    padding:0 7px; font-size:.64rem; font-weight:800; letter-spacing:.08em;
+    text-transform:uppercase; color:#8A90A6;
+  }
+
+
+
+  /* resena bajo la galeria - caja Trustpilot */
+  .rg{ box-sizing:border-box; background:#fff; border:6px solid #D6EEFC; border-radius:16px; padding:clamp(16px,2.2vw,24px); margin:24px 0 0; }
+  .rg__pieza{ display:none; }
+  .rg__pieza.on{ display:block; }
+  .rg__cab{ display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:0; }
+  .rg__est{ display:flex; gap:2px; flex:0 0 auto; }
+  .rg__est span{ width:18px; height:18px; background:#00B67A; border-radius:3px; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .rg__est svg{ width:13px; height:13px; fill:#fff; display:block; }
+  .rg__titular{ margin:0; flex:1 1 220px; min-width:0; font-size:1rem; font-weight:800; line-height:1.35; color:#000; }
+  .rg__marca{ display:inline-flex; align-items:center; gap:4px; margin:6px 0 0; font-size:1rem; font-weight:800; letter-spacing:-.02em; line-height:1; color:#000; }
+  .rg__marca svg{ width:19px; height:19px; fill:#00B67A; display:block; flex:0 0 auto; }
+  .rg__txt{ margin:14px 0; font-size:.94rem; font-weight:400; line-height:1.45; color:#000; }
+  .rg__pie{ display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:0; }
+  .rg__nombre{ font-size:1rem; font-weight:800; line-height:1.2; color:#000; }
+  .rg__ver{ display:inline-flex; align-items:center; gap:6px; font-size:.87rem; font-weight:500; line-height:1.2; color:#555; }
+  .rg__ver svg{ width:19px; height:19px; fill:#02B978; display:block; flex:0 0 auto; }
+  .rg__puntos{ display:flex; gap:6px; margin:16px 0 0; }
+  .rg__punto{ width:22px; height:22px; padding:0; border:0; background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .rg__punto i{ display:block; width:7px; height:7px; border-radius:50%; background:#D9DEE8; }
+  .rg__punto[aria-current="true"] i{ background:var(--azul); transform:scale(1.25); }
+  @media (max-width:600px){
+    .rg{ border-width:4px; padding:16px; margin-top:18px; }
+    .rg__titular{ font-size:.94rem; flex:1 1 100%; }
+    .rg__txt{ font-size:.88rem; }
+  }
+  /* dudas - cajas estilo Bonjour */
+  .dud{ margin:20px 0 0; }
+  .dud details{ box-sizing:border-box; border:1px solid #111; border-radius:16px; background:#fff; padding:0 16px; margin:0 0 12px; }
+  .dud details:last-child{ margin-bottom:0; }
+  .dud details[open]{ box-shadow:3px 3px 0 var(--azul); }
+  .dud summary{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding-top:16px; padding-bottom:16px; cursor:pointer; list-style:none; }
+  .dud summary::-webkit-details-marker{ display:none; }
+  .dud summary h3{ margin:0; font-size:.95rem; font-weight:800; line-height:1.35; color:#111; }
+  .dud .dud__ico{ width:24px; height:24px; flex:0 0 auto; display:block; stroke:#111; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .dud details[open] .dud__ico .vert{ display:none; }
+  .dud p{ margin:0; padding:0 0 14px; font-size:.88rem; font-weight:400; line-height:1.75; color:#3A3A3A; }
+  .tranquilidad{
+    list-style:none; margin:0; padding:14px 15px;
+    background:var(--azul-luz); border-radius:10px;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .tranquilidad li{ display:flex; align-items:flex-start; gap:10px; font-size:.88rem; font-weight:600; line-height:1.4; color:var(--tinta); }
+  .tranquilidad i{ font-style:normal; font-size:1.05rem; line-height:1.3; flex:none; }
+  .tranquilidad b{ font-weight:800; color:var(--azul-txt); }
+
+  .confirmacion{ text-align:center; font-size:.84rem; font-weight:800; color:var(--verde); display:flex; align-items:center; justify-content:center; gap:7px; }
+
+/* ── Bloques de contenido ─────────────────────────────────── */
+.duo{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(22px, 3.4vw, 48px); align-items:center; }
+@media (max-width:820px){ .duo{ grid-template-columns:1fr; } }
+.duo--invertido .duo__media{ order:2; }
+@media (max-width:820px){ .duo--invertido .duo__media{ order:0; } }
+.duo__texto{ display:flex; flex-direction:column; gap:14px; }
+.duo__texto .remate{ color:var(--tinta-tit); font-weight:800; }
+
+.escenas{ display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(12px, 2vw, 18px); margin-top:30px; }
+@media (max-width:1024px){ .escenas{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:600px){ .escenas{ grid-template-columns:1fr; } }
+.escena-uso{ display:flex; flex-direction:column; gap:10px; }
+.escena-uso .hueco{ aspect-ratio:3/4; font-size:.7rem; }
+.escena-uso h3{ font-size:1rem; }
+.escena-uso__aj{ font-size:.78rem; font-weight:700; color:#8A90A6; }
+.quien{ font-size:.64rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:var(--azul-osc); }
+
+.pasos{ display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(14px, 2.2vw, 26px); margin-top:30px; }
+@media (max-width:780px){ .pasos{ grid-template-columns:1fr; } }
+.paso{ display:flex; flex-direction:column; gap:11px; }
+.paso__num{ width:38px; height:38px; border-radius:50%; flex:none; background:var(--azul-osc); color:#fff; display:grid; place-items:center; font-weight:900; font-size:1.05rem; }
+.paso p{ font-size:.93rem; }
+
+.argumentos{ display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(16px, 2.4vw, 28px); margin-top:30px; }
+@media (max-width:820px){ .argumentos{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:520px){ .argumentos{ grid-template-columns:1fr; } }
+.argumento{ display:flex; flex-direction:column; gap:9px; }
+.argumento .hueco{ aspect-ratio:1/1; border-radius:50%; max-width:126px; }
+.argumento p{ font-size:.9rem; }
+
+.tabla-caja{ overflow-x:auto; margin-top:30px; border:1px solid var(--linea); border-radius:var(--radio); background:var(--blanco); }
+table{ border-collapse:collapse; width:100%; min-width:540px; }
+th, td{ padding:13px 14px; text-align:center; border-bottom:1px solid var(--linea); font-size:.9rem; }
+th:first-child, td:first-child{ text-align:left; font-weight:800; min-width:200px; color:var(--tinta-tit); }
+thead th{ font-weight:800; font-size:.86rem; background:var(--gris); color:var(--tinta); }
+thead th.nuestra{ color:#fff; background:var(--azul-osc); }
+tbody td.nuestra{ background:var(--azul-luz); font-weight:900; color:var(--azul-txt); }
+tbody tr:last-child td{ border-bottom:none; }
+.si{ color:var(--verde); font-weight:900; }
+.no{ color:#9AA0B4; font-weight:800; }
+
+.resenas{ display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(12px, 2vw, 20px); margin-top:26px; }
+@media (max-width:860px){ .resenas{ grid-template-columns:1fr; } }
+.resena[hidden]{ display:none; }
+  .resenas__mas{
+    display:block; margin:22px auto 0; background:none;
+    border:1.5px solid var(--azul-osc); color:var(--azul-osc);
+    border-radius:999px; padding:11px 24px;
+    font-family:var(--texto); font-weight:800; font-size:.92rem; cursor:pointer;
+  }
+  .resenas__mas:hover{ background:var(--azul-osc); color:#fff; }
+  .resena{ background:var(--blanco); border:1px solid var(--linea); border-radius:var(--radio); padding:17px; display:flex; flex-direction:column; gap:11px; }
+.resena .tp-estrella{ width:18px; height:18px; }
+.resena .tp-estrella svg{ width:12px; height:12px; }
+.resena__titulo{ font-weight:800; font-size:1rem; color:var(--tinta-tit); }
+.resena__texto{ font-size:.9rem; }
+.resena__pie{ display:flex; align-items:center; gap:9px; font-size:.78rem; color:#8A90A6; font-weight:700; margin-top:auto; }
+.avatar{ width:29px; height:29px; border-radius:50%; flex:none; background:var(--azul); display:grid; place-items:center; color:#fff; font-weight:900; font-size:.72rem; }
+.verificada{ color:var(--tp); }
+
+.faq{ margin-top:26px; display:flex; flex-direction:column; gap:10px; max-width:820px; }
+details{ border:1px solid var(--linea); border-radius:var(--radio); background:var(--blanco); overflow:hidden; }
+details[open]{ border-color:var(--azul); }
+summary{ cursor:pointer; padding:15px 17px; font-weight:800; font-size:.97rem; color:var(--tinta-tit); list-style:none; display:flex; justify-content:space-between; gap:14px; align-items:center; }
+summary::-webkit-details-marker{ display:none; }
+summary::after{ content:"+"; color:var(--azul-osc); font-size:1.3rem; font-weight:700; line-height:1; flex:none; }
+details[open] summary::after{ content:"–"; }
+summary:focus-visible{ outline:2px solid var(--azul); outline-offset:-2px; }
+details p{ padding:0 17px 16px; font-size:.93rem; }
+
+.insignias{ display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(14px, 2.2vw, 22px); margin-top:30px; }
+@media (max-width:820px){ .insignias{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:520px){ .insignias{ grid-template-columns:1fr; } }
+.insignia{ border:1px solid var(--linea); border-radius:var(--radio); padding:18px; background:var(--blanco); display:flex; flex-direction:column; gap:8px; }
+.insignia__icono{ font-size:1.45rem; line-height:1; }
+.insignia p{ font-size:.88rem; }
+.firma-humana{ margin-top:26px; text-align:center; font-size:.95rem; max-width:60ch; margin-inline:auto; }
+
+/* Cierre — el único bloque grande en negro */
+.cierre{ background:radial-gradient(90% 130% at 50% 0%, #2A2065 0%, #0F1430 62%); border-top:1px solid var(--linea); }
+.cierre__caja{ max-width:640px; margin-inline:auto; text-align:center; display:flex; flex-direction:column; gap:17px; align-items:center; }
+.cierre__caja h2{ color:#fff; }
+.cierre__caja p{ color:#B9C2E8; }
+.cierre .cta{ max-width:380px; }
+.precio-cierre{ display:flex; align-items:baseline; gap:11px; justify-content:center; flex-wrap:wrap; }
+.precio-cierre b{ font-size:2.05rem; font-weight:900; color:#fff; font-variant-numeric:tabular-nums; }
+.precio-cierre s{ color:#7C86BC; font-weight:700; }
+
+.barra{
+  position:fixed; left:0; right:0; bottom:0; z-index:50;
+  background:rgba(255,255,255,.97); border-top:1px solid var(--linea);
+  box-shadow:0 -3px 16px rgba(0,0,0,.09); backdrop-filter:blur(10px);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+}
+.barra__fila{ max-width:var(--ancho); margin-inline:auto; display:grid; grid-template-columns:44px 1fr auto auto; gap:12px; align-items:center; }
+.barra__mini{ width:44px; height:44px; border-radius:var(--radio-s); flex:none; border:1px dashed var(--linea); background:var(--gris); display:grid; place-items:center; font-size:1.1rem; }
+.barra__nombre{ font-weight:800; font-size:.9rem; line-height:1.25; color:var(--tinta-tit); }
+.barra__sub{ font-size:.76rem; color:var(--tinta); font-weight:600; }
+.barra__precio{ text-align:right; font-weight:900; color:var(--tinta-tit); font-variant-numeric:tabular-nums; min-width:0; }
+.barra__precio s{ display:block; font-size:.74rem; color:#9AA0B4; font-weight:600; }
+.barra .cta{ width:auto; padding:13px 20px; font-size:.95rem; white-space:nowrap; }
+@media (max-width:620px){
+  .barra__fila{ grid-template-columns:1fr auto; }
+  .barra__mini{ display:none; }
+  .barra__sub{ display:none; }
+}
+
+.cola{ height:96px; }
+.pie-maqueta{ border-top:1px solid var(--linea); padding-block:26px; color:#9AA0B4; font-size:.8rem; text-align:center; }
+</style>
+
+<button class="boton-mapa" id="toggleMapa" type="button" aria-pressed="false">🗺️ Ver mapa Bonjour</button>
+
+<div class="envoltorio">
+
+  <div class="aviso" role="status">
+    <p class="aviso__linea1">🌌 OFERTA ESPECIAL NOCHES DE GALAXIA ✨</p>
+    <p class="aviso__linea2">HOY: −37 % + 3 REGALOS + ENVÍO GRATIS</p>
+  </div>
+
+  <header class="cabecera">
+    <div class="cabecera__fila">
+      <div class="logo">BAZAR <span>BIZARRO</span></div>
+      <nav class="cabecera__nav" aria-label="Maqueta"><span>Luz y deco</span><span>Gaming</span><span>Regalos</span><span>Ayuda</span></nav>
+    </div>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <section class="seccion hero">
+    <div class="envoltura">
+      <span class="mapa-chip">02 · enfant_bundle_product</span>
+      <div class="hero__grid">
+
+        <div class="galeria">
+          <figure class="escena">
+            <svg viewBox="0 0 400 400" role="img" aria-label="El huevo proyectando una aurora sobre el techo">
+              <defs>
+                <linearGradient id="gHaz" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stop-color="#16B98C" stop-opacity="0.6"/>
+                  <stop offset="55%" stop-color="#38B6FF" stop-opacity="0.28"/>
+                  <stop offset="100%" stop-color="#9B6BD6" stop-opacity="0.06"/>
+                </linearGradient>
+                <linearGradient id="gHuevo" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#3C4790"/><stop offset="100%" stop-color="#1B2050"/>
+                </linearGradient>
+                <radialGradient id="gBrillo">
+                  <stop offset="0%" stop-color="#9BE7FF" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="#38B6FF" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <g class="haz">
+                <path d="M200 300 L18 44 L382 44 Z" fill="url(#gHaz)"/>
+                <ellipse cx="200" cy="52" rx="150" ry="26" fill="#9B6BD6" opacity="0.18"/>
+                <ellipse cx="200" cy="66" rx="112" ry="19" fill="#16B98C" opacity="0.16"/>
+              </g>
+              <g fill="#EEF1FF">
+                <circle cx="96" cy="72" r="2"/><circle cx="150" cy="50" r="1.4"/>
+                <circle cx="243" cy="60" r="2.2"/><circle cx="300" cy="84" r="1.5"/>
+                <circle cx="196" cy="96" r="1.6"/><circle cx="126" cy="112" r="1.3"/>
+                <circle cx="272" cy="118" r="1.8"/><circle cx="214" cy="140" r="1.2"/>
+              </g>
+              <ellipse cx="200" cy="360" rx="96" ry="15" fill="#38B6FF" opacity="0.14"/>
+              <path d="M200 232 c46 0 76 34 76 70 c0 34 -34 58 -76 58 c-42 0 -76 -24 -76 -58 c0 -36 30 -70 76 -70 Z" fill="url(#gHuevo)" stroke="#4A56A0" stroke-width="2"/>
+              <path d="M152 300 l22 -12 l-8 20 l24 -8 l-10 22" fill="none" stroke="#6C79C8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M232 284 l18 -10 l-6 18 l20 -6" fill="none" stroke="#6C79C8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="200" cy="268" r="26" fill="url(#gBrillo)"/>
+              <circle cx="200" cy="268" r="9" fill="#BFF0FF"/>
+            </svg>
+            <figcaption class="escena__pie">Sustituir por foto real</figcaption>
+          </figure>
+          <div class="tiras">
+            <div class="hueco"><b>VÍDEO</b>el techo encendiéndose</div>
+            <div class="hueco"><b>FOTO</b>el huevo de cerca</div>
+            <div class="hueco"><b>FOTO</b>qué trae la caja</div>
+            <div class="hueco"><b>FOTO</b>mando y USB-C</div>
+          </div>
+
+          <div class="rg" id="rgCaja">
+            <div class="rg__pieza on">
+              <div class="rg__cab"><span class="rg__est" role="img" aria-label="5 de 5"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></span><p class="rg__titular">Se duerme sola y sin pelea… ¡y yo también!</p></div>
+              <span class="rg__marca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>Trustpilot</span>
+              <p class="rg__txt">«Buscaba algo para que mi hija dejara de pedirme que me quedara hasta que se durmiera. Lo enciendo, pongo el ruido de lluvia y el temporizador a una hora, y se queda mirando el techo en silencio. En dos minutos está dormida y el aparato se apaga solo, sin que nadie vuelva a entrar. Llevo una semana sin discutir a la hora de la cama. Llegó en dos días y pagué al repartidor, que era lo que más me preocupaba.»</p>
+              <p class="rg__pie"><span class="rg__nombre">Marta G.</span><span class="rg__ver"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 14.6l-4-4 1.5-1.5 2.5 2.5 5.4-5.4 1.5 1.5z"/></svg>Cliente verificada</span></p>
+            </div>
+            <div class="rg__pieza">
+              <div class="rg__cab"><span class="rg__est" role="img" aria-label="5 de 5"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></span><p class="rg__titular">Pensaba que en vídeo se vería mejor que en casa… y es al revés</p></div>
+              <span class="rg__marca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>Trustpilot</span>
+              <p class="rg__txt">«Compré con la mosca detrás de la oreja porque estas cosas siempre salen preciosas en el vídeo y luego son cuatro puntitos. A oscuras el techo entero se llena y la nebulosa gira despacio, no es el típico láser plano. Mi pareja lo bajó al salón para una cena y ya no ha vuelto a subir. Cero apps y cero líos: mando, botón y listo.»</p>
+              <p class="rg__pie"><span class="rg__nombre">Javier R.</span><span class="rg__ver"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 14.6l-4-4 1.5-1.5 2.5 2.5 5.4-5.4 1.5 1.5z"/></svg>Cliente verificada</span></p>
+            </div>
+            <div class="rg__pieza">
+              <div class="rg__cab"><span class="rg__est" role="img" aria-label="5 de 5"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></span><p class="rg__titular">Pedido, pagado al repartidor y funcionando a la primera</p></div>
+              <span class="rg__marca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>Trustpilot</span>
+              <p class="rg__txt">«Es la primera vez que compro en esta tienda y lo hice justo porque no había que pagar nada por adelantado. Salió el mismo día, llegó en dos, lo abrí delante del repartidor y encendía perfectamente. La caja trae el mando y el cable USB-C, no falta nada. Atención al cliente de diez, me respondieron por WhatsApp en menos de una hora.»</p>
+              <p class="rg__pie"><span class="rg__nombre">Nuria B.</span><span class="rg__ver"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 14.6l-4-4 1.5-1.5 2.5 2.5 5.4-5.4 1.5 1.5z"/></svg>Cliente verificada</span></p>
+            </div>
+            <div class="rg__puntos"><button type="button" class="rg__punto" aria-current="true" aria-label="Opinión 1"><i></i></button><button type="button" class="rg__punto" aria-current="false" aria-label="Opinión 2"><i></i></button><button type="button" class="rg__punto" aria-current="false" aria-label="Opinión 3"><i></i></button></div>
+          </div>
+        </div>
+
+        <div class="compra">
+
+          <div class="trustpilot">
+            <div class="tp-estrellas" role="img" aria-label="4,7 sobre 5 en Trustpilot">
+              <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+              <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+              <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+              <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+              <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+            </div>
+            <span class="tp-nota">4.8/5 (+590 opiniones)</span>
+            <span class="tp-marca">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              Trustpilot
+            </span>
+          </div>
+
+          <h1><span class="marca">AuraGalaxy<span class="tm">™</span></span>. Tu habitación es una galaxia en 3 segundos</h1>
+
+          <div class="tarjetas-ben">
+            <div class="tarjeta-ben">
+              <span class="tarjeta-ben__icono" aria-hidden="true">🌌</span>
+              <span>Estrellas y nebulosas en movimiento<small>Icono · 200×200</small></span>
+            </div>
+            <div class="tarjeta-ben">
+              <span class="tarjeta-ben__icono" aria-hidden="true">🎧</span>
+              <span>4 en 1: proyector, luz, altavoz y ruido blanco<small>Icono · 200×200</small></span>
+            </div>
+            <div class="tarjeta-ben">
+              <span class="tarjeta-ben__icono" aria-hidden="true">⏱️</span>
+              <span>Apagado solo a 1 h, 2 h o 4 h<small>Icono · 200×200</small></span>
+            </div>
+          </div>
+
+          <p class="frase"><b>Un proyector de galaxia con forma de huevo de dragón</b> que convierte el cuarto de los niños, tu setup o el salón en una noche estrellada en cuanto bajas la persiana, y que apagado se queda de adorno en la estantería.</p>
+          <button class="enlace-prueba" type="button" id="abrirPrueba">¿Se ve así de verdad?</button>
+
+          <div>
+            <span class="pregunta__label" id="lblPregunta">¿En cuántas habitaciones lo vas a poner?</span>
+            <div class="pildora" role="group" aria-labelledby="lblPregunta">
+              <button class="op" type="button" data-n="1" aria-pressed="false">1</button>
+              <button class="op" type="button" data-n="2" aria-pressed="true">2</button>
+              <button class="op" type="button" data-n="3" aria-pressed="false">3</button>
+            </div>
+          </div>
+
+          <div class="oferta">
+            <div class="oferta__banner" id="ofertaBanner">EL MÁS ELEGIDO: −30% + 2 BENEFICIOS</div>
+            <div class="oferta__cuerpo">
+
+              <div class="oferta__cabeza">
+                <span class="marca-radio" aria-hidden="true"></span>
+                <span>
+                  <span class="oferta__nombre" id="ofertaNombre">2 habitaciones</span>
+                  <span class="oferta__sub" id="ofertaSub">Uno para cada habitación · pago contra reembolso</span>
+                  <span class="oferta__ahorro">
+                    <span class="oferta__pct" id="ofertaPct">−30%</span>
+                    <span class="oferta__eur" id="ofertaEur">ahorras 29,90&nbsp;€</span>
+                  </span>
+                </span>
+                <span class="oferta__precios">
+                  <span class="oferta__linea">
+                    <span class="oferta__precio" id="ofertaPrecio">69,90&nbsp;€</span>
+                    <s class="oferta__antes" id="ofertaAntes">99,80&nbsp;€</s>
+                  </span>
+                  <b class="oferta__unidad" id="ofertaUnidad">34,95&nbsp;€ por habitación</b>
+                </span>
+              </div>
+
+              <ul class="checks">
+                <li><span class="tick" aria-hidden="true">✓</span> Envío gratis en 24-48h, en todos los pedidos</li>
+                <li><span class="tick" aria-hidden="true">✓</span> Pagas al repartidor cuando lo tengas en la mano</li>
+                <li><span class="tick" aria-hidden="true">✓</span> 14 días para devolverlo, derecho de desistimiento legal</li>
+              </ul>
+
+              <div>
+                <p class="regalos__titulo">🎁 Lo que desbloqueas con tu pack:</p>
+                <ul class="regalos__rejilla">
+                  <li class="regalo" data-desde="1">
+                    <span class="regalo__etq">BENEFICIO</span>
+                    <span class="regalo__foto" aria-hidden="true"><svg class="reg-svg" viewBox="0 0 24 24"><rect x="1" y="5.6" width="13" height="10" rx="1.6" fill="#38B6FF"/><path d="M14 8.6h4.1a1.6 1.6 0 0 1 1.3.7l2.3 3.3c.2.3.3.6.3.9v2.1a1 1 0 0 1-1 1H14V8.6Z" fill="#0B6FA8"/><circle cx="6.4" cy="18" r="2.6" fill="#2B3268"/><circle cx="6.4" cy="18" r="1" fill="#fff"/><circle cx="17.3" cy="18" r="2.6" fill="#2B3268"/><circle cx="17.3" cy="18" r="1" fill="#fff"/></svg></span>
+                    <span class="regalo__nombre">Envío gratis en 24-48h<small>Sale de España el mismo día si pides antes de las 15:00.</small></span>
+                  </li>
+                  <li class="regalo" data-desde="2">
+                    <span class="regalo__etq">DESDE 2 · GRATIS</span>
+                    <span class="regalo__foto" aria-hidden="true"><svg class="reg-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#1DB954"/><path d="M17.63 10.9c-3.06-1.82-8.1-1.99-11.02-1.1a.94.94 0 1 1-.55-1.8c3.35-1.02 8.92-.82 12.44 1.27a.94.94 0 1 1-.87 1.63Zm-.1 2.7a.78.78 0 0 1-1.08.26c-2.55-1.57-6.44-2.03-9.46-1.11a.78.78 0 1 1-.46-1.5c3.45-1.04 7.73-.53 10.66 1.27.37.23.49.71.34 1.08Zm-1.17 2.6a.63.63 0 0 1-.86.21c-2.23-1.36-5.03-1.67-8.33-.92a.63.63 0 1 1-.28-1.22c3.61-.83 6.72-.47 9.22 1.06.3.18.39.57.25.87Z" fill="#fff"/></svg></span>
+                    <span class="regalo__nombre">Playlist «Galaxy Nights» en Spotify<small>Preparada para acompañar las luces por Bluetooth.</small></span>
+                  </li>
+                  <li class="regalo" data-desde="3">
+                    <span class="regalo__etq">DESDE 3 · GRATIS</span>
+                    <span class="regalo__foto" aria-hidden="true"><svg class="reg-svg" viewBox="0 0 24 24"><path d="M5.6 1.4h8.2l5 5v15.6a1.1 1.1 0 0 1-1.1 1.1H5.6a1.1 1.1 0 0 1-1.1-1.1V2.5a1.1 1.1 0 0 1 1.1-1.1Z" fill="#fff" stroke="#C9CEDB" stroke-width="1.1"/><path d="M13.8 1.4l5 5h-3.9a1.1 1.1 0 0 1-1.1-1.1V1.4Z" fill="#E3E8F0"/><rect x="2.6" y="11.4" width="14.6" height="7.1" rx="1.6" fill="#E5533D"/><text x="9.9" y="16.6" text-anchor="middle" font-family="Nunito, system-ui, sans-serif" font-size="5" font-weight="800" fill="#fff" letter-spacing="0.2">PDF</text></svg></span>
+                    <span class="regalo__nombre">Guía «20 formas de convertir tu habitación en otro mundo»<small>Romántico, gaming, noche de película, lectura, relax, infantil y fiesta.</small></span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FUERA DEL RECUADRO · disponibilidad -->
+          <div class="entrega">
+            <span class="punto-ok" aria-hidden="true"></span>
+            <span>En stock · Lo tienes en casa el <b id="fechaEntrega">jueves</b></span>
+          </div>
+
+          <!-- FUERA DEL RECUADRO · botón del plugin de contra reembolso -->
+          <div class="zona-plugin">
+            <span class="zona-plugin__etq">Aquí va el botón del plugin</span>
+            <button class="cta" type="button">Lo quiero contra reembolso<small>Sin pagar nada ahora</small></button>
+          </div>
+
+          <ul class="tranquilidad">
+            <li><i aria-hidden="true">💳</i><span><b>Sin pagar nada ahora.</b> Pagas al repartidor cuando lo tengas en la mano, en efectivo o con tarjeta.</span></li>
+            <li><i aria-hidden="true">🔒</i><span><b>También puedes pagar con tarjeta.</b> Pasarela cifrada: tus datos no pasan por nuestras manos en ningún momento.</span></li>
+            <li><i aria-hidden="true">🛡️</i><span><b>Si llega dañada o no funciona, nos encargamos.</b> Ábrela y pruébala al recibirla; nos mandas una foto y lo resolvemos nosotros.</span></li>
+          </ul>
+
+          <div class="dud">
+            <details><summary><h3>¿Por qué AuraGalaxy?</h3><svg class="dud__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 12h10"/><path class="vert" d="M12 7v10"/></svg></summary><p>Los proyectores baratos lanzan cuatro puntos y un láser plano que se queda en una esquina del techo.</p><p>AuraGalaxy monta lente de cristal, giro de 360° y catorce combinaciones de aurora, así que la habitación entera cambia de color, no solo un trozo. Sale desde España, no desde Asia: lo tienes en 24-48 h y no en tres semanas.</p></details>
+            <details><summary><h3>¿Se ve así de verdad en mi habitación?</h3><svg class="dud__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 12h10"/><path class="vert" d="M12 7v10"/></svg></summary><p>Sí, a oscuras. Con la persiana bajada cubre un techo de hasta 20 m². Con la luz encendida no se ve nada, igual que cualquier proyector: es física, no calidad.</p><p>Los vídeos de esta página están grabados con un móvil en un piso normal, sin retoque y sin humo de atrezo.</p></details>
+            <details><summary><h3>¿Y si no me convence o llega dañado?</h3><svg class="dud__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 12h10"/><path class="vert" d="M12 7v10"/></svg></summary><p>Pagas al repartidor cuando lo tienes en la mano, así que no adelantas ni un euro y no hay nada que reclamar si no llega.</p><p>Si llega dañado o con un fallo de fábrica, nos mandas una foto y nos encargamos nosotros de la recogida y del reemplazo. El envío de vuelta lo pagamos nosotros.</p></details>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EL PROBLEMA ══ -->
+  <section class="seccion seccion--gris">
+    <div class="envoltura">
+      <span class="mapa-chip">03 · el problema</span>
+      <div class="duo">
+        <div class="duo__media">
+          <div class="hueco hueco--4-3"><b>FOTO ANTES / DESPUÉS</b>la misma habitación con la luz encendida y con el proyector<br>1000 × 750 px</div>
+        </div>
+        <div class="duo__texto">
+          <p class="eyebrow">El problema</p>
+          <h2>Tu habitación está bien. Y ya está.</h2>
+          <p>Paredes blancas, el plafón del techo, y esa luz de bombilla que lo deja todo igual de plano a las nueve de la noche que a las tres de la tarde. Funciona, pero no apetece estar ahí.</p>
+          <p>Cambiarlo en serio cuesta dinero: tiras de LED, lámparas, pintura, un fin de semana de obra. Y al final acabas dejándolo como está.</p>
+          <p class="remate">Esto cuesta lo que una cena para dos y tarda tres segundos: apagas la luz y la habitación es otra.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ LA FUNCIÓN ESTRELLA — en negro, que es donde vive ══ -->
+  <section class="seccion seccion--noche">
+    <div class="envoltura">
+      <span class="mapa-chip">04 · la función estrella</span>
+      <div class="duo duo--invertido">
+        <div class="duo__media">
+          <div class="hueco hueco--4-3"><b>VÍDEO</b>el techo entero con la aurora moviéndose<br>1000 × 750 px</div>
+        </div>
+        <div class="duo__texto">
+          <p class="eyebrow">La aurora</p>
+          <h2>No son cuatro puntitos: es el techo entero moviéndose</h2>
+          <p>Los proyectores baratos tiran unas estrellas fijas y poco más. Este pinta ondas de aurora boreal que se desplazan despacio por el techo y las paredes, cambian de color y se regulan en intensidad.</p>
+          <p>Puedes dejarlo quieto y tenue como luz de fondo, o ponerlo a girar y convertir el salón en otra cosa.</p>
+          <p class="remate">Es lo que hace que la gente saque el móvil para grabarlo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ESCENAS DE USO ══ -->
+  <section class="seccion">
+    <div class="envoltura">
+      <span class="mapa-chip">05 · escenas de uso</span>
+      <p class="eyebrow">Seis maneras de usarlo</p>
+      <h2>El mismo huevo, seis casas distintas</h2>
+      <div class="escenas">
+        <article class="escena-uso">
+          <div class="hueco"><b>VÍDEO 3-5 s</b>habitación infantil<br>750 × 1000</div>
+          <span class="quien">Habitación infantil</span>
+          <h3>Irse a la cama deja de ser una negociación</h3>
+          <span class="escena-uso__aj">Azul · lluvia · 1 hora</span>
+        </article>
+        <article class="escena-uso">
+          <div class="hueco"><b>VÍDEO 3-5 s</b>salón de noche, dos copas<br>750 × 1000</div>
+          <span class="quien">Noche de pareja</span>
+          <h3>Cambiar el salón sin salir de casa</h3>
+          <span class="escena-uso__aj">Cálido · giro lento · Bluetooth</span>
+        </article>
+        <article class="escena-uso">
+          <div class="hueco"><b>VÍDEO 3-5 s</b>setup con PC<br>750 × 1000</div>
+          <span class="quien">Setup gaming</span>
+          <h3>El fondo que hace que tu mesa se vea bien</h3>
+          <span class="escena-uso__aj">Azul fijo · sin giro</span>
+        </article>
+        <article class="escena-uso">
+          <div class="hueco"><b>VÍDEO 3-5 s</b>dormitorio a oscuras<br>750 × 1000</div>
+          <span class="quien">Desconexión</span>
+          <h3>Bajar el ritmo sin encender la tele</h3>
+          <span class="escena-uso__aj">Azul · olas · brillo mínimo</span>
+        </article>
+        <article class="escena-uso">
+          <div class="hueco"><b>VÍDEO 3-5 s</b>baño a oscuras con la bañera llena<br>750 × 1000</div>
+          <span class="quien">Baño</span>
+          <h3>La bañera de un hotel que no has pagado</h3>
+          <span class="escena-uso__aj">Violeta · giro lento · 1 hora</span>
+        </article>
+        <article class="escena-uso">
+          <div class="hueco"><b>VÍDEO 3-5 s</b>envuelto para regalo<br>750 × 1000</div>
+          <span class="quien">Regalo</span>
+          <h3>Nadie sabe qué es hasta que lo enciende</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TRES PASOS ══ -->
+  <section class="seccion seccion--azul">
+    <div class="envoltura">
+      <span class="mapa-chip">06 · product_proses</span>
+      <p class="eyebrow">Tres segundos, cero manual</p>
+      <h2>Se enciende, se elige y se acabó</h2>
+      <p class="entradilla">Ni app, ni wifi, ni emparejar nada raro. Un mando con tres botones.</p>
+      <div class="pasos">
+        <article class="paso">
+          <span class="paso__num" aria-hidden="true">1</span>
+          <h3>Colócalo</h3>
+          <p>En la mesilla, en la estantería o en el suelo, apuntando al techo. Enchufado por USB-C o con su batería, donde te venga bien.</p>
+        </article>
+        <article class="paso">
+          <span class="paso__num" aria-hidden="true">2</span>
+          <h3>Elige el ambiente</h3>
+          <p>Desde el mando: color, brillo, velocidad de giro y sonido. Del azul quieto y tenue a la nebulosa girando a tope.</p>
+        </article>
+        <article class="paso">
+          <span class="paso__num" aria-hidden="true">3</span>
+          <h3>Olvídate</h3>
+          <p>Eliges 1, 2 o 4 horas y se apaga solo. No hay que volver a levantarse.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SEIS ARGUMENTOS ══ -->
+  <section class="seccion">
+    <div class="envoltura">
+      <span class="mapa-chip">07 · los 6 argumentos</span>
+      <p class="eyebrow">Por qué este y no el de 12 €</p>
+      <h2>Seis razones para que no acabe en un cajón</h2>
+      <div class="argumentos">
+        <article class="argumento">
+          <div class="hueco"><b>FOTO</b>mando</div>
+          <h3>Se maneja sin levantarse</h3>
+          <p>Mando a distancia y botones en el aparato. Cambias el ambiente sin entrar en la habitación.</p>
+        </article>
+        <article class="argumento">
+          <div class="hueco"><b>FOTO</b>temporizador</div>
+          <h3>Se apaga solo</h3>
+          <p>Temporizador de 1 h, 2 h o 4 h. No te lo dejas encendido toda la noche.</p>
+        </article>
+        <article class="argumento">
+          <div class="hueco"><b>FOTO</b>batería</div>
+          <h3>Va sin enchufe</h3>
+          <p>Batería recargable por USB-C. Lo llevas de una habitación a otra, o a casa de alguien.</p>
+        </article>
+        <article class="argumento">
+          <div class="hueco"><b>FOTO</b>colores</div>
+          <h3>Un aparato, muchos ambientes</h3>
+          <p>Millones de combinaciones de color, brillo y velocidad. Sirve para dormir, para trabajar y para una fiesta.</p>
+        </article>
+        <article class="argumento">
+          <div class="hueco"><b>FOTO</b>altavoz</div>
+          <h3>Ya viene con sonido</h3>
+          <p>Ruido blanco dentro (lluvia, olas, grillos) y altavoz Bluetooth para poner lo tuyo. Sin traer otro cacharro más.</p>
+        </article>
+        <article class="argumento">
+          <div class="hueco"><b>FOTO</b>huevo</div>
+          <h3>Apagado no desentona</h3>
+          <p>Es un huevo de dragón con textura y grietas. Se queda en la estantería, no escondido.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ LA OBJECIÓN Nº1 ══ -->
+  <section class="seccion seccion--gris">
+    <div class="envoltura">
+      <span class="mapa-chip">08 · la objeción nº1</span>
+      <div class="duo">
+        <div class="duo__media">
+          <div class="hueco hueco--4-3"><b>FOTO</b>la misma habitación en intensidad mínima y en máxima<br>1000 × 750 px</div>
+        </div>
+        <div class="duo__texto">
+          <p class="eyebrow">Es lo primero que nos preguntáis</p>
+          <h2>"¿Se ve de verdad o es como en los vídeos?"</h2>
+          <p><strong>Necesita oscuridad, como cualquier proyector.</strong> Con la luz de la habitación encendida no se ve. Con la persiana bajada y la luz apagada se ve exactamente como en los vídeos.</p>
+          <p><strong>La intensidad se regula.</strong> Al mínimo es una luz de fondo suave para dormir. Al máximo llena el techo y las paredes.</p>
+          <p><strong>El techo blanco es el mejor.</strong> Cuanto más liso y claro, más definida sale la aurora. En gotelé también funciona, pero con menos nitidez.</p>
+          <p class="remate">Nuestro ajuste de casa: azul fijo, brillo bajo, ruido de lluvia y temporizador de 1 hora.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMPARATIVA ══ -->
+  <section class="seccion">
+    <div class="envoltura">
+      <span class="mapa-chip">09 · product_comparison</span>
+      <p class="eyebrow">Frente a lo que hay</p>
+      <h2>AuraGalaxy vs. ellos</h2>
+      <p class="entradilla">Contra el proyector de estrellas barato de bazar y contra montar la iluminación con tiras de LED.</p>
+      <div class="tabla-caja">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">&nbsp;</th>
+              <th scope="col" class="nuestra">AuraGalaxy</th>
+              <th scope="col">Proyector barato</th>
+              <th scope="col">Tiras LED</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Nebulosa y estrellas en movimiento</td><td class="nuestra"><span class="si">Sí</span></td><td><span class="no">Solo puntos fijos</span></td><td><span class="no">No</span></td></tr>
+            <tr><td>Se instala en 3 segundos</td><td class="nuestra"><span class="si">Sí</span></td><td><span class="si">Sí</span></td><td><span class="no">Hay que pegarlas</span></td></tr>
+            <tr><td>Mando a distancia</td><td class="nuestra"><span class="si">Sí</span></td><td><span class="no">No</span></td><td><span class="si">Según modelo</span></td></tr>
+            <tr><td>Temporizador 1 h / 2 h / 4 h</td><td class="nuestra"><span class="si">Sí</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td></tr>
+            <tr><td>Ruido blanco para dormir</td><td class="nuestra"><span class="si">Sí, incluido</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td></tr>
+            <tr><td>Altavoz Bluetooth</td><td class="nuestra"><span class="si">Sí</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td></tr>
+            <tr><td>Funciona sin enchufe</td><td class="nuestra"><span class="si">Sí</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td></tr>
+            <tr><td>Te lo llevas a otra habitación</td><td class="nuestra"><span class="si">Sí</span></td><td><span class="si">Sí</span></td><td><span class="no">No</span></td></tr>
+            <tr><td>Deja marca en la pared</td><td class="nuestra"><span class="si">No</span></td><td><span class="si">No</span></td><td><span class="no">Sí</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RESEÑAS ══ -->
+  <section class="seccion seccion--gris">
+    <div class="envoltura">
+      <span class="mapa-chip">10 · customer_review</span>
+      <p class="eyebrow">Opiniones verificadas</p>
+      <h2>Lo que cuentan quienes ya lo tienen</h2>
+      <div class="trustpilot" style="margin-top:16px">
+        <div class="tp-estrellas" role="img" aria-label="4,7 sobre 5 en Trustpilot">
+          <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+          <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+          <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+          <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+          <span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+        </div>
+        <span class="tp-nota">4.8/5 (+590 opiniones)</span>
+        <span class="tp-marca">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          Trustpilot
+        </span>
+      </div>
+
+      <div class="resenas">
+        <article class="resena">
+          <div class="tp-estrellas" role="img" aria-label="5 de 5"><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></div>
+          <p class="resena__titulo">Llegó el jueves y esa noche no había quien apagara la luz</p>
+          <p class="resena__texto">Pedí el martes por la tarde y el jueves lo tenía en casa. Pagué al repartidor, sin dejar la tarjeta en ningún sitio. Lo estrenamos esa misma noche en el cuarto del peque y acabamos los cuatro tumbados en el suelo mirando el techo. No exagero.</p>
+          <footer class="resena__pie"><span class="avatar" aria-hidden="true">M</span><span>Marta G. · <span class="verificada">Verificada</span></span></footer>
+        </article>
+        <article class="resena">
+          <div class="tp-estrellas" role="img" aria-label="4 de 5"><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella tp-estrella--off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></div>
+          <p class="resena__titulo">La caja venía aplastada y me lo cambiaron sin discutir</p>
+          <p class="resena__texto">Llegó con un golpe de la mensajería. Mandé una foto por correo y a los dos días tenía otro en casa sin pagar nada. Le quito una estrella por el susto, pero la tienda respondió como pocas. Eso es lo que hace que vuelva.</p>
+          <footer class="resena__pie"><span class="avatar" aria-hidden="true">J</span><span>Javier R. · <span class="verificada">Verificada</span></span></footer>
+        </article>
+        <article class="resena">
+          <div class="tp-estrellas" role="img" aria-label="5 de 5"><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></div>
+          <p class="resena__titulo">Pensaba que era un chisme y llevo dos meses encendiéndolo cada noche</p>
+          <p class="resena__texto">Lo compré con la mosca detrás de la oreja, de esos que usas una semana y acaban en un cajón. Dos meses después lo pongo para leer todas las noches. Sigue como el primer día.</p>
+          <footer class="resena__pie"><span class="avatar" aria-hidden="true">C</span><span>Cristina M. · <span class="verificada">Verificada</span></span></footer>
+        </article>
+        <article class="resena" hidden>
+          <div class="tp-estrellas" role="img" aria-label="5 de 5"><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></div>
+          <p class="resena__titulo">Detrás del monitor cambia la habitación entera</p>
+          <p class="resena__texto">Lo tengo en el setup, en azul y sin giro para que no distraiga. En cámara se ve brutal. Por lo que cuesta, no hay color con ponerse a pegar tiras de LED.</p>
+          <footer class="resena__pie"><span class="avatar" aria-hidden="true">D</span><span>Dani L. · <span class="verificada">Verificada</span></span></footer>
+        </article>
+        <article class="resena" hidden>
+          <div class="tp-estrellas" role="img" aria-label="5 de 5"><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></div>
+          <p class="resena__titulo">Escribí un domingo y me contestaron el lunes a primera hora</p>
+          <p class="resena__texto">Tenía dudas con el temporizador y escribí sin muchas esperanzas. Me contestó una persona, no un bot, explicándomelo paso a paso. Da gusto comprar así.</p>
+          <footer class="resena__pie"><span class="avatar" aria-hidden="true">N</span><span>Nuria P. · <span class="verificada">Verificada</span></span></footer>
+        </article>
+        <article class="resena" hidden>
+          <div class="tp-estrellas" role="img" aria-label="5 de 5"><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></div>
+          <p class="resena__titulo">Compré uno y a la semana pedí el segundo</p>
+          <p class="resena__texto">Era un regalo de cumpleaños para mi hija. Ahora hay pelea cada noche por dónde ponerlo, así que encargué otro para el salón. Aviso a navegantes.</p>
+          <footer class="resena__pie"><span class="avatar" aria-hidden="true">R</span><span>Rocío S. · <span class="verificada">Verificada</span></span></footer>
+        </article>
+        <article class="resena" hidden>
+          <div class="tp-estrellas" role="img" aria-label="4 de 5"><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella tp-estrella--off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></div>
+          <p class="resena__titulo">Muy bien, pero hay que bajar la persiana</p>
+          <p class="resena__texto">Que quede claro: con la luz encendida no se ve nada. A oscuras llena el techo entero y es espectacular. Le quito una estrella porque el manual viene flojo, del resto nada que objetar.</p>
+          <footer class="resena__pie"><span class="avatar" aria-hidden="true">S</span><span>Sergio V. · <span class="verificada">Verificada</span></span></footer>
+        </article>
+        <article class="resena" hidden>
+          <div class="tp-estrellas" role="img" aria-label="5 de 5"><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><span class="tp-estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span></div>
+          <p class="resena__titulo">Lo que no esperaba era la guía</p>
+          <p class="resena__texto">Aparte del proyector te mandan una guía con las combinaciones ya montadas. Parece una tontería, pero te ahorra media hora de trastear a ciegas. Se nota cuando alguien se ha molestado.</p>
+          <footer class="resena__pie"><span class="avatar" aria-hidden="true">L</span><span>Laura B. · <span class="verificada">Verificada</span></span></footer>
+        </article>
+      </div>
+      <button class="resenas__mas" type="button" id="verResenas" aria-expanded="false">Ver las 8 opiniones</button>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ══ -->
+  <section class="seccion">
+    <div class="envoltura">
+      <span class="mapa-chip">11 · faq_new</span>
+      <p class="eyebrow">Lo que preguntáis por WhatsApp</p>
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>¿Se ve bien si mi techo tiene gotelé o es oscuro?</summary>
+          <p>El techo blanco y liso es donde mejor se ve. En gotelé funciona igual, aunque la aurora sale algo menos definida. En techos oscuros pierde bastante: ahí conviene apuntar a una pared clara.</p>
+        </details>
+        <details>
+          <summary>¿Trae sonidos o hay que poner música?</summary>
+          <p>Trae sonidos de ruido blanco grabados dentro (lluvia, olas, grillos y más), pensados para dormir, así que funciona sin móvil ni nada. Y si prefieres poner lo tuyo, lleva altavoz Bluetooth: suena tu música, tus nanas o tu pódcast. Con el pedido te mandamos además nuestra playlist de relax en Spotify.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto dura la batería?</summary>
+          <p>Da de sobra para una sesión de noche. Si lo vas a tener varias horas seguidas, lo cómodo es dejarlo conectado con el cable USB-C, que viene incluido.</p>
+        </details>
+        <details>
+          <summary>¿Qué trae la caja?</summary>
+          <p>El proyector, el mando a distancia, el cable USB-C y el manual. No hay que comprar nada más ni poner pilas.</p>
+        </details>
+        <details>
+          <summary>¿Hace ruido?</summary>
+          <p>No lleva ventilador, así que no zumba. El único sonido que sale es el ruido blanco que elijas o lo que le mandes por Bluetooth.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto tarda en apagarse solo?</summary>
+          <p>Lo eliges tú: 1, 2 o 4 horas. Lo pones desde el mando y ya no hay que volver a entrar en la habitación.</p>
+        </details>
+        <details>
+          <summary>¿Puedo pagar cuando lo reciba?</summary>
+          <p>Sí. Eliges contra reembolso, no adelantas nada y le pagas al repartidor en el momento de la entrega. Si prefieres tarjeta, también puedes.</p>
+        </details>
+        <details>
+          <summary>¿A partir de qué edad?</summary>
+          <p>Desde los 3 años se disfruta perfectamente, porque lo único que hay que hacer es mirar. El mando lo maneja solo un niño de 5 o 6 años. Con los más pequeños, mejor dejarlo en alto.</p>
+        </details>
+        <details>
+          <summary>¿Y si no me convence?</summary>
+          <p>Tienes 14 días desde que lo recibes para ejercer el derecho de desistimiento, sin dar explicaciones. Nos escribes a hola@bazarbizarro.com y te decimos cómo; los gastos de envío de la devolución corren a tu cargo.</p>
+        </details>
+        <details>
+          <summary>¿Y si llega dañada o no funciona?</summary>
+          <p>Eso es otra cosa y lo resolvemos nosotros, sin coste para ti. Ábrela y pruébala en cuanto la recibas: nos escribes a hola@bazarbizarro.com con una foto y te la cambiamos.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMPRA SIN RIESGO ══ -->
+  <section class="seccion seccion--azul">
+    <div class="envoltura">
+      <span class="mapa-chip">12 · insignias</span>
+      <p class="eyebrow">El riesgo lo ponemos nosotros</p>
+      <h2>Pruébalo la primera noche</h2>
+      <p class="entradilla">Comprar luz por internet sin haberla visto da respeto. Por eso esto va así.</p>
+      <div class="insignias">
+        <article class="insignia">
+          <span class="insignia__icono" aria-hidden="true">🚚</span>
+          <h3>Envío gratis en 24-48h</h3>
+          <p>Sale de España el mismo día si pides antes de las 15:00, con número de seguimiento.</p>
+        </article>
+        <article class="insignia">
+          <span class="insignia__icono" aria-hidden="true">💶</span>
+          <h3>Pagas al repartidor</h3>
+          <p>Contra reembolso: no adelantas nada. Lo ves, lo coges y entonces pagas.</p>
+        </article>
+        <article class="insignia">
+          <span class="insignia__icono" aria-hidden="true">↩️</span>
+          <h3>14 días para devolverlo</h3>
+          <p>Derecho de desistimiento legal. Nos escribes y te decimos cómo; los gastos de envío de la devolución corren a tu cargo.</p>
+        </article>
+        <article class="insignia">
+          <span class="insignia__icono" aria-hidden="true">🔒</span>
+          <h3>Pago seguro</h3>
+          <p>Si eliges tarjeta, pasarela cifrada. Tus datos no pasan por nuestras manos.</p>
+        </article>
+        <article class="insignia">
+          <span class="insignia__icono" aria-hidden="true">🛡️</span>
+          <h3>Si llega dañada, nos encargamos</h3>
+          <p>Ábrela y pruébala al recibirla. Nos mandas una foto y lo resolvemos nosotros, sin que tengas que pelearte con nadie.</p>
+        </article>
+        <article class="insignia">
+          <span class="insignia__icono" aria-hidden="true">💬</span>
+          <h3>Atención de verdad</h3>
+          <p>De lunes a viernes, de 9:00 a 18:00. Te responde una persona, no un robot.</p>
+        </article>
+      </div>
+      <p class="firma-humana">Somos una familia pequeña vendiendo cosas que probamos en casa antes de ponerlas aquí. Nos jugamos más que una venta.</p>
+    </div>
+  </section>
+
+  <!-- ══ CIERRE ══ -->
+  <section class="seccion cierre">
+    <div class="envoltura">
+      <span class="mapa-chip">13 · cierre</span>
+      <div class="cierre__caja">
+        <h2>Esta noche la habitación puede ser otra</h2>
+        <p>Llega en 24-48h y lo pagas al repartidor. Si no te convence, tienes 14 días para devolverlo.</p>
+        <div class="precio-cierre">
+          <b id="cierrePrecio">69,90&nbsp;€</b>
+          <s id="cierreAntes">99,80&nbsp;€</s>
+          <span style="color:#3FD69A; font-weight:900">+ 3 regalos</span>
+        </div>
+        <button class="cta" type="button">Lo quiero contra reembolso<small>Sin pagar nada ahora</small></button>
+        <button class="cta cta--fantasma" type="button" style="max-width:380px">Ver qué trae la caja</button>
+      </div>
+    </div>
+  </section>
+
+  <p class="pie-maqueta">Maqueta de trabajo v22-B · medidas reales de Bonjour · Bazar Bizarro · Textos reales y editables; las fotos son huecos marcados</p>
+  <div class="cola"></div>
+
+  <!-- ══ BARRA FIJA ══ -->
+  <div class="barra">
+    <div class="barra__fila">
+      <div class="barra__mini" aria-hidden="true">🥚</div>
+      <div>
+        <div class="barra__nombre">AuraGalaxy</div>
+        <div class="barra__sub" id="barraSub">2 habitaciones · el más elegido</div>
+      </div>
+      <div class="barra__precio"><span id="barraPrecio">69,90&nbsp;€</span><s id="barraAntes">99,80&nbsp;€</s></div>
+      <button class="cta" type="button">Lo quiero</button>
+    </div>
+  </div>
+
+  <div class="pv-fondo" id="pvFondo" role="dialog" aria-modal="true" aria-labelledby="pvTitulo">
+    <div class="pv-caja">
+      <button class="pv-cerrar" type="button" data-pv-cerrar aria-label="Cerrar">&times;</button>
+      <div class="pv-hueco"><b>VÍDEO · 3-4 segundos</b>la habitación con la luz encendida y, de golpe, con el proyector<br>grabado con el móvil, sin retocar</div>
+      <div class="pv-cuerpo">
+        <h2 id="pvTitulo">Sí, y esto es lo que necesitas para que se vea</h2>
+        <p class="pv-entrada">Vídeo grabado en nuestro salón, sin retocar, con el móvil.</p>
+        <ul class="ventajas">
+          <li><span class="vcheck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 7"/></svg></span><span><b>Necesita oscuridad</b> como cualquier proyector. Con la luz encendida no se ve; con la persiana bajada, sí.</span></li>
+          <li><span class="vcheck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 7"/></svg></span><span><b>Techo blanco y liso</b> es donde mejor sale. En gotelé funciona, pero algo menos definido.</span></li>
+          <li><span class="vcheck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 7"/></svg></span><span><b>Techo oscuro o con vigas</b> mejor apunta a una pared clara y rebota.</span></li>
+        </ul>
+        <p class="pv-remate">Si al recibirlo ves que en tu casa no luce, tienes 14 días para devolverlo.</p>
+        <button class="pv-ok" type="button" data-pv-cerrar>Entendido</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var pvFondo = document.getElementById('pvFondo');
+  var pvAbrir = document.getElementById('abrirPrueba');
+  if (pvFondo && pvAbrir){
+    var pvCerrar = function(){ pvFondo.classList.remove('abierto'); document.body.style.overflow=''; pvAbrir.focus(); };
+    pvAbrir.addEventListener('click', function(){ pvFondo.classList.add('abierto'); document.body.style.overflow='hidden'; });
+    Array.prototype.forEach.call(pvFondo.querySelectorAll('[data-pv-cerrar]'), function(b){ b.addEventListener('click', pvCerrar); });
+    pvFondo.addEventListener('click', function(e){ if (e.target === pvFondo) pvCerrar(); });
+    document.addEventListener('keydown', function(e){ if ((e.key === 'Escape' || e.keyCode === 27) && pvFondo.classList.contains('abierto')) pvCerrar(); });
+  }
+
+
+  var vr = document.getElementById('verResenas');
+  if (vr){
+    var abierto = false;
+    vr.addEventListener('click', function(){
+      abierto = !abierto;
+      var cs = document.querySelectorAll('.resena');
+      Array.prototype.forEach.call(cs, function(c, i){ c.hidden = (!abierto && i >= 3); });
+      vr.textContent = abierto ? 'Ver menos' : 'Ver las 8 opiniones';
+      vr.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    });
+  }
+
+  var btn = document.getElementById('toggleMapa');
+  btn.addEventListener('click', function(){
+    var on = document.body.classList.toggle('con-mapa');
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.textContent = on ? '🗺️ Ocultar mapa' : '🗺️ Ver mapa Bonjour';
+  });
+
+  /* ── Precios. Cambia estos números y se recalcula todo ─── */
+  var PRECIOS    = { 1: 39.90, 2: 69.90, 3: 94.90 };
+  var PVP_UNIDAD = 49.90;
+  var POPULAR    = 2;
+
+  function eur(n){ return n.toFixed(2).replace('.', ',') + ' €'; }
+
+  var els = {
+    banner: document.getElementById('ofertaBanner'),
+    nombre: document.getElementById('ofertaNombre'),
+    sub:    document.getElementById('ofertaSub'),
+    precio: document.getElementById('ofertaPrecio'),
+    antes:  document.getElementById('ofertaAntes'),
+    pct:    document.getElementById('ofertaPct'),
+    eur:    document.getElementById('ofertaEur'),
+    unidad: document.getElementById('ofertaUnidad'),
+    bSub:   document.getElementById('barraSub'),
+    bPre:   document.getElementById('barraPrecio'),
+    bAnt:   document.getElementById('barraAntes'),
+    cPre:   document.getElementById('cierrePrecio'),
+    cAnt:   document.getElementById('cierreAntes')
+  };
+
+  var ops = Array.prototype.slice.call(document.querySelectorAll('.op'));
+
+  function pinta(n){
+    var total   = PRECIOS[n];
+    var antes   = PVP_UNIDAD * n;
+    var ahorro  = antes - total;
+    var pct     = Math.round(ahorro / antes * 100);
+    var popular = (n === POPULAR);
+
+    var tarjetas = document.querySelectorAll('.regalo');
+    var activos = 0;
+    Array.prototype.forEach.call(tarjetas, function(t){
+      var desde = parseInt(t.getAttribute('data-desde'), 10) || 1;
+      if (n >= desde){ t.className = 'regalo'; activos++; }
+      else { t.className = 'regalo bloqueado'; }
+    });
+
+    var banda = '−' + pct + '%';
+    banda += (activos > 1)
+      ? ' + ' + activos + ' BENEFICIOS'
+      : ' · ENVÍO GRATIS EN 24-48H';
+    if (popular) banda = 'EL MÁS ELEGIDO: ' + banda;
+    els.banner.textContent = banda;
+
+    els.nombre.textContent = (n === 1) ? '1 habitación' : n + ' habitaciones';
+    els.sub.textContent    = (n === 1)
+      ? 'Pago contra reembolso, sin adelantar nada'
+      : 'Uno para cada habitación · pago contra reembolso';
+    els.precio.textContent = eur(total);
+    els.unidad.textContent = (n === 1) ? 'Precio final, envío incluido' : eur(total / n) + ' por habitación';
+
+    els.antes.textContent = eur(antes);
+    els.pct.textContent   = '−' + pct + '%';
+    els.eur.textContent   = 'ahorras ' + eur(ahorro);
+
+    els.bSub.textContent = (n === 1 ? '1 habitación' : n + ' habitaciones') + (popular ? ' · el más elegido' : '');
+    els.bPre.textContent = eur(total);
+    els.cPre.textContent = eur(total);
+    els.bAnt.textContent = eur(antes); els.bAnt.hidden = false;
+    els.cAnt.textContent = eur(antes); els.cAnt.hidden = false;
+  }
+
+  ops.forEach(function(op){
+    op.addEventListener('click', function(){
+      ops.forEach(function(o){ o.setAttribute('aria-pressed', o === op ? 'true' : 'false'); });
+      pinta(parseInt(op.dataset.n, 10));
+    });
+  });
+  pinta(POPULAR);
+
+  /* ── Entrega: hoy + 2 días hábiles ───────────────────────── */
+  var DIAS  = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  var MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var f = new Date(), habiles = 0;
+  while (habiles < 2){
+    f.setDate(f.getDate() + 1);
+    var d = f.getDay();
+    if (d !== 0 && d !== 6) habiles++;
+  }
+  document.getElementById('fechaEntrega').textContent =
+    DIAS[f.getDay()] + ' ' + f.getDate() + ' de ' + MESES[f.getMonth()];
+})();
+</script>

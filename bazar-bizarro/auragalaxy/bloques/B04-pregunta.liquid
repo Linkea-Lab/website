@@ -1,0 +1,128 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · LA PREGUNTA (1 a 5)
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign PREGUNTA    = '¿En cuántas habitaciones lo vas a poner?' -%}
+{%- assign MAXIMO      = 3 -%}
+{%- assign POR_DEFECTO = 2 -%}
+
+{%- assign COLOR_TITULO   = '#222222' -%}
+{%- assign COLOR_BORDE    = '#E5E5E5' -%}
+{%- assign COLOR_FONDO    = '#FFFFFF' -%}
+{%- assign COLOR_ACTIVO   = '#38B6FF' -%}
+{%- assign COLOR_ACTIVO_TXT = '#FFFFFF' -%}
+{%- assign COLOR_HOVER    = '#E6F6FF' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-preg{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  margin:0;
+}
+.k-preg-label{
+  display:block;
+  font-weight:800;
+  font-size:1.05rem;
+  color:{{ COLOR_TITULO }};
+  margin:0 0 10px;
+}
+.k-preg-pil{
+  display:grid;
+  grid-template-columns:repeat({{ MAXIMO }},1fr);
+  gap:4px;
+  border:1px solid {{ COLOR_BORDE }};
+  border-radius:999px;
+  padding:5px;
+  background:{{ COLOR_FONDO }};
+}
+.k-preg-op{
+  -webkit-appearance:none;
+  appearance:none;
+  border:0;
+  background:transparent;
+  color:{{ COLOR_TITULO }};
+  border-radius:999px;
+  padding:11px 4px;
+  cursor:pointer;
+  font-family:inherit;
+  font-weight:800;
+  font-size:1rem;
+  line-height:1;
+  transition:background-color 0.15s ease,color 0.15s ease;
+}
+.k-preg-op:hover{ background:{{ COLOR_HOVER }}; }
+.k-preg-op[aria-pressed="true"]{
+  background:{{ COLOR_ACTIVO }};
+  color:{{ COLOR_ACTIVO_TXT }};
+}
+.k-preg-op:focus-visible{ outline:2px solid {{ COLOR_ACTIVO }}; outline-offset:2px; }
+</style>
+
+<div class="k-preg" id="kPreg">
+  <span class="k-preg-label" id="kPregLabel">{{ PREGUNTA }}</span>
+  <div class="k-preg-pil" role="group" aria-labelledby="kPregLabel">
+    {%- for n in (1..MAXIMO) -%}
+      <button class="k-preg-op" type="button" data-n="{{ n }}" aria-pressed="{% if n == POR_DEFECTO %}true{% else %}false{% endif %}">{{ n }}</button>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var raiz = document.getElementById('kPreg');
+  if (!raiz) { return; }
+  var ops = raiz.querySelectorAll('.k-preg-op');
+  var i;
+
+  function emitir(n) {
+    var ev;
+    if (typeof window.CustomEvent === 'function') {
+      ev = new CustomEvent('kit:cantidad', { detail: { n: n } });
+    } else {
+      ev = document.createEvent('CustomEvent');
+      ev.initCustomEvent('kit:cantidad', true, false, { n: n });
+    }
+    document.dispatchEvent(ev);
+
+    var campos = document.querySelectorAll('form[action*="/cart/add"] [name="quantity"]');
+    for (var j = 0; j < campos.length; j++) {
+      campos[j].value = n;
+      if (typeof window.Event === 'function') {
+        campos[j].dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+  }
+
+  function marcar(btn) {
+    for (var j = 0; j < ops.length; j++) {
+      ops[j].setAttribute('aria-pressed', ops[j] === btn ? 'true' : 'false');
+    }
+    emitir(parseInt(btn.getAttribute('data-n'), 10));
+  }
+
+  for (i = 0; i < ops.length; i++) {
+    ops[i].addEventListener('click', function () { marcar(this); });
+  }
+
+  var inicial = raiz.querySelector('.k-preg-op[aria-pressed="true"]');
+  if (inicial) { emitir(parseInt(inicial.getAttribute('data-n'), 10)); }
+}());
+</script>

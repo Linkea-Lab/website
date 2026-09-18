@@ -1,0 +1,79 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · CAJA DE TRANQUILIDAD (debajo del botón de compra)
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- comment -%} Cada línea: emoji | negrita | resto · separa con ~
+                Responde a lo que pasa DESPUÉS de pulsar el botón.
+                NO pongas aquí el envío (ya está arriba tres veces) ni la devolución:
+                informar del plazo es obligatorio, pero su sitio son las insignias y
+                la FAQ. Debajo del botón, la devolución invita a devolver. {%- endcomment -%}
+{%- assign LINEAS = '💳|Sin pagar nada ahora.|Pagas al repartidor cuando lo tengas en la mano, en efectivo o con tarjeta.~🔒|También puedes pagar con tarjeta.|Pasarela cifrada: tus datos no pasan por nuestras manos en ningún momento.~🛡️|Si llega dañada o no funciona, nos encargamos.|Ábrela y pruébala al recibirla; nos mandas una foto y lo resolvemos nosotros.' -%}
+
+{%- assign COLOR_FONDO   = '#E6F6FF' -%}
+{%- assign COLOR_NEGRITA = '#0B6FA8' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign TAMANO        = '0.88rem' -%}
+{%- assign ESPACIO_ARRIBA = '12px' -%}
+
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada. {%- endcomment -%}
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+{%- if LINEAS != blank -%}
+
+<style>
+.k3-tran{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-text-size-adjust:100%;
+  list-style:none;
+  margin:{{ ESPACIO_ARRIBA }} 0 0;
+  padding:14px 15px;
+  background:{{ COLOR_FONDO }};
+  border-radius:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.k3-tran.k3-tran li{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:{{ TAMANO }};
+  font-weight:600;
+  line-height:1.4;
+  color:{{ COLOR_TEXTO }};
+}
+.k3-tran.k3-tran i{
+  font-style:normal;
+  font-size:1.05rem;
+  line-height:1.3;
+  flex:none;
+}
+.k3-tran.k3-tran b{
+  font-weight:800;
+  color:{{ COLOR_NEGRITA }};
+}
+</style>
+
+<ul class="k3-tran">
+  {%- assign _lista = LINEAS | split: '~' -%}
+  {%- for l in _lista -%}
+    {%- assign _c = l | split: '|' -%}
+    <li>
+      <i aria-hidden="true">{{ _c[0] }}</i>
+      <span><b>{{ _c[1] }}</b>{% if _c[2] != blank %} {{ _c[2] }}{% endif %}</span>
+    </li>
+  {%- endfor -%}
+</ul>
+
+{%- endif -%}

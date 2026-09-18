@@ -1,0 +1,93 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · BARRA DE AVISO (dos líneas)
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- comment -%} Cada mensaje: linea de arriba | linea de abajo · separa mensajes con ~ {%- endcomment -%}
+{%- assign MENSAJES = '🌌 OFERTA ESPECIAL NOCHES DE GALAXIA ✨|HOY: −37 % + 3 REGALOS + ENVÍO GRATIS~🚚 SALE HOY DE ESPAÑA|Lo tienes en casa en 24-48h, con seguimiento~💶 PAGAS AL REPARTIDOR|Contra reembolso: no adelantas nada' -%}
+{%- assign SEGUNDOS = 4 -%}
+
+{%- assign COLOR_FONDO  = '#0F1430' -%}
+{%- assign COLOR_LINEA1 = '#38B6FF' -%}
+{%- assign COLOR_LINEA2 = '#FFFFFF' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-av{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_LINEA2 }};
+  text-align:center;
+  padding:12px 16px;
+  padding-top:calc(12px + env(safe-area-inset-top, 0px));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+}
+.k-av-m{ display:flex; flex-direction:column; align-items:center; gap:3px; }
+.k-av-m[hidden]{ display:none; }
+.k-av-l1{
+  margin:0;
+  font-size:clamp(0.95rem,2.4vw,1.18rem);
+  font-weight:900;
+  letter-spacing:0.02em;
+  text-transform:uppercase;
+  color:{{ COLOR_LINEA1 }};
+  line-height:1.2;
+}
+.k-av-l2{
+  margin:0;
+  font-size:clamp(0.78rem,1.9vw,0.92rem);
+  font-weight:800;
+  letter-spacing:0.03em;
+  color:{{ COLOR_LINEA2 }};
+  line-height:1.2;
+}
+</style>
+
+<div class="k-av" id="kAviso" role="status" data-seg="{{ SEGUNDOS }}">
+  {%- assign _lista = MENSAJES | split: '~' -%}
+  {%- for m in _lista -%}
+    {%- assign _c = m | split: '|' -%}
+    <div class="k-av-m"{% unless forloop.first %} hidden{% endunless %}>
+      <p class="k-av-l1">{{ _c[0] }}</p>
+      {%- if _c[1] != blank -%}<p class="k-av-l2">{{ _c[1] }}</p>{%- endif -%}
+    </div>
+  {%- endfor -%}
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var caja = document.getElementById('kAviso');
+  if (!caja) { return; }
+  var msgs = caja.querySelectorAll('.k-av-m');
+  if (msgs.length < 2) { return; }
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+
+  var i = 0;
+  var seg = parseInt(caja.getAttribute('data-seg'), 10) || 4;
+  window.setInterval(function () {
+    msgs[i].hidden = true;
+    i = (i + 1) % msgs.length;
+    msgs[i].hidden = false;
+  }, seg * 1000);
+}());
+</script>

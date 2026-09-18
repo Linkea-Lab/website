@@ -1,0 +1,343 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · RECUADRO DE OFERTA (acaba en los regalos)
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign TRAMOS     = '1:39.90,2:69.90,3:94.90' -%}
+{%- assign PVP_UNIDAD = 49.90 -%}
+{%- assign POPULAR    = 2 -%}
+{%- comment -%} TRAMOS: habitaciones:precio total.
+                PVP_UNIDAD: precio de referencia por unidad, el que sale tachado.
+                El ahorro en € y en % se calcula solo. {%- endcomment -%}
+
+{%- assign VENTAJA_1 = 'Envío gratis en 24-48h, en todos los pedidos' -%}
+{%- assign VENTAJA_2 = 'Pagas al repartidor cuando lo tengas en la mano' -%}
+{%- assign VENTAJA_3 = '14 días para devolverlo, derecho de desistimiento legal' -%}
+
+{%- assign REGALOS_TITULO = 'Lo que desbloqueas con tu pack:' -%}
+{%- comment -%} DESDE = a partir de cuántas habitaciones se activa. Los que aún no
+                tocan salen en gris, para que se vea lo que se está perdiendo. {%- endcomment -%}
+
+{%- comment -%} ICONO: spotify · pdf · camion · regalo. Vacío = se usa el EMOJI.
+                Si pones FOTO (una URL), manda la foto sobre todo lo demás. {%- endcomment -%}
+
+{%- assign REGALO_1_DESDE  = 1 -%}
+{%- assign REGALO_1_ETQ    = 'BENEFICIO' -%}
+{%- assign REGALO_1_ICONO  = 'camion' -%}
+{%- assign REGALO_1_FOTO   = '' -%}
+{%- assign REGALO_1_NOMBRE = 'Envío gratis en 24-48h' -%}
+{%- assign REGALO_1_TEXTO  = 'Sale de España el mismo día si pides antes de las 15:00.' -%}
+{%- assign REGALO_1_EMOJI  = '🚚' -%}
+
+{%- assign REGALO_2_DESDE  = 2 -%}
+{%- assign REGALO_2_ETQ    = 'DESDE 2 · GRATIS' -%}
+{%- assign REGALO_2_ICONO  = 'spotify' -%}
+{%- assign REGALO_2_FOTO   = '' -%}
+{%- assign REGALO_2_NOMBRE = 'Playlist «Galaxy Nights» en Spotify' -%}
+{%- assign REGALO_2_TEXTO  = 'Preparada para acompañar las luces por Bluetooth.' -%}
+{%- assign REGALO_2_EMOJI  = '🎧' -%}
+
+{%- assign REGALO_3_DESDE  = 3 -%}
+{%- assign REGALO_3_ETQ    = 'DESDE 3 · GRATIS' -%}
+{%- assign REGALO_3_ICONO  = 'pdf' -%}
+{%- assign REGALO_3_FOTO   = '' -%}
+{%- assign REGALO_3_NOMBRE = 'Guía «20 formas de convertir tu habitación en otro mundo»' -%}
+{%- assign REGALO_3_TEXTO  = 'Romántico, gaming, noche de película, lectura, relax, infantil y fiesta.' -%}
+{%- assign REGALO_3_EMOJI  = '📖' -%}
+
+{%- assign COLOR_BORDE     = '#FFC65C' -%}
+{%- assign COLOR_BANDA     = '#FFC65C' -%}
+{%- assign COLOR_BANDA_TXT = '#5A3F00' -%}
+{%- assign COLOR_FONDO     = '#FFFFFF' -%}
+{%- assign COLOR_TITULO    = '#222222' -%}
+{%- assign COLOR_TEXTO     = '#444444' -%}
+{%- assign COLOR_SUAVE     = '#8A90A6' -%}
+{%- assign COLOR_CHECK     = '#1FA463' -%}
+{%- assign COLOR_AHORRO       = '#1FA463' -%}
+{%- assign COLOR_AHORRO_SUAVE = '#E4F6EC' -%}
+{%- assign COLOR_AHORRO_TXT   = '#0F7A46' -%}
+{%- assign COLOR_RADIO     = '#009BF0' -%}
+{%- assign COLOR_REGALO_BG = '#FFF8EA' -%}
+{%- assign COLOR_REGALO_BD = '#F0C97A' -%}
+
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada. {%- endcomment -%}
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+<style>
+.k-of{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  border:2px solid {{ COLOR_BORDE }};
+  border-radius:10px;
+  overflow:hidden;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_TEXTO }};
+  margin:0;
+}
+.k-of-banda{
+  background:{{ COLOR_BANDA }};
+  color:{{ COLOR_BANDA_TXT }};
+  text-align:center;
+  font-weight:900;
+  font-size:0.82rem;
+  letter-spacing:0.03em;
+  padding:9px 12px;
+}
+.k-of-cuerpo{ padding:18px 17px; display:flex; flex-direction:column; gap:13px; }
+
+.k-of-cab{ display:grid; grid-template-columns:24px 1fr auto; gap:12px; align-items:start; }
+.k-of-radio{
+  width:21px; height:21px; border-radius:50%;
+  border:2px solid {{ COLOR_RADIO }};
+  display:flex; align-items:center; justify-content:center;
+  margin-top:3px; flex:none;
+}
+.k-of-radio i{ width:11px; height:11px; border-radius:50%; background:{{ COLOR_RADIO }}; display:block; }
+.k-of .k-of-nombre{ display:block; font-weight:900; font-size:1.2rem; color:{{ COLOR_TITULO }}; }
+.k-of .k-of-sub{ display:block; font-size:0.87rem; font-weight:600; }
+.k-of-precios{ text-align:right; }
+.k-of .k-of-precio{ font-weight:900; font-size:1.5rem; color:{{ COLOR_TITULO }}; font-variant-numeric:tabular-nums; }
+.k-of .k-of-unidad{ display:block; margin-top:2px; font-size:0.82rem; font-weight:700; color:{{ COLOR_SUAVE }}; font-variant-numeric:tabular-nums; }
+.k-of-linea{ display:flex; align-items:baseline; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
+.k-of .k-of-antes{
+  color:{{ COLOR_SUAVE }};
+  text-decoration:line-through;
+  text-decoration-thickness:2px;
+  font-weight:700;
+  font-size:1rem;
+  font-variant-numeric:tabular-nums;
+}
+.k-of-ahorro{
+  display:inline-flex;
+  align-items:stretch;
+  margin-top:9px;
+  border-radius:999px;
+  overflow:hidden;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.k-of-pct{
+  background:{{ COLOR_AHORRO }};
+  color:#FFFFFF;
+  font-size:0.78rem;
+  font-weight:900;
+  letter-spacing:0.02em;
+  padding:4px 9px;
+}
+.k-of-eur{
+  background:{{ COLOR_AHORRO_SUAVE }};
+  color:{{ COLOR_AHORRO_TXT }};
+  font-size:0.74rem;
+  font-weight:800;
+  padding:4px 10px;
+}
+
+.k-of-checks{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.k-of .k-of-checks li{ display:flex; gap:10px; align-items:flex-start; font-size:0.92rem; font-weight:600; }
+.k-of-checks b{ color:{{ COLOR_CHECK }}; font-weight:900; flex:none; }
+
+.k-of .k-of-rtit{
+  font-weight:900; font-size:1rem; color:{{ COLOR_TITULO }};
+  margin:0 0 15px;
+  display:flex; align-items:center; gap:7px;
+}
+.k-of .k-of-lista{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:9px; line-height:1.2; }
+.k-of .k-of-lista .k-of-reg{
+  position:relative;
+  border:1px dashed {{ COLOR_REGALO_BD }};
+  border-radius:8px;
+  background:{{ COLOR_REGALO_BG }};
+  padding:20px 9px 12px;
+  text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  transition:opacity 0.2s ease;
+}
+.k-of .k-of-lista .k-of-reg.bloqueado{
+  opacity:0.4;
+  -webkit-filter:grayscale(1);
+  filter:grayscale(1);
+}
+.k-of .k-of-lista .k-of-etq{
+  position:absolute; top:-8px; left:50%;
+  -webkit-transform:translateX(-50%);
+  transform:translateX(-50%);
+  background:{{ COLOR_BANDA }};
+  color:{{ COLOR_BANDA_TXT }};
+  white-space:nowrap;
+  font-size:0.6rem; font-weight:900; letter-spacing:0.04em;
+  padding:3px 8px; border-radius:999px;
+}
+.k-of .k-of-lista .k-of-reg.bloqueado .k-of-etq{ background:#D8DCE4; color:#5A6070; }
+.k-of .k-of-lista .k-of-foto{
+  width:46px; height:46px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.55rem; overflow:hidden; flex:none;
+}
+.k-of .k-of-lista .k-of-foto img{ width:100%; height:100%; object-fit:contain; display:block; }
+.k-of .k-of-lista .k-of-svg{ width:100%; height:100%; display:block; }
+.k-of .k-of-lista .k-of-rnom{ display:block; font-size:0.78rem; font-weight:900; color:{{ COLOR_TITULO }}; line-height:1.18; letter-spacing:-0.01em; text-wrap:balance; }
+.k-of .k-of-lista .k-of-rtxt{ display:block; font-size:0.71rem; font-weight:600; line-height:1.3; margin-top:5px; letter-spacing:0; }
+@media (max-width:480px){
+  .k-of .k-of-lista{ grid-template-columns:1fr; gap:18px; }
+  .k-of .k-of-lista .k-of-reg{ flex-direction:row; text-align:left; gap:12px; padding:16px 12px 12px; }
+  .k-of .k-of-lista .k-of-etq{ left:14px; -webkit-transform:none; transform:none; }
+}
+
+@media (max-width:768px){
+  .k-of-cab{ grid-template-columns:24px 1fr; }
+  .k-of-precios{ grid-column:2; text-align:left; margin-top:6px; }
+  .k-of-linea{ justify-content:flex-start; }
+}
+</style>
+
+<div class="k-of" id="kOferta" data-tramos="{{ TRAMOS }}" data-pvp="{{ PVP_UNIDAD }}" data-popular="{{ POPULAR }}">
+  <div class="k-of-banda" data-r="banda">&nbsp;</div>
+
+  <div class="k-of-cuerpo">
+
+    <div class="k-of-cab">
+      <span class="k-of-radio" aria-hidden="true"><i></i></span>
+      <span>
+        <span class="k-of-nombre" data-r="nombre">&nbsp;</span>
+        <span class="k-of-sub" data-r="sub">&nbsp;</span>
+        <span class="k-of-ahorro">
+          <span class="k-of-pct" data-r="pct"></span>
+          <span class="k-of-eur" data-r="eur"></span>
+        </span>
+      </span>
+      <span class="k-of-precios">
+        <span class="k-of-linea">
+          <span class="k-of-precio" data-r="precio">&nbsp;</span>
+          <s class="k-of-antes" data-r="antes"></s>
+        </span>
+        <b class="k-of-unidad" data-r="unidad">&nbsp;</b>
+      </span>
+    </div>
+
+    <ul class="k-of-checks">
+      <li><b aria-hidden="true">&#10003;</b> {{ VENTAJA_1 }}</li>
+      <li><b aria-hidden="true">&#10003;</b> {{ VENTAJA_2 }}</li>
+      <li><b aria-hidden="true">&#10003;</b> {{ VENTAJA_3 }}</li>
+    </ul>
+
+    <div>
+      <p class="k-of-rtit"><span aria-hidden="true">🎁</span>{{ REGALOS_TITULO }}</p>
+      <ul class="k-of-lista">
+        {%- assign _d = REGALO_1_DESDE  | append: '||' | append: REGALO_2_DESDE  | append: '||' | append: REGALO_3_DESDE  | split: '||' -%}
+        {%- assign _q = REGALO_1_ETQ    | append: '||' | append: REGALO_2_ETQ    | append: '||' | append: REGALO_3_ETQ    | split: '||' -%}
+        {%- assign _f = REGALO_1_FOTO   | append: '||' | append: REGALO_2_FOTO   | append: '||' | append: REGALO_3_FOTO   | split: '||' -%}
+        {%- assign _n = REGALO_1_NOMBRE | append: '||' | append: REGALO_2_NOMBRE | append: '||' | append: REGALO_3_NOMBRE | split: '||' -%}
+        {%- assign _t = REGALO_1_TEXTO  | append: '||' | append: REGALO_2_TEXTO  | append: '||' | append: REGALO_3_TEXTO  | split: '||' -%}
+        {%- assign _e = REGALO_1_EMOJI  | append: '||' | append: REGALO_2_EMOJI  | append: '||' | append: REGALO_3_EMOJI  | split: '||' -%}
+        {%- assign _i = REGALO_1_ICONO  | append: '||' | append: REGALO_2_ICONO  | append: '||' | append: REGALO_3_ICONO  | split: '||' -%}
+        {%- for nom in _n -%}
+          {%- assign i = forloop.index0 -%}
+          <li class="k-of-reg" data-desde="{{ _d[i] }}">
+            <span class="k-of-etq">{{ _q[i] }}</span>
+            <span class="k-of-foto" aria-hidden="true">
+              {%- assign _u = _f[i] | default: '' -%}
+              {%- assign _ic = _i[i] | default: '' -%}
+              {%- if _u != blank -%}
+                <img src="{{ _u }}" alt="" width="92" height="92" loading="lazy" decoding="async">
+              {%- elsif _ic == 'spotify' -%}
+                <svg class="k-of-svg" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="12" fill="#1DB954"/><path d="M17.63 10.9c-3.06-1.82-8.1-1.99-11.02-1.1a.94.94 0 1 1-.55-1.8c3.35-1.02 8.92-.82 12.44 1.27a.94.94 0 1 1-.87 1.63Zm-.1 2.7a.78.78 0 0 1-1.08.26c-2.55-1.57-6.44-2.03-9.46-1.11a.78.78 0 1 1-.46-1.5c3.45-1.04 7.73-.53 10.66 1.27.37.23.49.71.34 1.08Zm-1.17 2.6a.63.63 0 0 1-.86.21c-2.23-1.36-5.03-1.67-8.33-.92a.63.63 0 1 1-.28-1.22c3.61-.83 6.72-.47 9.22 1.06.3.18.39.57.25.87Z" fill="#fff"/></svg>
+              {%- elsif _ic == 'pdf' -%}
+                <svg class="k-of-svg" viewBox="0 0 24 24" focusable="false"><path d="M5.6 1.4h8.2l5 5v15.6a1.1 1.1 0 0 1-1.1 1.1H5.6a1.1 1.1 0 0 1-1.1-1.1V2.5a1.1 1.1 0 0 1 1.1-1.1Z" fill="#fff" stroke="#C9CEDB" stroke-width="1.1"/><path d="M13.8 1.4l5 5h-3.9a1.1 1.1 0 0 1-1.1-1.1V1.4Z" fill="#E3E8F0"/><rect x="2.6" y="11.4" width="14.6" height="7.1" rx="1.6" fill="#E5533D"/><text x="9.9" y="16.6" text-anchor="middle" font-family="Nunito, system-ui, sans-serif" font-size="5" font-weight="800" fill="#fff" letter-spacing="0.2">PDF</text></svg>
+              {%- elsif _ic == 'camion' -%}
+                <svg class="k-of-svg" viewBox="0 0 24 24" focusable="false"><rect x="1" y="5.6" width="13" height="10" rx="1.6" fill="#38B6FF"/><path d="M14 8.6h4.1a1.6 1.6 0 0 1 1.3.7l2.3 3.3c.2.3.3.6.3.9v2.1a1 1 0 0 1-1 1H14V8.6Z" fill="#0B6FA8"/><circle cx="6.4" cy="18" r="2.6" fill="#2B3268"/><circle cx="6.4" cy="18" r="1" fill="#fff"/><circle cx="17.3" cy="18" r="2.6" fill="#2B3268"/><circle cx="17.3" cy="18" r="1" fill="#fff"/></svg>
+              {%- elsif _ic == 'regalo' -%}
+                <svg class="k-of-svg" viewBox="0 0 24 24" focusable="false"><rect x="2" y="9.5" width="20" height="12.5" rx="1.6" fill="#FFC65C"/><rect x="1" y="6" width="22" height="4.5" rx="1.4" fill="#F0A93C"/><rect x="10.2" y="6" width="3.6" height="16" fill="#E5533D"/><path d="M12 6C10.4 2.6 6.4 3.4 7.4 5.6c.6 1.3 3 1.2 4.6.4Zm0 0c1.6-3.4 5.6-2.6 4.6-.4-.6 1.3-3 1.2-4.6.4Z" fill="#E5533D"/></svg>
+              {%- else -%}
+                {{ _e[i] }}
+              {%- endif -%}
+            </span>
+            <span>
+              <span class="k-of-rnom">{{ nom }}</span>
+              {%- if _t[i] != blank -%}<span class="k-of-rtxt">{{ _t[i] }}</span>{%- endif -%}
+            </span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var caja = document.getElementById('kOferta');
+  if (!caja) { return; }
+
+  var POPULAR = parseInt(caja.getAttribute('data-popular'), 10);
+  var PVP = parseFloat(caja.getAttribute('data-pvp')) || 0;
+  var TRAMOS  = {};
+  var pares = caja.getAttribute('data-tramos').split(',');
+  var i, t;
+  for (i = 0; i < pares.length; i++) {
+    t = pares[i].split(':');
+    if (t.length === 2) { TRAMOS[parseInt(t[0], 10)] = parseFloat(t[1]); }
+  }
+
+  function eur(n) { return n.toFixed(2).replace('.', ',') + ' €'; }
+  function el(k) { return caja.querySelector('[data-r="' + k + '"]'); }
+
+  function pintar(n) {
+    var total = TRAMOS[n];
+    if (typeof total !== 'number') { return; }
+    var antes  = PVP * n;
+    var ahorro = antes - total;
+    var pct    = Math.round(ahorro / antes * 100);
+
+    el('nombre').innerHTML = (n === 1 ? '1 habitación' : n + ' habitaciones');
+    el('sub').innerHTML    = (n === 1
+      ? 'Pago contra reembolso, sin adelantar nada'
+      : 'Uno para cada habitación · pago contra reembolso');
+    el('precio').innerHTML = eur(total);
+    el('unidad').innerHTML = (n === 1 ? 'Precio final, envío incluido' : eur(total / n) + ' por habitación');
+
+    el('antes').innerHTML = eur(antes);
+    el('pct').innerHTML   = '\u2212' + pct + '%';
+    el('eur').innerHTML   = 'ahorras ' + eur(ahorro);
+
+    var tarjetas = caja.querySelectorAll('.k-of-reg');
+    var activos = 0;
+    var j, desde;
+    for (j = 0; j < tarjetas.length; j++) {
+      desde = parseInt(tarjetas[j].getAttribute('data-desde'), 10) || 1;
+      if (n >= desde) { tarjetas[j].className = 'k-of-reg'; activos = activos + 1; }
+      else { tarjetas[j].className = 'k-of-reg bloqueado'; }
+    }
+
+    var banda = '\u2212' + pct + '%';
+    banda += (activos > 1)
+      ? ' + ' + activos + ' BENEFICIOS'
+      : ' \u00B7 ENVÍO GRATIS EN 24-48H';
+    if (n === POPULAR) { banda = 'EL MÁS ELEGIDO: ' + banda; }
+    el('banda').innerHTML = banda;
+
+    var ev;
+    if (typeof window.CustomEvent === 'function') {
+      ev = new CustomEvent('kit:precio', { detail: { n: n, total: total, antes: antes, ahorro: ahorro, pct: pct } });
+    } else {
+      ev = document.createEvent('CustomEvent');
+      ev.initCustomEvent('kit:precio', true, false, { n: n, total: total, antes: antes, ahorro: ahorro, pct: pct });
+    }
+    document.dispatchEvent(ev);
+  }
+
+  document.addEventListener('kit:cantidad', function (e) { pintar(e.detail.n); });
+  pintar(POPULAR);
+}());
+</script>

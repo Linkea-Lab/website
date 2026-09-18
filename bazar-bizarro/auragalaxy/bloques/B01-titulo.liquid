@@ -1,0 +1,94 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · TÍTULO H1
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign TITULO_MANUAL = '' -%}
+{%- comment -%} Vacío = coge el nombre del producto de Shopify. {%- endcomment -%}
+
+{%- assign MARCA   = 'AuraGalaxy' -%}
+{%- assign SIMBOLO = '™' -%}
+{%- comment -%} El símbolo se pega justo detrás de MARCA, esté donde esté en el título.
+                Si MARCA no aparece, el símbolo va al final.
+                MARCA vacía = símbolo al final · SIMBOLO vacío = sin símbolo. {%- endcomment -%}
+
+{%- assign COLOR_MARCA = '#009BF0' -%}
+{%- assign PESO_MARCA  = '900' -%}
+{%- comment -%} La marca destacada dentro del titular es lo que hace que se quede.
+                COLOR_MARCA vacío = mismo color que el resto del título. {%- endcomment -%}
+
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign TAMANO        = '1.75rem' -%}
+{%- assign ESPACIO_ABAJO = '6px' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+{%- if COLOR_MARCA == blank -%}{%- assign COLOR_MARCA = COLOR_TITULO -%}{%- endif -%}
+
+<style>
+.k3-titulo{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  margin:0 0 {{ ESPACIO_ABAJO }};
+}
+.k3-titulo.k3-titulo h1{
+  font-size:{{ TAMANO }};
+  font-weight:900;
+  color:{{ COLOR_TITULO }};
+  line-height:1.2;
+  margin:0;
+}
+.k3-marca{
+  color:{{ COLOR_MARCA }};
+  font-weight:{{ PESO_MARCA }};
+  white-space:nowrap;
+}
+.k3-tm{
+  font-size:0.42em;
+  font-weight:700;
+  vertical-align:top;
+  position:relative;
+  top:0.15em;
+  margin-left:0.06em;
+  margin-right:0.04em;
+  letter-spacing:0;
+}
+</style>
+
+{%- if TITULO_MANUAL != blank -%}
+  {%- assign _t = TITULO_MANUAL -%}
+{%- else -%}
+  {%- assign _t = product.title -%}
+{%- endif -%}
+
+{%- if _t != blank -%}
+
+  {%- if SIMBOLO != blank -%}
+    {%- assign _t = _t | replace: SIMBOLO, '' | strip -%}
+  {%- endif -%}
+
+  {%- if MARCA != blank and _t contains MARCA -%}
+    {%- capture _marca -%}<span class="k3-marca">{{ MARCA }}{% if SIMBOLO != blank %}<span class="k3-tm">{{ SIMBOLO }}</span>{% endif %}</span>{%- endcapture -%}
+    {%- assign _t = _t | replace_first: MARCA, _marca -%}
+  {%- elsif SIMBOLO != blank -%}
+    {%- capture _tm -%}<span class="k3-tm">{{ SIMBOLO }}</span>{%- endcapture -%}
+    {%- assign _t = _t | append: _tm -%}
+  {%- endif -%}
+
+  <div class="k3-titulo">
+    <h1>{{ _t }}</h1>
+  </div>
+
+{%- endif -%}

@@ -1,0 +1,60 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · DESCRIPCIÓN FRASE (debajo del H1)
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign FRASE = 'Un proyector de galaxia con forma de huevo de dragón que convierte el cuarto de los niños, tu setup o el salón en una noche estrellada en cuanto bajas la persiana, y que apagado se queda de adorno en la estantería.' -%}
+{%- comment -%} Una sola frase larga. No repitas lo que ya dicen los iconos de arriba:
+                aquí va QUÉ ES y DÓNDE se usa, con las palabras por las que te buscan. {%- endcomment -%}
+
+{%- assign NEGRITA = 'proyector de galaxia con forma de huevo de dragón' -%}
+{%- comment -%} Ese trozo sale en negrita. Escríbelo IGUAL que en FRASE, tildes incluidas.
+                Vacío = frase lisa. {%- endcomment -%}
+
+{%- assign COLOR_TEXTO     = '#444444' -%}
+{%- assign COLOR_NEGRITA   = '#222222' -%}
+{%- assign TAMANO          = '1.02rem' -%}
+{%- assign ESPACIO_ARRIBA  = '12px' -%}
+{%- assign ESPACIO_ABAJO   = '0px' -%}
+
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada. {%- endcomment -%}
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+{%- if FRASE != blank -%}
+
+<style>
+.k3-frase.k3-frase{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:{{ TAMANO }};
+  font-weight:600;
+  line-height:1.55;
+  color:{{ COLOR_TEXTO }};
+  margin:{{ ESPACIO_ARRIBA }} 0 {{ ESPACIO_ABAJO }};
+  max-width:60ch;
+  -webkit-text-size-adjust:100%;
+}
+.k3-frase.k3-frase b{
+  font-weight:800;
+  color:{{ COLOR_NEGRITA }};
+}
+</style>
+
+{%- assign _f = FRASE -%}
+{%- if NEGRITA != blank and _f contains NEGRITA -%}
+  {%- capture _neg -%}<b>{{ NEGRITA }}</b>{%- endcapture -%}
+  {%- assign _f = _f | replace_first: NEGRITA, _neg -%}
+{%- endif -%}
+
+<p class="k3-frase">{{ _f }}</p>
+
+{%- endif -%}

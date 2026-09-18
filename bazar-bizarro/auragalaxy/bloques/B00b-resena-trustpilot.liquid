@@ -1,0 +1,246 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · RESEÑA BAJO LA GALERÍA · CAJA TRUSTPILOT
+██  Titular + estrellas verdes + sello Trustpilot + reseña larga.
+██  Colócalo justo debajo de las miniaturas del carrusel.
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+
+{%- comment -%} Cada reseña: ESTRELLAS | TITULAR | TEXTO | NOMBRE · separa con ~
+                No uses " dentro del texto, usa «» {%- endcomment -%}
+{%- assign RESENAS = '5|Se duerme sola y sin pelea… ¡y yo también!|Buscaba algo para que mi hija dejara de pedirme que me quedara hasta que se durmiera. Lo enciendo, pongo el ruido de lluvia y el temporizador a una hora, y se queda mirando el techo en silencio. En dos minutos está dormida y el aparato se apaga solo, sin que nadie vuelva a entrar. Llevo una semana sin discutir a la hora de la cama. Llegó en dos días y pagué al repartidor, que era lo que más me preocupaba.|Marta G.~5|Pensaba que en vídeo se vería mejor que en casa… y es al revés|Compré con la mosca detrás de la oreja porque estas cosas siempre salen preciosas en el vídeo y luego son cuatro puntitos. A oscuras el techo entero se llena y la nebulosa gira despacio, no es el típico láser plano. Mi pareja lo bajó al salón para una cena y ya no ha vuelto a subir. Cero apps y cero líos: mando, botón y listo.|Javier R.~5|Pedido, pagado al repartidor y funcionando a la primera|Es la primera vez que compro en esta tienda y lo hice justo porque no había que pagar nada por adelantado. Salió el mismo día, llegó en dos, lo abrí delante del repartidor y encendía perfectamente. La caja trae el mando y el cable USB-C, no falta nada. Atención al cliente de diez, me respondieron por WhatsApp en menos de una hora.|Nuria B.' -%}
+
+{%- assign SEGUNDOS   = 9 -%}
+{%- comment -%} SEGUNDOS = 0 desactiva la rotación automática {%- endcomment -%}
+{%- assign VERIFICADA = 'Cliente verificada' -%}
+{%- assign MOSTRAR_TRUSTPILOT = true -%}
+{%- assign ENLACE = '' -%}
+{%- comment -%} ENLACE vacío = el sello Trustpilot no es clicable {%- endcomment -%}
+
+{%- assign COLOR_FONDO   = '#FFFFFF' -%}
+{%- assign COLOR_BORDE   = '#D6EEFC' -%}
+{%- assign GROSOR_BORDE  = '6px' -%}
+{%- assign COLOR_TITULO  = '#000000' -%}
+{%- assign COLOR_TEXTO   = '#000000' -%}
+{%- assign COLOR_VERDE   = '#00B67A' -%}
+{%- assign COLOR_PUNTO   = '#009BF0' -%}
+{%- assign RADIO         = '16px' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+<style>
+.k-rt{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-text-size-adjust:100%;
+  box-sizing:border-box;
+  background:{{ COLOR_FONDO }};
+  border:{{ GROSOR_BORDE }} solid {{ COLOR_BORDE }};
+  border-radius:{{ RADIO }};
+  padding:clamp(16px,2.2vw,24px);
+  margin:24px 0 0;
+}
+.k-rt .k-rt-pieza{ display:none; }
+.k-rt .k-rt-pieza.k-rt-on{ display:block; }
+
+.k-rt .k-rt-cab{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:0;
+}
+.k-rt .k-rt-est{ display:flex; gap:2px; flex:0 0 auto; }
+.k-rt .k-rt-est span{
+  width:18px; height:18px;
+  background:{{ COLOR_VERDE }};
+  border-radius:3px;
+  display:flex; align-items:center; justify-content:center;
+  flex:0 0 auto;
+}
+.k-rt .k-rt-est span.k-rt-off{ background:#DCDCE6; }
+.k-rt .k-rt-est svg{ width:13px; height:13px; fill:#FFFFFF; display:block; }
+.k-rt .k-rt-titular{
+  margin:0;
+  flex:1 1 220px;
+  min-width:0;
+  font-size:1rem;
+  font-weight:800;
+  line-height:1.35;
+  letter-spacing:normal;
+  color:{{ COLOR_TITULO }};
+}
+.k-rt .k-rt-marca{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  margin:6px 0 0;
+  font-size:1rem;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  line-height:1;
+  color:{{ COLOR_TITULO }};
+  text-decoration:none;
+}
+.k-rt .k-rt-marca svg{ width:19px; height:19px; fill:{{ COLOR_VERDE }}; display:block; flex:0 0 auto; }
+a.k-rt-marca:hover{ text-decoration:underline; }
+
+.k-rt .k-rt-txt{
+  margin:14px 0;
+  font-size:0.94rem;
+  font-weight:400;
+  line-height:1.45;
+  color:{{ COLOR_TEXTO }};
+}
+.k-rt .k-rt-pie{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:0;
+}
+.k-rt .k-rt-nombre{ font-size:1rem; font-weight:800; line-height:1.2; color:{{ COLOR_TITULO }}; }
+.k-rt .k-rt-ver{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:0.87rem;
+  font-weight:500;
+  line-height:1.2;
+  color:#555555;
+}
+.k-rt .k-rt-ver svg{ width:19px; height:19px; fill:#02B978; display:block; flex:0 0 auto; }
+
+.k-rt .k-rt-puntos{ display:flex; gap:6px; margin:16px 0 0; }
+.k-rt .k-rt-punto{
+  width:22px; height:22px; padding:0; border:0; background:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  -webkit-appearance:none; appearance:none;
+}
+.k-rt .k-rt-punto i{
+  display:block; width:7px; height:7px; border-radius:50%;
+  background:#D9DEE8;
+  -webkit-transition:background .2s ease, -webkit-transform .2s ease;
+  transition:background .2s ease, transform .2s ease;
+}
+.k-rt .k-rt-punto[aria-current="true"] i{
+  background:{{ COLOR_PUNTO }};
+  -webkit-transform:scale(1.25);
+  transform:scale(1.25);
+}
+.k-rt .k-rt-punto:focus-visible{ outline:2px solid {{ COLOR_PUNTO }}; outline-offset:2px; border-radius:50%; }
+
+@media (max-width:600px){
+  .k-rt{ border-width:4px; padding:16px; margin-top:18px; }
+  .k-rt .k-rt-titular{ font-size:0.94rem; flex:1 1 100%; }
+  .k-rt .k-rt-txt{ font-size:0.88rem; }
+  .k-rt .k-rt-nombre{ font-size:0.9rem; }
+  .k-rt .k-rt-ver{ font-size:0.78rem; }
+}
+@media (prefers-reduced-motion:reduce){
+  .k-rt .k-rt-punto i{ -webkit-transition:none; transition:none; }
+}
+</style>
+
+{%- assign _lista = RESENAS | split: '~' -%}
+{%- capture _estrella -%}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>{%- endcapture -%}
+
+<div class="k-rt" data-k-rt data-seg="{{ SEGUNDOS }}">
+  {%- for r in _lista -%}
+    {%- assign _c = r | split: '|' -%}
+    {%- assign _n = _c[0] | plus: 0 -%}
+    <div class="k-rt-pieza{% if forloop.first %} k-rt-on{% endif %}">
+      <div class="k-rt-cab">
+        <span class="k-rt-est" role="img" aria-label="{{ _n }} de 5">
+          {%- for i in (1..5) -%}
+            <span class="{% if i > _n %}k-rt-off{% endif %}">{{ _estrella }}</span>
+          {%- endfor -%}
+        </span>
+        <p class="k-rt-titular">{{ _c[1] }}</p>
+      </div>
+
+      {%- if MOSTRAR_TRUSTPILOT -%}
+        {%- if ENLACE != blank -%}
+          <a class="k-rt-marca" href="{{ ENLACE }}" target="_blank" rel="noopener">{{ _estrella }}Trustpilot</a>
+        {%- else -%}
+          <span class="k-rt-marca">{{ _estrella }}Trustpilot</span>
+        {%- endif -%}
+      {%- endif -%}
+
+      <p class="k-rt-txt">«{{ _c[2] }}»</p>
+
+      <p class="k-rt-pie">
+        <span class="k-rt-nombre">{{ _c[3] }}</span>
+        {%- if VERIFICADA != blank -%}
+          <span class="k-rt-ver"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 14.6l-4-4 1.5-1.5 2.5 2.5 5.4-5.4 1.5 1.5z"/></svg>{{ VERIFICADA }}</span>
+        {%- endif -%}
+      </p>
+    </div>
+  {%- endfor -%}
+
+  {%- if _lista.size > 1 -%}
+  <div class="k-rt-puntos">
+    {%- for r in _lista -%}
+      <button type="button" class="k-rt-punto" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="Opinión {{ forloop.index }}"><i></i></button>
+    {%- endfor -%}
+  </div>
+  {%- endif -%}
+</div>
+
+<script>
+(function(){
+  var cajas = document.querySelectorAll('[data-k-rt]');
+  var n;
+  for (n = 0; n < cajas.length; n++) { arranca(cajas[n]); }
+
+  function arranca(caja){
+    if (caja.getAttribute('data-listo') === '1') { return; }
+    caja.setAttribute('data-listo', '1');
+
+    var piezas = caja.querySelectorAll('.k-rt-pieza');
+    var puntos = caja.querySelectorAll('.k-rt-punto');
+    if (piezas.length < 2) { return; }
+
+    var activo = 0;
+    var seg = parseInt(caja.getAttribute('data-seg'), 10);
+    var reloj = null;
+    var i;
+
+    function pinta(x){
+      var k;
+      for (k = 0; k < piezas.length; k++){
+        piezas[k].className = (k === x) ? 'k-rt-pieza k-rt-on' : 'k-rt-pieza';
+      }
+      for (k = 0; k < puntos.length; k++){
+        puntos[k].setAttribute('aria-current', k === x ? 'true' : 'false');
+      }
+      activo = x;
+    }
+    function para(){ if (reloj) { clearInterval(reloj); reloj = null; } }
+    function anda(){
+      para();
+      if (seg > 0) { reloj = setInterval(function(){ pinta((activo + 1) % piezas.length); }, seg * 1000); }
+    }
+
+    for (i = 0; i < puntos.length; i++){
+      (function(x){ puntos[x].onclick = function(){ pinta(x); para(); }; })(i);
+    }
+    caja.onmouseenter = para;
+    caja.onmouseleave = anda;
+
+    var lento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!lento) { anda(); }
+  }
+})();
+</script>

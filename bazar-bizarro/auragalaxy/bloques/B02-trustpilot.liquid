@@ -1,0 +1,91 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · VALORACIÓN TRUSTPILOT
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign NOTA      = '4.8/5' -%}
+{%- assign OPINIONES = '590' -%}
+{%- assign ESTRELLAS = 5 -%}
+{%- assign ENLACE    = '' -%}
+{%- comment -%} ENLACE vacío = no es clicable.
+                Con tu perfil: 'https://es.trustpilot.com/review/bazarbizarro.com' {%- endcomment -%}
+
+{%- assign COLOR_VERDE     = '#00B67A' -%}
+{%- assign COLOR_APAGADA   = '#DCDCE6' -%}
+{%- assign COLOR_TEXTO     = '#222222' -%}
+{%- assign TAMANO          = '1rem' -%}
+{%- assign TAMANO_ESTRELLA = '26px' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-tp{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:0 0 6px;
+  color:{{ COLOR_TEXTO }};
+  text-decoration:none;
+}
+.k-tp-estrellas{ display:flex; gap:3px; }
+.k-tp-e{
+  width:{{ TAMANO_ESTRELLA }};
+  height:{{ TAMANO_ESTRELLA }};
+  background:{{ COLOR_VERDE }};
+  border-radius:3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+}
+.k-tp-e--off{ background:{{ COLOR_APAGADA }}; }
+.k-tp-e svg{ width:68%; height:68%; fill:#FFFFFF; display:block; }
+.k-tp-nota{
+  font-size:{{ TAMANO }};
+  font-weight:700;
+  white-space:nowrap;
+}
+.k-tp-marca{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  font-size:{{ TAMANO }};
+  font-weight:800;
+  letter-spacing:-0.02em;
+  white-space:nowrap;
+}
+.k-tp-marca svg{ width:19px; height:19px; fill:{{ COLOR_VERDE }}; display:block; flex:none; }
+a.k-tp:hover .k-tp-marca{ text-decoration:underline; }
+a.k-tp:focus-visible{ outline:2px solid {{ COLOR_VERDE }}; outline-offset:3px; }
+</style>
+
+{%- capture _tp -%}
+  <span class="k-tp-estrellas" role="img" aria-label="{{ NOTA }} en Trustpilot">
+    {%- for i in (1..5) -%}
+      <span class="k-tp-e{% if i > ESTRELLAS %} k-tp-e--off{% endif %}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+    {%- endfor -%}
+  </span>
+  <span class="k-tp-nota">{{ NOTA }}{% if OPINIONES != blank %} (+{{ OPINIONES }} opiniones){% endif %}</span>
+  <span class="k-tp-marca"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>Trustpilot</span>
+{%- endcapture -%}
+
+{%- if ENLACE != blank -%}
+  <a class="k-tp" href="{{ ENLACE }}" target="_blank" rel="noopener">{{ _tp }}</a>
+{%- else -%}
+  <div class="k-tp">{{ _tp }}</div>
+{%- endif -%}

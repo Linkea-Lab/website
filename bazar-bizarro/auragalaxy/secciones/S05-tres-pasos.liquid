@@ -1,0 +1,84 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · ASÍ DE FÁCIL FUNCIONA
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign EYEBROW = 'Tres segundos, cero manual' -%}
+{%- assign TITULO  = 'Se enciende, se elige y se acabó' -%}
+{%- assign ENTRADILLA = 'Ni app, ni wifi, ni emparejar nada raro. Un mando con tres botones.' -%}
+
+{%- comment -%} Cada paso: titular | texto · separa con ~ {%- endcomment -%}
+{%- assign PASOS = 'Colócalo|En la mesilla, en la estantería o en el suelo, apuntando al techo. Enchufado por USB-C o con su batería, donde te venga bien.~Elige el ambiente|Desde el mando: color, brillo, velocidad de giro y sonido. Del azul quieto y tenue a la nebulosa girando a tope.~Olvídate|Eliges 1, 2 o 4 horas y se apaga solo. No hay que volver a levantarse.' -%}
+
+{%- assign COLOR_FONDO   = '#E6F6FF' -%}
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign COLOR_ACENTO  = '#0B6FA8' -%}
+{%- assign COLOR_NUMERO  = '#009BF0' -%}
+{%- assign COLOR_NUMERO_TXT = '#FFFFFF' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-pas{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_TEXTO }};
+  padding-block:64px;
+}
+.k-pas-env{ max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-pas-eyebrow{ margin:0 0 10px; font-size:0.7rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:{{ COLOR_ACENTO }}; }
+.k-pas-h2{ margin:0; font-size:clamp(1.45rem,3.2vw,2rem); font-weight:800; letter-spacing:-0.015em; line-height:1.2; color:{{ COLOR_TITULO }}; }
+.k-pas-entradilla{ margin:12px 0 0; max-width:62ch; }
+.k-pas-rej{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2.2vw,26px); margin-top:30px; }
+.k-pas-t{ display:flex; flex-direction:column; gap:11px; }
+.k-pas-t p{ margin:0; font-size:0.93rem; }
+.k-pas-n{
+  width:38px; height:38px;
+  border-radius:50%;
+  background:{{ COLOR_NUMERO }};
+  color:{{ COLOR_NUMERO_TXT }};
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:1.05rem;
+  flex:none;
+}
+.k-pas-h3{ margin:0; font-size:1.08rem; font-weight:800; color:{{ COLOR_TITULO }}; }
+@media (max-width:768px){
+  .k-pas{ padding-block:44px; }
+  .k-pas-rej{ grid-template-columns:1fr; }
+}
+</style>
+
+<section class="k-pas">
+  <div class="k-pas-env">
+    <p class="k-pas-eyebrow">{{ EYEBROW }}</p>
+    <h2 class="k-pas-h2">{{ TITULO }}</h2>
+    <p class="k-pas-entradilla">{{ ENTRADILLA }}</p>
+    <div class="k-pas-rej">
+      {%- assign _lista = PASOS | split: '~' -%}
+      {%- for p in _lista -%}
+        {%- assign _c = p | split: '|' -%}
+        <article class="k-pas-t">
+          <span class="k-pas-n" aria-hidden="true">{{ forloop.index }}</span>
+          <h3 class="k-pas-h3">{{ _c[0] }}</h3>
+          <p>{{ _c[1] }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,191 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · RESEÑA BAJO LA GALERÍA (rotativa)
+██  Colócalo justo debajo del carrusel de fotos.
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+
+{%- comment -%} Cada reseña: ESTRELLAS | TEXTO | NOMBRE | LUGAR · separa con ~
+                LUGAR puede ir vacío. Usa comillas «» dentro del texto, no " {%- endcomment -%}
+{%- assign RESENAS = '5|Lo encendí para dormir a mi hija y se quedó callada mirando el techo. En dos minutos estaba dormida. Llevo una semana sin discutir a la hora de la cama.|Marta G.|Valencia~5|Pensaba que en vídeo se vería mejor que en casa y es justo al revés. A oscuras el techo entero se llena. Mi pareja lo puso en el salón y ya no lo devuelve.|Javier R.|Madrid~5|Llegó en dos días, pagué al repartidor y funcionó a la primera. Sin apps, sin líos. Mando, botón y listo.|Nuria B.|Sevilla' -%}
+
+{%- assign SEGUNDOS  = 6 -%}
+{%- comment -%} SEGUNDOS = 0 desactiva la rotación automática {%- endcomment -%}
+{%- assign VERIFICADA = 'Compra verificada' -%}
+
+{%- assign COLOR_FONDO   = '#F7F9FC' -%}
+{%- assign COLOR_BORDE   = '#E4E9F2' -%}
+{%- assign COLOR_TEXTO   = '#333333' -%}
+{%- assign COLOR_NOMBRE  = '#6B7280' -%}
+{%- assign COLOR_ESTRELLA = '#00B67A' -%}
+{%- assign COLOR_PUNTO   = '#009BF0' -%}
+{%- assign RADIO         = '12px' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+<style>
+.k-rg{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  border:1px solid {{ COLOR_BORDE }};
+  border-radius:{{ RADIO }};
+  padding:16px 18px;
+  margin:14px 0 0;
+}
+.k-rg .k-rg-pieza{ display:none; }
+.k-rg .k-rg-pieza.k-rg-on{ display:block; }
+.k-rg .k-rg-estrellas{ display:flex; gap:3px; margin:0 0 8px; }
+.k-rg .k-rg-estrellas svg{ width:16px; height:16px; fill:{{ COLOR_ESTRELLA }}; display:block; flex:none; }
+.k-rg .k-rg-estrellas svg.k-rg-off{ fill:#DCDCE6; }
+.k-rg .k-rg-txt{
+  margin:0;
+  font-size:0.95rem;
+  font-weight:600;
+  line-height:1.5;
+  color:{{ COLOR_TEXTO }};
+}
+.k-rg .k-rg-pie{
+  margin:8px 0 0;
+  font-size:0.8rem;
+  font-weight:700;
+  line-height:1.4;
+  color:{{ COLOR_NOMBRE }};
+}
+.k-rg .k-rg-ver{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  margin-left:8px;
+  font-weight:800;
+  color:{{ COLOR_ESTRELLA }};
+}
+.k-rg .k-rg-ver svg{ width:13px; height:13px; fill:{{ COLOR_ESTRELLA }}; display:block; flex:none; }
+.k-rg .k-rg-puntos{
+  display:flex;
+  gap:6px;
+  margin:12px 0 0;
+  padding:0;
+  list-style:none;
+}
+.k-rg .k-rg-punto{
+  width:22px;
+  height:22px;
+  padding:0;
+  border:0;
+  background:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.k-rg .k-rg-punto i{
+  display:block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:{{ COLOR_BORDE }};
+  transition:background .2s ease, transform .2s ease;
+}
+.k-rg .k-rg-punto[aria-current="true"] i{ background:{{ COLOR_PUNTO }}; transform:scale(1.25); }
+.k-rg .k-rg-punto:focus-visible{ outline:2px solid {{ COLOR_PUNTO }}; outline-offset:2px; border-radius:50%; }
+@media (prefers-reduced-motion:reduce){
+  .k-rg .k-rg-punto i{ transition:none; }
+}
+</style>
+
+{%- assign _lista = RESENAS | split: '~' -%}
+
+<div class="k-rg" data-k-rg data-seg="{{ SEGUNDOS }}">
+  {%- for r in _lista -%}
+    {%- assign _c = r | split: '|' -%}
+    {%- assign _n = _c[0] | plus: 0 -%}
+    <div class="k-rg-pieza{% if forloop.first %} k-rg-on{% endif %}">
+      <div class="k-rg-estrellas" role="img" aria-label="{{ _n }} de 5">
+        {%- for i in (1..5) -%}
+          <svg viewBox="0 0 24 24" class="{% if i > _n %}k-rg-off{% endif %}" aria-hidden="true" focusable="false"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+        {%- endfor -%}
+      </div>
+      <p class="k-rg-txt">{{ _c[1] }}</p>
+      <p class="k-rg-pie">{{ _c[2] }}{% if _c[3] != blank %} · {{ _c[3] }}{% endif %}{% if VERIFICADA != blank %}<span class="k-rg-ver"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>{{ VERIFICADA }}</span>{% endif %}</p>
+    </div>
+  {%- endfor -%}
+
+  {%- if _lista.size > 1 -%}
+  <div class="k-rg-puntos" role="tablist" aria-label="Opiniones">
+    {%- for r in _lista -%}
+      <button type="button" class="k-rg-punto" role="tab" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="Opinión {{ forloop.index }}"><i></i></button>
+    {%- endfor -%}
+  </div>
+  {%- endif -%}
+</div>
+
+<script>
+(function(){
+  var cajas = document.querySelectorAll('[data-k-rg]');
+  var n;
+  for (n = 0; n < cajas.length; n++) { arranca(cajas[n]); }
+
+  function arranca(caja){
+    if (caja.getAttribute('data-listo') === '1') { return; }
+    caja.setAttribute('data-listo', '1');
+
+    var piezas = caja.querySelectorAll('.k-rg-pieza');
+    var puntos = caja.querySelectorAll('.k-rg-punto');
+    if (piezas.length < 2) { return; }
+
+    var activo = 0;
+    var seg = parseInt(caja.getAttribute('data-seg'), 10);
+    var reloj = null;
+
+    function pinta(i){
+      var k;
+      for (k = 0; k < piezas.length; k++){
+        if (k === i) { piezas[k].className = 'k-rg-pieza k-rg-on'; }
+        else { piezas[k].className = 'k-rg-pieza'; }
+      }
+      for (k = 0; k < puntos.length; k++){
+        puntos[k].setAttribute('aria-current', k === i ? 'true' : 'false');
+      }
+      activo = i;
+    }
+
+    function siguiente(){ pinta((activo + 1) % piezas.length); }
+
+    function para(){
+      if (reloj) { clearInterval(reloj); reloj = null; }
+    }
+
+    function anda(){
+      para();
+      if (seg > 0) { reloj = setInterval(siguiente, seg * 1000); }
+    }
+
+    for (n = 0; n < puntos.length; n++){
+      (function(i){
+        puntos[i].onclick = function(){ pinta(i); para(); };
+      })(n);
+    }
+
+    caja.onmouseenter = para;
+    caja.onmouseleave = anda;
+
+    var lento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!lento) { anda(); }
+  }
+})();
+</script>

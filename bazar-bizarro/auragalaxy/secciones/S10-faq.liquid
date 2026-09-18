@@ -1,0 +1,94 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · PREGUNTAS FRECUENTES
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign EYEBROW = 'Lo que preguntáis por WhatsApp' -%}
+{%- assign TITULO  = 'Preguntas frecuentes' -%}
+
+{%- comment -%} Cada una: pregunta | respuesta · separa con ~ · la primera sale abierta {%- endcomment -%}
+{%- assign PREGUNTAS = '¿Se ve bien si mi techo tiene gotelé o es oscuro?|El techo blanco y liso es donde mejor se ve. En gotelé funciona igual, aunque la aurora sale algo menos definida. En techos oscuros pierde bastante: ahí conviene apuntar a una pared clara.~¿Trae sonidos o hay que poner música?|Trae sonidos de ruido blanco grabados dentro (lluvia, olas, grillos y más), pensados para dormir, así que funciona sin móvil ni nada. Y si prefieres poner lo tuyo, lleva altavoz Bluetooth. Con el pedido te mandamos además nuestra playlist de relax en Spotify.~¿Cuánto tarda en apagarse solo?|Lo eliges tú: 1, 2 o 4 horas. Lo pones desde el mando y ya no hay que volver a entrar en la habitación.~¿Cuánto dura la batería?|Da de sobra para una sesión de noche. Si lo vas a tener varias horas seguidas, lo cómodo es dejarlo conectado con el cable USB-C, que viene incluido.~¿Qué trae la caja?|El proyector, el mando a distancia, el cable USB-C y el manual. No hay que comprar nada más ni poner pilas.~¿Hace ruido?|No lleva ventilador, así que no zumba. El único sonido que sale es el ruido blanco que elijas o lo que le mandes por Bluetooth.~¿Puedo pagar cuando lo reciba?|Sí. Eliges contra reembolso, no adelantas nada y le pagas al repartidor en el momento de la entrega. Si prefieres tarjeta, también puedes.~¿A partir de qué edad?|Desde los 3 años se disfruta perfectamente, porque lo único que hay que hacer es mirar. El mando lo maneja solo un niño de 5 o 6 años. Con los más pequeños, mejor dejarlo en alto.~¿Y si no me convence?|Tienes 14 días desde que lo recibes para ejercer el derecho de desistimiento, sin dar explicaciones. Nos escribes a hola@bazarbizarro.com y te decimos cómo; los gastos de envío de la devolución corren a tu cargo.~¿Y si llega dañada o no funciona?|Eso es otra cosa y lo resolvemos nosotros, sin coste para ti. Ábrela y pruébala en cuanto la recibas: nos escribes a hola@bazarbizarro.com con una foto y te la cambiamos.' -%}
+
+{%- assign COLOR_FONDO   = '#FFFFFF' -%}
+{%- assign COLOR_TARJETA = '#FFFFFF' -%}
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign COLOR_ACENTO  = '#0B6FA8' -%}
+{%- assign COLOR_LINEA   = '#E5E5E5' -%}
+{%- assign COLOR_ABIERTA = '#38B6FF' -%}
+{%- assign COLOR_SIGNO   = '#009BF0' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-faq{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_TEXTO }};
+  padding-block:64px;
+}
+.k-faq-env{ max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-faq-eyebrow{ margin:0 0 10px; font-size:0.7rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:{{ COLOR_ACENTO }}; }
+.k-faq-h2{ margin:0; font-size:clamp(1.45rem,3.2vw,2rem); font-weight:800; letter-spacing:-0.015em; line-height:1.2; color:{{ COLOR_TITULO }}; }
+.k-faq-lista{ margin-top:26px; display:flex; flex-direction:column; gap:10px; max-width:820px; }
+.k-faq-lista details{
+  border:1px solid {{ COLOR_LINEA }};
+  border-radius:10px;
+  background:{{ COLOR_TARJETA }};
+  overflow:hidden;
+}
+.k-faq-lista details[open]{ border-color:{{ COLOR_ABIERTA }}; }
+.k-faq-lista summary{
+  cursor:pointer;
+  padding:15px 17px;
+  font-weight:800;
+  font-size:0.97rem;
+  color:{{ COLOR_TITULO }};
+  list-style:none;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:14px;
+}
+.k-faq-lista summary::-webkit-details-marker{ display:none; }
+.k-faq-lista summary::after{
+  content:"+";
+  color:{{ COLOR_SIGNO }};
+  font-size:1.3rem; font-weight:700; line-height:1;
+  flex:none;
+}
+.k-faq-lista details[open] summary::after{ content:"\2013"; }
+.k-faq-lista summary:focus-visible{ outline:2px solid {{ COLOR_ABIERTA }}; outline-offset:-2px; }
+.k-faq-lista details p{ margin:0; padding:0 17px 16px; font-size:0.93rem; }
+@media (max-width:768px){ .k-faq{ padding-block:44px; } }
+</style>
+
+<section class="k-faq">
+  <div class="k-faq-env">
+    <p class="k-faq-eyebrow">{{ EYEBROW }}</p>
+    <h2 class="k-faq-h2">{{ TITULO }}</h2>
+    <div class="k-faq-lista">
+      {%- assign _lista = PREGUNTAS | split: '~' -%}
+      {%- for q in _lista -%}
+        {%- assign _c = q | split: '|' -%}
+        <details{% if forloop.first %} open{% endif %}>
+          <summary>{{ _c[0] }}</summary>
+          <p>{{ _c[1] }}</p>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

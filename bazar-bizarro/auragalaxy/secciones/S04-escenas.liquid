@@ -1,0 +1,126 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · PARA QUIÉN ES (cinco escenas)
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign EYEBROW = 'Seis maneras de usarlo' -%}
+{%- assign TITULO  = 'El mismo huevo, seis casas distintas' -%}
+{%- assign ENTRADILLA = 'No es un juguete. Es luz. Y la luz sirve para lo mismo en la habitación de un niño que en un salón a las once de la noche.' -%}
+
+{%- comment -%} Seis vídeos cortos verticales (3-5 s, sin sonido) o fotos, 750x1000 px.
+                Acepta .mp4 .webm .mov, YouTube, Vimeo o foto. Vacío = hueco marcado. {%- endcomment -%}
+{%- comment -%} Qué parte del vídeo 9:16 se conserva al recortarlo a 3:4.
+                'top' corta todo por abajo · 'center' por los dos lados · 'bottom' por arriba. {%- endcomment -%}
+{%- assign ENCUADRE = 'top' -%}
+
+{%- assign MEDIA_1 = '' -%}
+{%- assign MEDIA_2 = '' -%}
+{%- assign MEDIA_3 = '' -%}
+{%- assign MEDIA_4 = '' -%}
+{%- assign MEDIA_5 = '' -%}
+{%- assign MEDIA_6 = '' -%}
+
+{%- comment -%} Cada escena: ETIQUETA | TITULAR | AJUSTES | pista del hueco
+                Separa las escenas con  ~
+                AJUSTES es la línea corta de debajo: color, sonido y temporizador.
+                Déjala vacía y no sale nada. {%- endcomment -%}
+{%- assign ESCENAS = 'Habitación infantil|Irse a la cama deja de ser una negociación|Azul · lluvia · 1 hora|habitación infantil~Noche de pareja|Cambiar el salón sin salir de casa|Cálido · giro lento · Bluetooth|salón de noche, dos copas~Setup gaming|El fondo que hace que tu mesa se vea bien|Azul fijo · sin giro|setup con PC~Desconexión|Bajar el ritmo sin encender la tele|Azul · olas · brillo mínimo|dormitorio a oscuras~Baño|La bañera de un hotel que no has pagado|Violeta · giro lento · 1 hora|baño a oscuras con la bañera llena~Regalo|Nadie sabe qué es hasta que lo enciende||envuelto para regalo' -%}
+
+{%- assign COLOR_FONDO   = '#FFFFFF' -%}
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign COLOR_ACENTO  = '#0B6FA8' -%}
+{%- assign COLOR_ETIQUETA = '#009BF0' -%}
+{%- assign COLOR_AJUSTES  = '#8A90A6' -%}
+{%- assign COLOR_HUECO   = '#F5F5F5' -%}
+{%- assign COLOR_HUECO_BORDE = '#E5E5E5' -%}
+{%- assign COLOR_HUECO_TXT   = '#9AA0B4' -%}
+
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada. {%- endcomment -%}
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-esc{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_TEXTO }};
+  padding-block:64px;
+}
+.k-esc-env{ max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-esc-eyebrow{ margin:0 0 10px; font-size:0.7rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:{{ COLOR_ACENTO }}; }
+.k-esc-h2{ margin:0; font-size:clamp(1.45rem,3.2vw,2rem); font-weight:800; letter-spacing:-0.015em; line-height:1.2; color:{{ COLOR_TITULO }}; }
+.k-esc-entradilla{ margin:12px 0 0; max-width:62ch; }
+.k-esc .k-esc-rej{ list-style:none; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2.2vw,24px); margin:30px 0 0; }
+.k-esc .k-esc-t{ display:flex; flex-direction:column; gap:9px; }
+.k-esc .k-esc-aj{ margin:0; font-size:0.78rem; font-weight:700; letter-spacing:0.01em; color:{{ COLOR_AJUSTES }}; }
+.k-esc .k-esc-q{ font-size:0.64rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; color:{{ COLOR_ETIQUETA }}; }
+.k-esc .k-esc-h3{ margin:0; font-size:1.02rem; font-weight:800; line-height:1.22; color:{{ COLOR_TITULO }}; }
+.k-esc-media{ width:100%; max-width:100%; height:auto; display:block; border-radius:10px; object-fit:cover; object-position:center {{ ENCUADRE }}; }
+.k-esc-marco{ position:relative; width:100%; border-radius:10px; overflow:hidden; background:#000000; }
+.k-esc-marco iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.k-esc-hueco{
+  width:100%;
+  border:1px dashed {{ COLOR_HUECO_BORDE }};
+  border-radius:10px;
+  background:{{ COLOR_HUECO }};
+  color:{{ COLOR_HUECO_TXT }};
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:6px; text-align:center; padding:18px;
+  font-size:0.78rem; font-weight:700;
+}
+.k-esc-hueco b{ display:block; font-size:0.84rem; }
+
+@media (max-width:1024px){ .k-esc .k-esc-rej{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px){ .k-esc .k-esc-rej{ grid-template-columns:1fr; } }
+@media (max-width:768px){ .k-esc{ padding-block:44px; } }
+</style>
+
+<section class="k-esc">
+  <div class="k-esc-env">
+    <p class="k-esc-eyebrow">{{ EYEBROW }}</p>
+    <h2 class="k-esc-h2">{{ TITULO }}</h2>
+    <p class="k-esc-entradilla">{{ ENTRADILLA }}</p>
+
+    <ul class="k-esc-rej">
+      {%- assign _m = MEDIA_1 | append: '||' | append: MEDIA_2 | append: '||' | append: MEDIA_3 | append: '||' | append: MEDIA_4 | append: '||' | append: MEDIA_5 | append: '||' | append: MEDIA_6 | split: '||' -%}
+      {%- assign _lista = ESCENAS | split: '~' -%}
+      {%- for e in _lista -%}
+        {%- assign i = forloop.index0 -%}
+        {%- assign _c = e | split: '|' -%}
+        <li class="k-esc-t">
+          {%- assign MEDIA = _m[i] | default: '' -%}
+          {%- assign _l = MEDIA | downcase -%}
+          {%- if MEDIA == blank -%}
+            <div class="k-esc-hueco" style="aspect-ratio:3/4"><b>VÍDEO 3-5 s</b>{{ _c[3] }}<br>750 × 1000</div>
+          {%- elsif _l contains 'youtube.com' or _l contains 'youtu.be' -%}
+            {%- assign _id = MEDIA | split: 'v=' | last | split: '/' | last | split: '?' | first -%}
+            <div class="k-esc-marco" style="aspect-ratio:3/4"><iframe src="https://www.youtube-nocookie.com/embed/{{ _id }}?rel=0" title="{{ _c[1] | escape }}" loading="lazy" allowfullscreen></iframe></div>
+          {%- elsif _l contains 'vimeo.com' -%}
+            {%- assign _id = MEDIA | split: '/' | last | split: '?' | first -%}
+            <div class="k-esc-marco" style="aspect-ratio:3/4"><iframe src="https://player.vimeo.com/video/{{ _id }}" title="{{ _c[1] | escape }}" loading="lazy" allowfullscreen></iframe></div>
+          {%- elsif _l contains '.mp4' or _l contains '.webm' or _l contains '.mov' -%}
+            <video class="k-esc-media" style="aspect-ratio:3/4" src="{{ MEDIA }}" autoplay muted loop playsinline preload="metadata"></video>
+          {%- else -%}
+            <img class="k-esc-media" style="aspect-ratio:3/4" src="{{ MEDIA }}" alt="{{ _c[1] | escape }}" loading="lazy" decoding="async">
+          {%- endif -%}
+          <span class="k-esc-q">{{ _c[0] }}</span>
+          <h3 class="k-esc-h3">{{ _c[1] }}</h3>
+          {%- if _c[2] != blank -%}<p class="k-esc-aj">{{ _c[2] }}</p>{%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>

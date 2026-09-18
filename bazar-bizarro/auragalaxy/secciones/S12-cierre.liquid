@@ -1,0 +1,109 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · CIERRE (última llamada)
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign TITULO = 'Esta noche la habitación puede ser otra' -%}
+{%- assign TEXTO  = 'Llega en 24-48h y lo pagas al repartidor. Si no te convence, tienes 14 días para devolverlo.' -%}
+{%- assign REGALOS = '+ 3 regalos' -%}
+{%- assign BOTON  = 'Lo quiero contra reembolso' -%}
+{%- assign BOTON_SUB = 'Sin pagar nada ahora' -%}
+{%- assign DESTINO = '#kOferta' -%}
+
+{%- assign COLOR_FONDO_1 = '#2A2065' -%}
+{%- assign COLOR_FONDO_2 = '#0F1430' -%}
+{%- assign COLOR_TITULO  = '#FFFFFF' -%}
+{%- assign COLOR_TEXTO   = '#B9C2E8' -%}
+{%- assign COLOR_TACHADO = '#7C86BC' -%}
+{%- assign COLOR_REGALOS = '#3FD69A' -%}
+{%- assign COLOR_BOTON   = '#009BF0' -%}
+{%- assign COLOR_BOTON_TXT = '#FFFFFF' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-cie{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO_2 }};
+  background:radial-gradient(90% 130% at 50% 0%, {{ COLOR_FONDO_1 }} 0%, {{ COLOR_FONDO_2 }} 62%);
+  color:{{ COLOR_TEXTO }};
+  padding-block:64px;
+}
+.k-cie-env{ max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-cie-caja{ max-width:640px; margin-left:auto; margin-right:auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap:17px; }
+.k-cie-h2{ margin:0; font-size:clamp(1.45rem,3.2vw,2rem); font-weight:800; letter-spacing:-0.015em; line-height:1.2; color:{{ COLOR_TITULO }}; }
+.k-cie-caja p{ margin:0; }
+.k-cie-precio{ display:flex; align-items:baseline; justify-content:center; flex-wrap:wrap; gap:11px; }
+.k-cie-precio b{ font-size:2.05rem; font-weight:900; color:{{ COLOR_TITULO }}; font-variant-numeric:tabular-nums; }
+.k-cie-precio s{ color:{{ COLOR_TACHADO }}; font-weight:700; }
+.k-cie-regalos{ color:{{ COLOR_REGALOS }}; font-weight:900; }
+.k-cie-cta{
+  display:inline-block;
+  width:100%;
+  max-width:380px;
+  text-align:center;
+  text-decoration:none;
+  font-family:inherit;
+  font-weight:900;
+  font-size:1.1rem;
+  color:{{ COLOR_BOTON_TXT }};
+  background:{{ COLOR_BOTON }};
+  border-radius:10px;
+  padding:16px 20px;
+  box-shadow:0 6px 18px rgba(0,155,240,0.32);
+  transition:background-color 0.15s ease;
+}
+.k-cie-cta:hover{ background:#00A9FF; }
+.k-cie-cta:focus-visible{ outline:2px solid #FFFFFF; outline-offset:3px; }
+.k-cie-cta small{ display:block; font-size:0.78rem; font-weight:700; opacity:0.9; margin-top:2px; }
+@media (max-width:768px){ .k-cie{ padding-block:44px; } }
+</style>
+
+<section class="k-cie">
+  <div class="k-cie-env">
+    <div class="k-cie-caja">
+      <h2 class="k-cie-h2">{{ TITULO }}</h2>
+      <p>{{ TEXTO }}</p>
+      <div class="k-cie-precio">
+        <b data-r="precio">{{ product.selected_or_first_available_variant.price | money }}</b>
+        <s data-r="antes" hidden></s>
+        <span class="k-cie-regalos">{{ REGALOS }}</span>
+      </div>
+      <a class="k-cie-cta" href="{{ DESTINO }}">{{ BOTON }}<small>{{ BOTON_SUB }}</small></a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var caja = document.querySelector('.k-cie');
+  if (!caja) { return; }
+  var pre = caja.querySelector('[data-r="precio"]');
+  var ant = caja.querySelector('[data-r="antes"]');
+  if (!pre) { return; }
+  function eur(n) { return n.toFixed(2).replace('.', ',') + ' \u20AC'; }
+  document.addEventListener('kit:precio', function (e) {
+    pre.innerHTML = eur(e.detail.total);
+    if (ant) {
+      if (e.detail.ahorro >= 0.01) { ant.innerHTML = eur(e.detail.antes); ant.hidden = false; }
+      else { ant.hidden = true; }
+    }
+  });
+}());
+</script>
