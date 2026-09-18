@@ -1,0 +1,92 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · COMPRA SIN RIESGO
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign EYEBROW = 'El riesgo lo ponemos nosotros' -%}
+{%- assign TITULO  = 'Pruébalo la primera noche' -%}
+{%- assign ENTRADILLA = 'Comprar luz por internet sin haberla visto da respeto. Por eso esto va así.' -%}
+{%- assign FIRMA = 'Somos una familia pequeña vendiendo cosas que probamos en casa antes de ponerlas aquí. Nos jugamos más que una venta.' -%}
+
+{%- comment -%} Cada una: emoji | titular | texto · separa con ~
+                Los 14 días son el derecho de desistimiento legal: existe siempre, así que
+                nunca anuncies un plazo más corto. Los gastos del envío de vuelta sí puedes
+                ponerlos a cargo del cliente, y por eso están dichos aquí: para que valga,
+                tiene que estar informado ANTES de comprar.
+                Lo de «si llega dañada» es otra cosa y va sin plazo escrito a propósito:
+                así el cliente abre y avisa el primer día, que es lo que te interesa. {%- endcomment -%}
+{%- assign INSIGNIAS = '🚚|Envío gratis en 24-48h|Sale de España el mismo día si pides antes de las 15:00, con número de seguimiento.~💶|Pagas al repartidor|Contra reembolso: no adelantas nada. Lo ves, lo coges y entonces pagas.~↩️|14 días para devolverlo|Derecho de desistimiento legal. Nos escribes y te decimos cómo; los gastos de envío de la devolución corren a tu cargo.~🔒|Pago seguro|Si eliges tarjeta, pasarela cifrada. Tus datos no pasan por nuestras manos.~🛡️|Si llega dañada, nos encargamos|Ábrela y pruébala al recibirla. Nos mandas una foto y lo resolvemos nosotros, sin que tengas que pelearte con nadie.~💬|Atención de verdad|De lunes a viernes, de 9:00 a 18:00. Te responde una persona, no un robot.' -%}
+
+{%- assign COLOR_FONDO   = '#E6F6FF' -%}
+{%- assign COLOR_TARJETA = '#FFFFFF' -%}
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign COLOR_ACENTO  = '#0B6FA8' -%}
+{%- assign COLOR_LINEA   = '#E5E5E5' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-ins{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_TEXTO }};
+  padding-block:64px;
+}
+.k-ins-env{ max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-ins-eyebrow{ margin:0 0 10px; font-size:0.7rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:{{ COLOR_ACENTO }}; }
+.k-ins-h2{ margin:0; font-size:clamp(1.45rem,3.2vw,2rem); font-weight:800; letter-spacing:-0.015em; line-height:1.2; color:{{ COLOR_TITULO }}; }
+.k-ins-entradilla{ margin:12px 0 0; max-width:62ch; }
+.k-ins-rej{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2.2vw,22px); margin-top:30px; }
+.k-ins-t{
+  background:{{ COLOR_TARJETA }};
+  border:1px solid {{ COLOR_LINEA }};
+  border-radius:10px;
+  padding:18px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.k-ins-i{ font-size:1.45rem; line-height:1; }
+.k-ins-h3{ margin:0; font-size:1.08rem; font-weight:800; color:{{ COLOR_TITULO }}; }
+.k-ins-t p{ margin:0; font-size:0.88rem; }
+.k-ins-firma{ margin:26px auto 0; text-align:center; font-size:0.95rem; max-width:60ch; }
+@media (max-width:1024px){ .k-ins-rej{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:768px){
+  .k-ins{ padding-block:44px; }
+  .k-ins-rej{ grid-template-columns:1fr; }
+}
+</style>
+
+<section class="k-ins">
+  <div class="k-ins-env">
+    <p class="k-ins-eyebrow">{{ EYEBROW }}</p>
+    <h2 class="k-ins-h2">{{ TITULO }}</h2>
+    <p class="k-ins-entradilla">{{ ENTRADILLA }}</p>
+    <div class="k-ins-rej">
+      {%- assign _lista = INSIGNIAS | split: '~' -%}
+      {%- for x in _lista -%}
+        {%- assign _c = x | split: '|' -%}
+        <article class="k-ins-t">
+          <span class="k-ins-i" aria-hidden="true">{{ _c[0] }}</span>
+          <h3 class="k-ins-h3">{{ _c[1] }}</h3>
+          <p>{{ _c[2] }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+    <p class="k-ins-firma">{{ FIRMA }}</p>
+  </div>
+</section>

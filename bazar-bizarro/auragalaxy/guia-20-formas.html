@@ -1,0 +1,843 @@
+<title>20 formas de convertir tu habitación en otro mundo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+
+<style>
+:root{
+  --azul:      #38B6FF;
+  --azul-osc:  #009BF0;
+  --azul-txt:  #0B6FA8;
+  --azul-luz:  #E6F6FF;
+  --verde:     #1FA463;
+  --tinta:     #444444;
+  --titulo:    #222222;
+  --gris:      #F5F5F5;
+  --linea:     #E5E5E5;
+  --blanco:    #FFFFFF;
+  --noche:     #0F1430;
+  --noche-2:   #1A2148;
+  --noche-txt: #B9C2E8;
+  --oro:       #FFC65C;
+  --oro-txt:   #5A3F00;
+  --texto: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:var(--blanco);
+  color:var(--tinta);
+  font-family:var(--texto);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4{ color:var(--titulo); margin:0; line-height:1.2; text-wrap:balance; }
+h1{ font-size:clamp(1.9rem, 5vw, 3rem); font-weight:900; letter-spacing:-.025em; }
+h2{ font-size:clamp(1.4rem, 3.4vw, 1.9rem); font-weight:900; letter-spacing:-.02em; }
+h3{ font-size:1.06rem; font-weight:900; }
+p{ margin:0; }
+
+.env{ max-width:1080px; margin-inline:auto; padding-inline:16px; }
+
+/* ── PORTADA ─────────────────────────────────────────────── */
+.portada{
+  background:
+    radial-gradient(80% 120% at 78% 8%, #3A2A78 0%, rgba(58,42,120,0) 60%),
+    radial-gradient(70% 100% at 12% 96%, #0E5A6B 0%, rgba(14,90,107,0) 58%),
+    var(--noche);
+  color:#fff;
+  padding-block:clamp(44px, 8vw, 80px);
+  position:relative;
+  overflow:hidden;
+}
+.portada::after{
+  content:"";
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(1.5px 1.5px at 14% 22%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 33% 64%, #cfe6ff 50%, transparent 52%),
+    radial-gradient(2px 2px at 61% 18%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 84% 72%, #bcd9ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 46% 88%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 92% 34%, #e4ecff 50%, transparent 52%),
+    radial-gradient(1px 1px at 24% 46%, #fff 50%, transparent 52%);
+  opacity:.55;
+}
+.portada .env{ position:relative; z-index:1; }
+.portada h1{ color:#fff; max-width:18ch; }
+.portada__marca{
+  font-size:.72rem; font-weight:900; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--azul); margin-bottom:14px;
+}
+.portada__bajada{ color:var(--noche-txt); max-width:56ch; margin-top:16px; font-size:1.05rem; }
+.portada__meta{
+  display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;
+}
+.chip{
+  border:1px solid rgba(255,255,255,.28); border-radius:99px;
+  padding:6px 14px; font-size:.8rem; font-weight:800; color:#fff;
+}
+
+/* ── CÓMO SE LEE ─────────────────────────────────────────── */
+.como{ background:var(--azul-luz); padding-block:clamp(36px, 6vw, 56px); border-bottom:1px solid var(--linea); }
+.controles{ display:grid; grid-template-columns:repeat(5, 1fr); gap:12px; margin-top:24px; }
+.control{
+  background:var(--blanco); border-radius:12px; padding:16px 14px;
+  display:flex; flex-direction:column; gap:7px;
+}
+.control__ico{ font-size:1.5rem; line-height:1; }
+.control__nom{ font-weight:900; color:var(--titulo); font-size:.92rem; }
+.control__txt{ font-size:.82rem; }
+@media (max-width:900px){ .controles{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:520px){ .controles{ grid-template-columns:1fr; } }
+
+.nota{
+  margin-top:22px; background:var(--blanco); border-left:4px solid var(--azul);
+  border-radius:0 10px 10px 0; padding:15px 17px; font-size:.92rem;
+}
+.nota b{ color:var(--titulo); }
+
+/* ── ÍNDICE ──────────────────────────────────────────────── */
+.indice{ padding-block:clamp(30px, 5vw, 44px); border-bottom:1px solid var(--linea); }
+.indice__lista{ display:grid; grid-template-columns:repeat(5, 1fr); gap:10px; margin-top:18px; }
+.indice__a{
+  display:flex; flex-direction:column; gap:4px; text-decoration:none;
+  border:1px solid var(--linea); border-radius:10px; padding:14px;
+  background:var(--blanco); color:var(--tinta);
+}
+.indice__a:hover{ border-color:var(--azul); }
+.indice__a:focus-visible{ outline:2px solid var(--azul); outline-offset:2px; }
+.indice__n{ font-size:.68rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:var(--azul-txt); }
+.indice__t{ font-weight:900; color:var(--titulo); font-size:.95rem; line-height:1.25; }
+.indice__c{ font-size:.78rem; color:#8A90A6; font-weight:700; }
+@media (max-width:900px){ .indice__lista{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:520px){ .indice__lista{ grid-template-columns:1fr; } }
+
+/* ── BLOQUES ─────────────────────────────────────────────── */
+.bloque{ padding-block:clamp(38px, 6vw, 62px); }
+.bloque--gris{ background:var(--gris); }
+.bloque__cab{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+.bloque__n{
+  font-size:.7rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--blanco); background:var(--azul-osc); border-radius:99px; padding:5px 12px;
+}
+.bloque__sub{ margin-top:12px; max-width:62ch; }
+
+.rejilla{ display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:26px; }
+@media (max-width:820px){ .rejilla{ grid-template-columns:1fr; } }
+
+/* ── FICHA DE AMBIENTE ───────────────────────────────────── */
+.amb{
+  background:var(--blanco); border:1px solid var(--linea); border-radius:14px;
+  overflow:hidden; display:flex; flex-direction:column;
+}
+.bloque--gris .amb{ border-color:#DDE1E8; }
+
+.amb__vista{ position:relative; aspect-ratio:16/7; background:var(--noche); display:block; }
+.amb__vista svg{ display:block; width:100%; height:100%; }
+.amb__num{
+  position:absolute; top:10px; left:12px;
+  font-size:.68rem; font-weight:900; letter-spacing:.1em;
+  color:#fff; background:rgba(15,20,48,.72);
+  border:1px solid rgba(255,255,255,.22); border-radius:99px; padding:3px 10px;
+}
+
+.amb__cuerpo{ padding:16px 17px 17px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.amb__nom{ font-size:1.12rem; font-weight:900; color:var(--titulo); line-height:1.2; }
+.amb__para{ font-size:.88rem; }
+
+.ajustes{ display:grid; grid-template-columns:auto 1fr; gap:6px 12px; font-size:.84rem; }
+.ajustes dt{ font-weight:900; color:#8A90A6; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; padding-top:3px; }
+.ajustes dd{ margin:0; font-weight:700; color:var(--titulo); }
+
+.truco{
+  margin-top:auto; background:var(--azul-luz); border-radius:8px;
+  padding:10px 12px; font-size:.83rem; color:var(--azul-txt);
+}
+.truco b{ font-weight:900; }
+.bloque--gris .truco{ background:#ECF7FF; }
+
+/* ── CIERRE ──────────────────────────────────────────────── */
+.cierre{ background:var(--noche); color:#fff; padding-block:clamp(38px, 6vw, 60px); }
+.cierre h2{ color:#fff; }
+.cierre p{ color:var(--noche-txt); }
+.consejos{ display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin-top:26px; }
+.consejo{
+  background:var(--noche-2); border-radius:12px; padding:17px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.consejo h3{ color:#fff; font-size:1rem; }
+.consejo p{ font-size:.87rem; }
+@media (max-width:820px){ .consejos{ grid-template-columns:1fr; } }
+.cierre__firma{
+  margin-top:30px; padding-top:22px; border-top:1px solid rgba(255,255,255,.14);
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;
+}
+.cierre__logo{ font-weight:900; font-size:1.1rem; color:#fff; letter-spacing:-.02em; }
+.cierre__logo span{ color:var(--azul); }
+.cierre__contacto{ font-size:.88rem; color:var(--noche-txt); }
+.cierre__contacto b{ color:#fff; }
+
+/* ── IMPRESIÓN ───────────────────────────────────────────── */
+@media print{
+  body{ font-size:11pt; }
+  .portada{ background:var(--noche) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .indice{ display:none; }
+  .bloque{ break-inside:avoid; padding-block:18pt; }
+  .amb{ break-inside:avoid; }
+  .rejilla{ gap:10pt; }
+  a{ text-decoration:none; color:inherit; }
+}
+</style>
+
+<header class="portada">
+  <div class="env">
+    <p class="portada__marca">Bazar Bizarro · Regalo para ti</p>
+    <h1>20 formas de convertir tu habitación en otro mundo</h1>
+    <p class="portada__bajada">Los ajustes exactos para cada momento del día, probados en casa. Copia el color, el brillo, la velocidad, el sonido y el temporizador, y tienes la escena montada en diez segundos.</p>
+    <div class="portada__meta">
+      <span class="chip">5 momentos</span>
+      <span class="chip">20 combinaciones</span>
+      <span class="chip">Sin instalar nada</span>
+    </div>
+  </div>
+</header>
+
+<section class="como">
+  <div class="env">
+    <h2>Los cinco mandos que vas a tocar</h2>
+    <p style="margin-top:12px;max-width:62ch">Todo lo que hay en esta guía se hace con estos cinco controles del mando. Nada más.</p>
+
+    <div class="controles">
+      <div class="control">
+        <span class="control__ico" aria-hidden="true">🎨</span>
+        <span class="control__nom">Color</span>
+        <span class="control__txt">Estrellas y nebulosa. Puedes fijar un color o dejar que vaya cambiando solo.</span>
+      </div>
+      <div class="control">
+        <span class="control__ico" aria-hidden="true">🔆</span>
+        <span class="control__nom">Brillo</span>
+        <span class="control__txt">De luz de fondo casi imperceptible a llenar el techo entero.</span>
+      </div>
+      <div class="control">
+        <span class="control__ico" aria-hidden="true">🔄</span>
+        <span class="control__nom">Velocidad</span>
+        <span class="control__txt">Quieto, lento o rápido. El giro es lo que más cambia la sensación.</span>
+      </div>
+      <div class="control">
+        <span class="control__ico" aria-hidden="true">🔊</span>
+        <span class="control__nom">Sonido</span>
+        <span class="control__txt">Los sonidos de dentro (lluvia, olas, grillos…) o lo tuyo por Bluetooth.</span>
+      </div>
+      <div class="control">
+        <span class="control__ico" aria-hidden="true">⏱️</span>
+        <span class="control__nom">Temporizador</span>
+        <span class="control__txt">1, 2 o 4 horas. Se apaga solo y no hay que volver a entrar.</span>
+      </div>
+    </div>
+
+    <div class="nota">
+      <b>Lo primero de todo: oscuridad.</b> AuraGalaxy necesita la luz apagada y la persiana bajada para lucir. Con la luz de la habitación encendida no se ve, igual que cualquier proyector. Y el techo blanco y liso es donde mejor sale: si el tuyo es oscuro o tiene mucho gotelé, apunta a una pared clara.
+    </div>
+  </div>
+</section>
+
+<nav class="indice env" aria-label="Índice">
+  <h2>Los cinco momentos</h2>
+  <div class="indice__lista">
+    <a class="indice__a" href="#m1"><span class="indice__n">Momento 01</span><span class="indice__t">Para que se duerma</span><span class="indice__c">4 ambientes</span></a>
+    <a class="indice__a" href="#m2"><span class="indice__n">Momento 02</span><span class="indice__t">Noche de pareja</span><span class="indice__c">4 ambientes</span></a>
+    <a class="indice__a" href="#m3"><span class="indice__n">Momento 03</span><span class="indice__t">Setup y concentración</span><span class="indice__c">4 ambientes</span></a>
+    <a class="indice__a" href="#m4"><span class="indice__n">Momento 04</span><span class="indice__t">Desconectar tú</span><span class="indice__c">4 ambientes</span></a>
+    <a class="indice__a" href="#m5"><span class="indice__n">Momento 05</span><span class="indice__t">Cuando viene gente</span><span class="indice__c">4 ambientes</span></a>
+  </div>
+</nav>
+
+<!-- ══════════ MOMENTO 01 ══════════ -->
+<section class="bloque" id="m1">
+  <div class="env">
+    <div class="bloque__cab">
+      <span class="bloque__n">Momento 01</span>
+      <h2>Para que se duerma</h2>
+    </div>
+    <p class="bloque__sub">La regla de oro aquí es <strong>brillo bajo y movimiento lento</strong>. Si la luz es fuerte o gira rápido, el efecto es el contrario: se queda mirando y no hay quien lo duerma.</p>
+
+    <div class="rejilla">
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: azul muy tenue con estrellas quietas">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="90" rx="170" ry="70" fill="#1B4A8A" opacity="0.32"/>
+            <ellipse cx="200" cy="95" rx="120" ry="48" fill="#2E6FC0" opacity="0.2"/>
+            <g fill="#DCEAFF"><circle cx="86" cy="52" r="1.4"/><circle cx="142" cy="108" r="1.1"/><circle cx="212" cy="46" r="1.6"/><circle cx="268" cy="118" r="1.2"/><circle cx="318" cy="66" r="1.4"/><circle cx="178" cy="132" r="1"/><circle cx="246" cy="84" r="1.3"/><circle cx="118" cy="76" r="1.2"/></g>
+          </svg>
+          <span class="amb__num">01</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Noche de lluvia</h3>
+          <p class="amb__para">El de todos los días. El que usamos nosotros en casa.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Azul fijo</dd>
+            <dt>Brillo</dt><dd>Mínimo</dd>
+            <dt>Giro</dt><dd>Parado</dd>
+            <dt>Sonido</dt><dd>Lluvia</dd>
+            <dt>Timer</dt><dd>1 hora</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> déjalo en el suelo apuntando al techo, no en la mesilla. Desde la cama se ve más superficie y menos foco directo.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: verde agua muy suave girando despacio">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="180" cy="88" rx="160" ry="62" fill="#12705E" opacity="0.34"/>
+            <ellipse cx="228" cy="96" rx="110" ry="42" fill="#1FA98C" opacity="0.2"/>
+            <g fill="#DFF7F0"><circle cx="96" cy="60" r="1.3"/><circle cx="158" cy="116" r="1.1"/><circle cx="224" cy="52" r="1.5"/><circle cx="288" cy="110" r="1.2"/><circle cx="332" cy="74" r="1.3"/><circle cx="196" cy="138" r="1"/></g>
+          </svg>
+          <span class="amb__num">02</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Fondo del mar</h3>
+          <p class="amb__para">Para los que se agobian con el azul oscuro o duermen mejor con algo de movimiento.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Verde agua fijo</dd>
+            <dt>Brillo</dt><dd>Bajo</dd>
+            <dt>Giro</dt><dd>Lento</dd>
+            <dt>Sonido</dt><dd>Olas</dd>
+            <dt>Timer</dt><dd>1 hora</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> el giro lento imita el movimiento del agua. Si nota que le marea, párala y deja solo el sonido.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: ámbar muy cálido y tenue">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="92" rx="155" ry="60" fill="#8A5A18" opacity="0.4"/>
+            <ellipse cx="200" cy="98" rx="98" ry="36" fill="#D99B3D" opacity="0.22"/>
+            <g fill="#FFEFD4"><circle cx="104" cy="58" r="1.2"/><circle cx="176" cy="122" r="1"/><circle cx="240" cy="50" r="1.4"/><circle cx="300" cy="112" r="1.1"/><circle cx="326" cy="70" r="1.2"/></g>
+          </svg>
+          <span class="amb__num">03</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Vela de noche</h3>
+          <p class="amb__para">Para quien no quiere luz azul antes de dormir, y para los que tienen miedo a la oscuridad.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Ámbar o naranja fijo</dd>
+            <dt>Brillo</dt><dd>Mínimo</dd>
+            <dt>Giro</dt><dd>Parado</dd>
+            <dt>Sonido</dt><dd>Apagado</dd>
+            <dt>Timer</dt><dd>2 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> este es el único que dejamos dos horas. Hace de quitamiedos toda la primera parte de la noche.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: violeta suave con nebulosa">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="210" cy="86" rx="165" ry="66" fill="#4A2C86" opacity="0.4"/>
+            <ellipse cx="160" cy="98" rx="96" ry="38" fill="#8A5CD6" opacity="0.2"/>
+            <g fill="#EFE4FF"><circle cx="90" cy="54" r="1.4"/><circle cx="150" cy="114" r="1.1"/><circle cx="228" cy="48" r="1.5"/><circle cx="286" cy="120" r="1.2"/><circle cx="340" cy="80" r="1.3"/><circle cx="196" cy="140" r="1"/></g>
+          </svg>
+          <span class="amb__num">04</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Cuento antes de dormir</h3>
+          <p class="amb__para">Los quince minutos de leer o de escuchar un audiocuento, con la luz justa.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Violeta fijo</dd>
+            <dt>Brillo</dt><dd>Medio</dd>
+            <dt>Giro</dt><dd>Muy lento</dd>
+            <dt>Sonido</dt><dd>Bluetooth · audiocuento</dd>
+            <dt>Timer</dt><dd>1 hora</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> cuando acabe el cuento, baja el brillo al mínimo sin apagar. La transición suave funciona mejor que el corte seco.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MOMENTO 02 ══════════ -->
+<section class="bloque bloque--gris" id="m2">
+  <div class="env">
+    <div class="bloque__cab">
+      <span class="bloque__n">Momento 02</span>
+      <h2>Noche de pareja</h2>
+    </div>
+    <p class="bloque__sub">Aquí el objetivo es que <strong>el salón deje de parecer el salón</strong>. Brillo medio-bajo, colores cálidos o profundos, y la música por Bluetooth mandando.</p>
+
+    <div class="rejilla">
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: rojo y magenta profundos">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="180" cy="90" rx="168" ry="68" fill="#7A1F4A" opacity="0.46"/>
+            <ellipse cx="240" cy="96" rx="104" ry="40" fill="#D2477F" opacity="0.22"/>
+            <g fill="#FFE1EE"><circle cx="98" cy="56" r="1.3"/><circle cx="164" cy="118" r="1.1"/><circle cx="240" cy="48" r="1.4"/><circle cx="304" cy="114" r="1.2"/><circle cx="342" cy="72" r="1.2"/></g>
+          </svg>
+          <span class="amb__num">05</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Cena sin reserva</h3>
+          <p class="amb__para">La cena de viernes en casa que no parece una cena en casa.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Rojo y magenta</dd>
+            <dt>Brillo</dt><dd>Bajo</dd>
+            <dt>Giro</dt><dd>Muy lento</dd>
+            <dt>Sonido</dt><dd>Bluetooth · vuestra lista</dd>
+            <dt>Timer</dt><dd>4 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> apuntando a la pared detrás de la mesa, no al techo. La luz de fondo da mejor que la de arriba.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: azul profundo con nebulosa violeta">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="88" rx="172" ry="70" fill="#1E2C7A" opacity="0.5"/>
+            <ellipse cx="146" cy="94" rx="102" ry="40" fill="#6A4BC4" opacity="0.26"/>
+            <ellipse cx="272" cy="100" rx="86" ry="32" fill="#2E7CC9" opacity="0.2"/>
+            <g fill="#E6ECFF"><circle cx="88" cy="50" r="1.5"/><circle cx="156" cy="122" r="1.2"/><circle cx="234" cy="44" r="1.6"/><circle cx="296" cy="118" r="1.2"/><circle cx="348" cy="76" r="1.3"/><circle cx="196" cy="140" r="1"/></g>
+          </svg>
+          <span class="amb__num">06</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Planetario en el sofá</h3>
+          <p class="amb__para">Para tumbarse a mirar el techo y no hacer absolutamente nada. Funciona sorprendentemente bien.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Azul y violeta</dd>
+            <dt>Brillo</dt><dd>Medio</dd>
+            <dt>Giro</dt><dd>Lento</dd>
+            <dt>Sonido</dt><dd>Bluetooth · ambiente o lofi</dd>
+            <dt>Timer</dt><dd>2 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> en el centro de la habitación y apuntando recto arriba. Cuanto más centrado, más redonda sale la esfera de estrellas.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: naranja cálido muy suave">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="92" rx="160" ry="62" fill="#8C4A16" opacity="0.42"/>
+            <ellipse cx="200" cy="96" rx="102" ry="36" fill="#E08A3C" opacity="0.2"/>
+            <g fill="#FFEAD2"><circle cx="106" cy="60" r="1.2"/><circle cx="182" cy="120" r="1"/><circle cx="246" cy="52" r="1.3"/><circle cx="312" cy="108" r="1.1"/></g>
+          </svg>
+          <span class="amb__num">07</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Chimenea que no tienes</h3>
+          <p class="amb__para">Noche de manta y peli. La luz cálida quieta hace de chimenea sin la chimenea.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Naranja fijo</dd>
+            <dt>Brillo</dt><dd>Bajo</dd>
+            <dt>Giro</dt><dd>Parado</dd>
+            <dt>Sonido</dt><dd>Apagado</dd>
+            <dt>Timer</dt><dd>4 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> detrás de la tele, apuntando a la pared. Se llama <em>bias lighting</em> y hace que la pantalla canse menos la vista.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: colores cambiando despacio">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="128" cy="90" rx="110" ry="58" fill="#2E5FC0" opacity="0.38"/>
+            <ellipse cx="216" cy="86" rx="110" ry="58" fill="#7A3FB8" opacity="0.34"/>
+            <ellipse cx="300" cy="94" rx="100" ry="52" fill="#1B8E77" opacity="0.32"/>
+            <g fill="#EAF0FF"><circle cx="92" cy="54" r="1.3"/><circle cx="168" cy="122" r="1.1"/><circle cx="252" cy="48" r="1.4"/><circle cx="330" cy="116" r="1.2"/></g>
+          </svg>
+          <span class="amb__num">08</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Aurora de verdad</h3>
+          <p class="amb__para">El modo de enseñárselo a alguien que entra en casa por primera vez.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Cambio automático</dd>
+            <dt>Brillo</dt><dd>Alto</dd>
+            <dt>Giro</dt><dd>Lento</dd>
+            <dt>Sonido</dt><dd>Apagado</dd>
+            <dt>Timer</dt><dd>1 hora</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> este es el que hay que grabar con el móvil. Sale mejor en vídeo que en foto, porque lo que impresiona es el movimiento.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MOMENTO 03 ══════════ -->
+<section class="bloque" id="m3">
+  <div class="env">
+    <div class="bloque__cab">
+      <span class="bloque__n">Momento 03</span>
+      <h2>Setup y concentración</h2>
+    </div>
+    <p class="bloque__sub">Aquí la luz no es el protagonista, es el fondo. <strong>Nunca en el campo de visión</strong>: siempre detrás del monitor o a la espalda, apuntando a la pared.</p>
+
+    <div class="rejilla">
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista de pared: cian y magenta estilo gaming">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="136" cy="92" rx="124" ry="62" fill="#0E6FA8" opacity="0.46"/>
+            <ellipse cx="268" cy="88" rx="124" ry="62" fill="#8A2A9E" opacity="0.4"/>
+            <g fill="#E4F4FF"><circle cx="96" cy="56" r="1.3"/><circle cx="188" cy="124" r="1.1"/><circle cx="264" cy="50" r="1.4"/><circle cx="336" cy="112" r="1.2"/></g>
+          </svg>
+          <span class="amb__num">09</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Setup nocturno</h3>
+          <p class="amb__para">El clásico cian y magenta. La habitación deja de parecer un despacho.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Cian y magenta</dd>
+            <dt>Brillo</dt><dd>Medio</dd>
+            <dt>Giro</dt><dd>Muy lento</dd>
+            <dt>Sonido</dt><dd>Apagado · usa tus cascos</dd>
+            <dt>Timer</dt><dd>4 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> detrás del monitor, a unos 40 cm de la pared. Más cerca sale un círculo pequeño y más definido; más lejos, difuso y amplio.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista de pared: verde ácido">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="90" rx="166" ry="66" fill="#166B36" opacity="0.46"/>
+            <ellipse cx="200" cy="94" rx="100" ry="38" fill="#3FCB6A" opacity="0.2"/>
+            <g fill="#E2FFEC"><circle cx="102" cy="58" r="1.3"/><circle cx="176" cy="120" r="1.1"/><circle cx="256" cy="50" r="1.3"/><circle cx="322" cy="112" r="1.1"/></g>
+          </svg>
+          <span class="amb__num">10</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Modo partida</h3>
+          <p class="amb__para">Verde quieto, sin movimiento. Nada que te distraiga por el rabillo del ojo.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Verde fijo</dd>
+            <dt>Brillo</dt><dd>Bajo</dd>
+            <dt>Giro</dt><dd>Parado</dd>
+            <dt>Sonido</dt><dd>Apagado</dd>
+            <dt>Timer</dt><dd>4 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> si estás compitiendo, para el giro siempre. El movimiento periférico cansa la vista en sesiones largas.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista de pared: blanco azulado muy tenue">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="90" rx="158" ry="60" fill="#3E5680" opacity="0.4"/>
+            <ellipse cx="200" cy="94" rx="96" ry="34" fill="#9FBCE0" opacity="0.18"/>
+            <g fill="#F2F7FF"><circle cx="108" cy="60" r="1.2"/><circle cx="184" cy="118" r="1"/><circle cx="252" cy="54" r="1.2"/><circle cx="316" cy="110" r="1.1"/></g>
+          </svg>
+          <span class="amb__num">11</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Estudiar sin agobio</h3>
+          <p class="amb__para">Para las horas de biblioteca en casa. Luz de fondo que quita la sensación de cueva.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Blanco azulado fijo</dd>
+            <dt>Brillo</dt><dd>Bajo</dd>
+            <dt>Giro</dt><dd>Parado</dd>
+            <dt>Sonido</dt><dd>Lluvia</dd>
+            <dt>Timer</dt><dd>2 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> el temporizador a 2 horas hace de aviso de descanso. Cuando se apaga, levántate.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista de pared: violeta intenso para grabar">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="160" cy="88" rx="140" ry="66" fill="#5A2AA8" opacity="0.5"/>
+            <ellipse cx="270" cy="94" rx="118" ry="52" fill="#B040C8" opacity="0.3"/>
+            <g fill="#F4E8FF"><circle cx="94" cy="52" r="1.4"/><circle cx="178" cy="124" r="1.1"/><circle cx="262" cy="46" r="1.4"/><circle cx="342" cy="108" r="1.2"/></g>
+          </svg>
+          <span class="amb__num">12</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Fondo de cámara</h3>
+          <p class="amb__para">Para grabar, hacer directo o una videollamada en la que quieras verte bien.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Violeta fijo</dd>
+            <dt>Brillo</dt><dd>Alto</dd>
+            <dt>Giro</dt><dd>Parado</dd>
+            <dt>Sonido</dt><dd>Apagado</dd>
+            <dt>Timer</dt><dd>4 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> déjalo quieto. En cámara el giro se ve como un parpadeo raro por cómo captura el sensor.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MOMENTO 04 ══════════ -->
+<section class="bloque bloque--gris" id="m4">
+  <div class="env">
+    <div class="bloque__cab">
+      <span class="bloque__n">Momento 04</span>
+      <h2>Desconectar tú</h2>
+    </div>
+    <p class="bloque__sub">Los cuatro que sirven para <strong>cerrar el día sin pantalla</strong>. Aquí el sonido pesa tanto como la luz.</p>
+
+    <div class="rejilla">
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: azul oscuro casi apagado">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="92" rx="150" ry="56" fill="#16306B" opacity="0.44"/>
+            <g fill="#CFDCF5"><circle cx="112" cy="62" r="1.1"/><circle cx="192" cy="116" r="1"/><circle cx="258" cy="56" r="1.2"/><circle cx="312" cy="108" r="1"/></g>
+          </svg>
+          <span class="amb__num">13</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Cortar con el móvil</h3>
+          <p class="amb__para">La media hora antes de dormir, sin scroll. El objetivo es aburrirte un poco.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Azul oscuro fijo</dd>
+            <dt>Brillo</dt><dd>Mínimo</dd>
+            <dt>Giro</dt><dd>Parado</dd>
+            <dt>Sonido</dt><dd>Olas</dd>
+            <dt>Timer</dt><dd>1 hora</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> deja el móvil en otra habitación antes de encenderlo. AuraGalaxy hace de sustituto, no de compañía.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: verde bosque con estrellas">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="190" cy="90" rx="160" ry="62" fill="#17553A" opacity="0.46"/>
+            <ellipse cx="240" cy="96" rx="96" ry="36" fill="#2E9367" opacity="0.2"/>
+            <g fill="#E0FBEC"><circle cx="100" cy="58" r="1.3"/><circle cx="172" cy="120" r="1.1"/><circle cx="252" cy="50" r="1.3"/><circle cx="324" cy="110" r="1.1"/></g>
+          </svg>
+          <span class="amb__num">14</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Bosque de noche</h3>
+          <p class="amb__para">Para estirar, hacer yoga o simplemente respirar diez minutos.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Verde fijo</dd>
+            <dt>Brillo</dt><dd>Bajo</dd>
+            <dt>Giro</dt><dd>Muy lento</dd>
+            <dt>Sonido</dt><dd>Grillos</dd>
+            <dt>Timer</dt><dd>1 hora</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> en el suelo, a un lado de la esterilla. Boca arriba tienes el techo entero de vista.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: violeta y azul girando">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="170" cy="88" rx="146" ry="64" fill="#3A2C8E" opacity="0.46"/>
+            <ellipse cx="262" cy="94" rx="120" ry="50" fill="#2E6FC0" opacity="0.28"/>
+            <g fill="#EAEAFF"><circle cx="92" cy="54" r="1.4"/><circle cx="166" cy="122" r="1.1"/><circle cx="250" cy="48" r="1.4"/><circle cx="330" cy="112" r="1.2"/></g>
+          </svg>
+          <span class="amb__num">15</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Baño largo</h3>
+          <p class="amb__para">Si el baño tiene enchufe cerca, o directamente con la batería. Cambia por completo.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Violeta y azul</dd>
+            <dt>Brillo</dt><dd>Medio</dd>
+            <dt>Giro</dt><dd>Lento</dd>
+            <dt>Sonido</dt><dd>Bluetooth · lo que te apetezca</dd>
+            <dt>Timer</dt><dd>1 hora</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> lejos del agua y en alto. No es resistente al agua, así que nada de dejarlo en el borde de la bañera.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: rosa muy suave al amanecer">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="94" rx="156" ry="58" fill="#8A3A5E" opacity="0.4"/>
+            <ellipse cx="200" cy="98" rx="98" ry="34" fill="#E58AA8" opacity="0.2"/>
+            <g fill="#FFE8F0"><circle cx="110" cy="60" r="1.2"/><circle cx="188" cy="118" r="1"/><circle cx="256" cy="54" r="1.2"/><circle cx="318" cy="108" r="1"/></g>
+          </svg>
+          <span class="amb__num">16</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Despertar suave</h3>
+          <p class="amb__para">Para los fines de semana. Lo enciendes al despertarte, antes de subir la persiana.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Rosa o ámbar fijo</dd>
+            <dt>Brillo</dt><dd>Bajo y subiendo</dd>
+            <dt>Giro</dt><dd>Parado</dd>
+            <dt>Sonido</dt><dd>Apagado</dd>
+            <dt>Timer</dt><dd>1 hora</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> sube el brillo poco a poco durante los primeros minutos. Del mínimo al medio en tres pasos.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MOMENTO 05 ══════════ -->
+<section class="bloque" id="m5">
+  <div class="env">
+    <div class="bloque__cab">
+      <span class="bloque__n">Momento 05</span>
+      <h2>Cuando viene gente</h2>
+    </div>
+    <p class="bloque__sub">Los cuatro de subir el volumen. Aquí sí: <strong>brillo alto, giro rápido y cambio de color automático</strong>.</p>
+
+    <div class="rejilla">
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: multicolor girando rápido">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="110" cy="88" rx="108" ry="60" fill="#C02A6A" opacity="0.5"/>
+            <ellipse cx="200" cy="84" rx="108" ry="60" fill="#2E5FD0" opacity="0.46"/>
+            <ellipse cx="292" cy="92" rx="108" ry="58" fill="#1B9E7A" opacity="0.44"/>
+            <g fill="#FFFFFF"><circle cx="86" cy="50" r="1.6"/><circle cx="158" cy="126" r="1.3"/><circle cx="244" cy="44" r="1.6"/><circle cx="330" cy="118" r="1.4"/><circle cx="196" cy="140" r="1.2"/></g>
+          </svg>
+          <span class="amb__num">17</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Cumpleaños</h3>
+          <p class="amb__para">El momento de apagar la luz y sacar la tarta. Funciona con niños y con adultos.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Cambio automático</dd>
+            <dt>Brillo</dt><dd>Máximo</dd>
+            <dt>Giro</dt><dd>Rápido</dd>
+            <dt>Sonido</dt><dd>Bluetooth · la música de la fiesta</dd>
+            <dt>Timer</dt><dd>4 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> enciéndelo ANTES de apagar la luz, no después. La transición sorprende mucho más.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: azul y blanco invernal">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="88" rx="168" ry="66" fill="#1E4E96" opacity="0.46"/>
+            <ellipse cx="200" cy="92" rx="110" ry="42" fill="#AFD4FF" opacity="0.22"/>
+            <g fill="#FFFFFF"><circle cx="92" cy="54" r="1.5"/><circle cx="168" cy="122" r="1.2"/><circle cx="248" cy="48" r="1.5"/><circle cx="320" cy="114" r="1.3"/><circle cx="286" cy="70" r="1.1"/></g>
+          </svg>
+          <span class="amb__num">18</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Navidad sin luces</h3>
+          <p class="amb__para">Diciembre, sin colgar una sola guirnalda ni pelearte con los enchufes.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Azul y blanco</dd>
+            <dt>Brillo</dt><dd>Alto</dd>
+            <dt>Giro</dt><dd>Lento</dd>
+            <dt>Sonido</dt><dd>Bluetooth · villancicos, si hay valor</dd>
+            <dt>Timer</dt><dd>4 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> apuntando a la esquina donde está el árbol. Rebota y llena media habitación.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: naranja y verde de Halloween">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="146" cy="90" rx="130" ry="62" fill="#A85014" opacity="0.5"/>
+            <ellipse cx="266" cy="88" rx="124" ry="60" fill="#2C7A3A" opacity="0.42"/>
+            <g fill="#FFF0D8"><circle cx="96" cy="54" r="1.4"/><circle cx="182" cy="124" r="1.1"/><circle cx="268" cy="48" r="1.4"/><circle cx="342" cy="110" r="1.2"/></g>
+          </svg>
+          <span class="amb__num">19</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Noche de miedo</h3>
+          <p class="amb__para">Halloween, o cualquier noche de pelis de terror con los amigos.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Naranja y verde</dd>
+            <dt>Brillo</dt><dd>Medio</dd>
+            <dt>Giro</dt><dd>Rápido</dd>
+            <dt>Sonido</dt><dd>Bluetooth · sonidos de ambiente</dd>
+            <dt>Timer</dt><dd>4 horas</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> en el suelo apuntando hacia arriba desde una esquina. Las sombras que hace son parte del efecto.</p>
+        </div>
+      </article>
+
+      <article class="amb">
+        <div class="amb__vista">
+          <svg viewBox="0 0 400 175" role="img" aria-label="Vista del techo: azul intenso con muchas estrellas">
+            <rect width="400" height="175" fill="#0F1430"/>
+            <ellipse cx="200" cy="88" rx="174" ry="70" fill="#15306E" opacity="0.52"/>
+            <ellipse cx="200" cy="92" rx="112" ry="44" fill="#3E7BD6" opacity="0.24"/>
+            <g fill="#FFFFFF"><circle cx="84" cy="48" r="1.6"/><circle cx="132" cy="106" r="1.2"/><circle cx="196" cy="42" r="1.7"/><circle cx="252" cy="118" r="1.3"/><circle cx="314" cy="62" r="1.5"/><circle cx="352" cy="120" r="1.2"/><circle cx="164" cy="140" r="1.1"/><circle cx="286" cy="90" r="1.3"/></g>
+          </svg>
+          <span class="amb__num">20</span>
+        </div>
+        <div class="amb__cuerpo">
+          <h3 class="amb__nom">Noche de estrellas</h3>
+          <p class="amb__para">El que se enseña cuando alguien pregunta "¿y eso qué hace?". Máximo efecto, cero color raro.</p>
+          <dl class="ajustes">
+            <dt>Color</dt><dd>Azul fijo, solo estrellas</dd>
+            <dt>Brillo</dt><dd>Máximo</dd>
+            <dt>Giro</dt><dd>Lento</dd>
+            <dt>Sonido</dt><dd>Apagado</dd>
+            <dt>Timer</dt><dd>1 hora</dd>
+          </dl>
+          <p class="truco"><b>Truco:</b> quita la nebulosa y deja solo los puntos. Con el techo despejado parece un planetario de verdad.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CIERRE ══════════ -->
+<section class="cierre">
+  <div class="env">
+    <h2>Tres cosas que aprendimos probándolo</h2>
+    <p style="margin-top:12px;max-width:62ch">Ninguna viene en el manual, y las tres cambian bastante el resultado.</p>
+
+    <div class="consejos">
+      <article class="consejo">
+        <h3>La distancia manda más que el brillo</h3>
+        <p>Cerca de la pared: círculo pequeño, nítido e intenso. Lejos: amplio y difuso. Antes de subir el brillo, prueba a moverlo medio metro.</p>
+      </article>
+      <article class="consejo">
+        <h3>El giro es lo que cansa</h3>
+        <p>Para dormir, para concentrarte o para grabar, déjalo quieto. El giro guárdalo para cuando el objetivo sea que la gente mire.</p>
+      </article>
+      <article class="consejo">
+        <h3>Apunta a la pared, no siempre al techo</h3>
+        <p>Detrás de la tele, del monitor o del cabecero da mejor resultado que el techo en la mitad de los casos. Prueba las dos cosas.</p>
+      </article>
+    </div>
+
+    <div class="cierre__firma">
+      <span class="cierre__logo">BAZAR <span>BIZARRO</span></span>
+      <span class="cierre__contacto">¿Se te ocurre un ambiente que falte? Escríbenos a <b>hola@bazarbizarro.com</b> y lo metemos en la próxima versión con tu nombre.</span>
+    </div>
+  </div>
+</section>

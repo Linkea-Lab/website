@@ -1,0 +1,91 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · TRES TARJETAS CON ICONO
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign ICONO_1 = '' -%}
+{%- assign TEXTO_1 = 'Estrellas y nebulosas en movimiento' -%}
+{%- assign EMOJI_1 = '🌌' -%}
+
+{%- assign ICONO_2 = '' -%}
+{%- assign TEXTO_2 = '4 en 1: proyector, luz, altavoz y ruido blanco' -%}
+{%- assign EMOJI_2 = '🎧' -%}
+
+{%- assign ICONO_3 = '' -%}
+{%- assign TEXTO_3 = 'Apagado solo a 1 h, 2 h o 4 h' -%}
+{%- assign EMOJI_3 = '⏱️' -%}
+
+{%- comment -%} Iconos: 200x200 px, fondo transparente. Vacío = sale el emoji. {%- endcomment -%}
+
+{%- assign COLOR_FONDO  = '#E6F6FF' -%}
+{%- assign COLOR_CIRCULO = '#FFFFFF' -%}
+{%- assign COLOR_TEXTO  = '#0B6FA8' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-ben{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:0;
+}
+.k-ben-t{
+  background:{{ COLOR_FONDO }};
+  border-radius:10px;
+  padding:16px 12px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.k-ben-i{
+  width:64px; height:64px;
+  border-radius:50%;
+  background:{{ COLOR_CIRCULO }};
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.7rem; line-height:1;
+  overflow:hidden;
+  flex:none;
+}
+.k-ben-i img{ width:100%; height:100%; object-fit:contain; display:block; }
+.k-ben-t span{
+  font-size:0.86rem;
+  font-weight:800;
+  line-height:1.35;
+  color:{{ COLOR_TEXTO }};
+}
+@media (max-width:768px){
+  .k-ben{ grid-template-columns:1fr; }
+}
+</style>
+
+<div class="k-ben">
+  {%- assign _ico = ICONO_1 | append: '||' | append: ICONO_2 | append: '||' | append: ICONO_3 | split: '||' -%}
+  {%- assign _txt = TEXTO_1 | append: '||' | append: TEXTO_2 | append: '||' | append: TEXTO_3 | split: '||' -%}
+  {%- assign _emo = EMOJI_1 | append: '||' | append: EMOJI_2 | append: '||' | append: EMOJI_3 | split: '||' -%}
+  {%- for t in _txt -%}
+    {%- assign i = forloop.index0 -%}
+    <div class="k-ben-t">
+      <span class="k-ben-i" aria-hidden="true">{% assign _u = _ico[i] | default: '' %}{% if _u != blank %}<img src="{{ _u }}" alt="" width="64" height="64" loading="lazy" decoding="async">{% else %}{{ _emo[i] }}{% endif %}</span>
+      <span>{{ t }}</span>
+    </div>
+  {%- endfor -%}
+</div>

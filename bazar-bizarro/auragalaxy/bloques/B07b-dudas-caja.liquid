@@ -1,0 +1,186 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · DUDAS DESPLEGABLES · CAJAS ESTILO BONJOUR
+██  Caja con borde, icono + que pasa a −, y sombra al abrirse.
+██  Colócalo debajo del botón de comprar.
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+
+{%- assign AVISO = '' -%}
+{%- assign AVISO_ICONO = '✅' -%}
+{%- comment -%} AVISO vacío = no sale la barra.
+                Si la quieres, lo honesto es: 'PEDIDOS ANTES DE LAS 15:00 SALEN HOY' {%- endcomment -%}
+
+{%- comment -%} Cada duda: PREGUNTA | RESPUESTA · separa con ~
+                Dentro de la respuesta puedes cortar párrafos con ||
+                No uses " en el texto, usa «» {%- endcomment -%}
+{%- assign DUDAS = '¿Por qué AuraGalaxy?|Los proyectores baratos lanzan cuatro puntos y un láser plano que se queda en una esquina del techo.||AuraGalaxy monta lente de cristal, giro de 360° y catorce combinaciones de aurora, así que la habitación entera cambia de color, no solo un trozo. Sale desde España, no desde Asia: lo tienes en 24-48 h y no en tres semanas.~¿Se ve así de verdad en mi habitación?|Sí, a oscuras. Con la persiana bajada cubre un techo de hasta 20 m². Con la luz encendida no se ve nada, igual que cualquier proyector: es física, no calidad.||Los vídeos de esta página están grabados con un móvil en un piso normal, sin retoque y sin humo de atrezo.~¿Y si no me convence o llega dañado?|Pagas al repartidor cuando lo tienes en la mano, así que no adelantas ni un euro y no hay nada que reclamar si no llega.||Si llega dañado o con un fallo de fábrica, nos mandas una foto y nos encargamos nosotros de la recogida y del reemplazo. El envío de vuelta lo pagamos nosotros.' -%}
+
+{%- assign ABIERTA_1 = false -%}
+{%- comment -%} true = la primera pregunta sale ya desplegada {%- endcomment -%}
+
+{%- assign COLOR_FONDO_CAJA = '#FFFFFF' -%}
+{%- assign COLOR_BORDE      = '#111111' -%}
+{%- assign COLOR_PREGUNTA   = '#111111' -%}
+{%- assign COLOR_TEXTO      = '#3A3A3A' -%}
+{%- assign COLOR_ICONO      = '#111111' -%}
+{%- assign COLOR_SOMBRA     = '#009BF0' -%}
+{%- comment -%} COLOR_SOMBRA = '' quita la sombra de color al abrir {%- endcomment -%}
+{%- assign COLOR_AVISO_FONDO = '#E8F6FF' -%}
+{%- assign COLOR_AVISO_BORDE = '#009BF0' -%}
+{%- assign COLOR_AVISO_TEXTO = '#0B6FA8' -%}
+{%- assign RADIO             = '16px' -%}
+{%- assign SEPARACION        = '12px' -%}
+{%- assign CARGAR_FUENTE     = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+<style>
+.k-dudb{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-text-size-adjust:100%;
+  margin:20px 0 0;
+}
+.k-dudb .k-dudb-aviso{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin:0 0 {{ SEPARACION }};
+  padding:12px 14px;
+  border:1px solid {{ COLOR_AVISO_BORDE }};
+  border-radius:12px;
+  background:{{ COLOR_AVISO_FONDO }};
+  font-size:0.82rem;
+  font-weight:900;
+  letter-spacing:0.02em;
+  line-height:1.3;
+  text-align:center;
+  color:{{ COLOR_AVISO_TEXTO }};
+}
+
+.k-dudb .k-dudb-p{
+  box-sizing:border-box;
+  border:1px solid {{ COLOR_BORDE }};
+  border-radius:{{ RADIO }};
+  background:{{ COLOR_FONDO_CAJA }};
+  padding:0 16px;
+  margin:0 0 {{ SEPARACION }};
+}
+.k-dudb .k-dudb-p:last-child{ margin-bottom:0; }
+{%- if COLOR_SOMBRA != blank %}
+.k-dudb .k-dudb-p[open]{
+  -webkit-box-shadow:3px 3px 0 {{ COLOR_SOMBRA }};
+  box-shadow:3px 3px 0 {{ COLOR_SOMBRA }};
+}
+{%- endif %}
+
+.k-dudb .k-dudb-p .k-dudb-q{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding-top:16px;
+  padding-bottom:16px;
+  cursor:pointer;
+  list-style:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.k-dudb .k-dudb-p .k-dudb-q::-webkit-details-marker{ display:none; }
+.k-dudb .k-dudb-p .k-dudb-q::marker{ content:""; }
+.k-dudb .k-dudb-p .k-dudb-q:focus-visible{ outline:2px solid {{ COLOR_SOMBRA | default: '#009BF0' }}; outline-offset:-4px; border-radius:12px; }
+.k-dudb .k-dudb-p .k-dudb-q h3{
+  margin:0;
+  font-size:0.95rem;
+  font-weight:800;
+  line-height:1.35;
+  letter-spacing:normal;
+  color:{{ COLOR_PREGUNTA }};
+}
+.k-dudb .k-dudb-p .k-dudb-ico{
+  width:24px;
+  height:24px;
+  flex:0 0 auto;
+  display:block;
+  stroke:{{ COLOR_ICONO }};
+  fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.k-dudb .k-dudb-p[open] .k-dudb-ico .k-dudb-vert{ display:none; }
+
+.k-dudb .k-dudb-p .k-dudb-r{
+  margin:0;
+  padding:0 0 14px;
+  font-size:0.88rem;
+  font-weight:400;
+  line-height:1.75;
+  color:{{ COLOR_TEXTO }};
+}
+
+@media (max-width:600px){
+  .k-dudb .k-dudb-p{ padding:0 14px; }
+  .k-dudb .k-dudb-p .k-dudb-q h3{ font-size:0.9rem; }
+}
+</style>
+
+{%- assign _lista = DUDAS | split: '~' -%}
+
+<div class="k-dudb" data-k-dudb>
+  {%- if AVISO != blank -%}
+    <p class="k-dudb-aviso">{% if AVISO_ICONO != blank %}<span aria-hidden="true">{{ AVISO_ICONO }}</span>{% endif %}{{ AVISO }}</p>
+  {%- endif -%}
+
+  {%- for d in _lista -%}
+    {%- assign _c = d | split: '|' -%}
+    <details class="k-dudb-p"{% if forloop.first and ABIERTA_1 %} open{% endif %}>
+      <summary class="k-dudb-q">
+        <h3>{{ _c[0] }}</h3>
+        <svg class="k-dudb-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M7 12h10"/><path class="k-dudb-vert" d="M12 7v10"/></svg>
+      </summary>
+      {%- assign _parrafos = _c[1] | split: '||' -%}
+      {%- for t in _parrafos -%}
+        <p class="k-dudb-r">{{ t | strip }}</p>
+      {%- endfor -%}
+    </details>
+  {%- endfor -%}
+</div>
+
+<script>
+(function(){
+  var cajas = document.querySelectorAll('[data-k-dudb]');
+  var n;
+  for (n = 0; n < cajas.length; n++) { arranca(cajas[n]); }
+
+  function arranca(caja){
+    if (caja.getAttribute('data-listo') === '1') { return; }
+    caja.setAttribute('data-listo', '1');
+
+    var piezas = caja.querySelectorAll('.k-dudb-p');
+    var i;
+    for (i = 0; i < piezas.length; i++){
+      (function(uno){
+        uno.addEventListener('toggle', function(){
+          if (!uno.open) { return; }
+          var k;
+          for (k = 0; k < piezas.length; k++){
+            if (piezas[k] !== uno && piezas[k].open) { piezas[k].open = false; }
+          }
+        });
+      })(piezas[i]);
+    }
+  }
+})();
+</script>

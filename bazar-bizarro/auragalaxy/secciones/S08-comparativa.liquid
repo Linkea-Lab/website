@@ -1,0 +1,105 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · COMPARATIVA
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign EYEBROW = 'Frente a lo que hay' -%}
+{%- assign TITULO  = 'AuraGalaxy vs. ellos' -%}
+{%- assign ENTRADILLA = 'Contra el proyector de estrellas barato de bazar y contra montar la iluminación con tiras de LED.' -%}
+
+{%- assign COLUMNA_NUESTRA = 'AuraGalaxy' -%}
+{%- assign COLUMNA_2 = 'Proyector barato' -%}
+{%- assign COLUMNA_3 = 'Tiras LED' -%}
+
+{%- comment -%} Cada fila: concepto | nosotros | ellos 1 | ellos 2 · separa filas con ~ {%- endcomment -%}
+{%- assign FILAS = 'Nebulosa y estrellas en movimiento|Sí|Solo puntos fijos|No~Se instala en 3 segundos|Sí|Sí|Hay que pegarlas~Altavoz Bluetooth|Sí|No|No~Ruido blanco para dormir|Sí, incluido|No|No~Temporizador 1 h / 2 h / 4 h|Sí|No|No~Mando a distancia|Sí|No|Según modelo~Funciona sin enchufe|Sí|No|No~Deja marca en la pared|No|No|Sí' -%}
+
+{%- assign COLOR_FONDO   = '#FFFFFF' -%}
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign COLOR_ACENTO  = '#0B6FA8' -%}
+{%- assign COLOR_LINEA   = '#E5E5E5' -%}
+{%- assign COLOR_CABECERA = '#F5F5F5' -%}
+{%- assign COLOR_NUESTRA_CAB = '#009BF0' -%}
+{%- assign COLOR_NUESTRA_FONDO = '#E6F6FF' -%}
+{%- assign COLOR_SI = '#1FA463' -%}
+{%- assign COLOR_NO = '#9AA0B4' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-cmp{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_TEXTO }};
+  padding-block:64px;
+}
+.k-cmp-env{ max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-cmp-eyebrow{ margin:0 0 10px; font-size:0.7rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:{{ COLOR_ACENTO }}; }
+.k-cmp-h2{ margin:0; font-size:clamp(1.45rem,3.2vw,2rem); font-weight:800; letter-spacing:-0.015em; line-height:1.2; color:{{ COLOR_TITULO }}; }
+.k-cmp-entradilla{ margin:12px 0 0; max-width:62ch; }
+.k-cmp-caja{
+  margin-top:30px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid {{ COLOR_LINEA }};
+  border-radius:10px;
+}
+.k-cmp-caja table{ border-collapse:collapse; width:100%; min-width:540px; }
+.k-cmp-caja th, .k-cmp-caja td{ padding:13px 14px; text-align:center; border-bottom:1px solid {{ COLOR_LINEA }}; font-size:0.9rem; }
+.k-cmp-caja th:first-child, .k-cmp-caja td:first-child{ text-align:left; font-weight:800; min-width:200px; color:{{ COLOR_TITULO }}; }
+.k-cmp-caja thead th{ font-weight:800; font-size:0.86rem; background:{{ COLOR_CABECERA }}; }
+.k-cmp-caja thead th.k-cmp-nos{ color:#FFFFFF; background:{{ COLOR_NUESTRA_CAB }}; }
+.k-cmp-caja tbody td.k-cmp-nos{ background:{{ COLOR_NUESTRA_FONDO }}; font-weight:900; }
+.k-cmp-caja tbody tr:last-child td{ border-bottom:0; }
+.k-cmp-si{ color:{{ COLOR_SI }}; font-weight:900; }
+.k-cmp-no{ color:{{ COLOR_NO }}; font-weight:800; }
+@media (max-width:768px){ .k-cmp{ padding-block:44px; } }
+</style>
+
+<section class="k-cmp">
+  <div class="k-cmp-env">
+    <p class="k-cmp-eyebrow">{{ EYEBROW }}</p>
+    <h2 class="k-cmp-h2">{{ TITULO }}</h2>
+    <p class="k-cmp-entradilla">{{ ENTRADILLA }}</p>
+    <div class="k-cmp-caja">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col" class="k-cmp-nos">{{ COLUMNA_NUESTRA }}</th>
+            <th scope="col">{{ COLUMNA_2 }}</th>
+            <th scope="col">{{ COLUMNA_3 }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- assign _filas = FILAS | split: '~' -%}
+          {%- for f in _filas -%}
+            {%- assign _c = f | split: '|' -%}
+            <tr>
+              <td>{{ _c[0] }}</td>
+              <td class="k-cmp-nos"><span class="k-cmp-si">{{ _c[1] }}</span></td>
+              <td><span class="k-cmp-no">{{ _c[2] }}</span></td>
+              <td><span class="k-cmp-no">{{ _c[3] }}</span></td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

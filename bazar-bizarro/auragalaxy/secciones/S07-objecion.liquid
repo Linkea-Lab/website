@@ -1,0 +1,123 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · LA OBJECIÓN NÚMERO UNO
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign MEDIA = '' -%}
+{%- comment -%} Ideal: la misma habitación a brillo mínimo y a máximo. 1000x750 px {%- endcomment -%}
+
+{%- assign EYEBROW = 'Es lo primero que nos preguntáis' -%}
+{%- assign TITULO  = '"¿Se ve de verdad o es como en los vídeos?"' -%}
+{%- assign PARRAFO_1 = '<strong>Necesita oscuridad, como cualquier proyector.</strong> Con la luz de la habitación encendida no se ve. Con la persiana bajada y la luz apagada se ve exactamente como en los vídeos.' -%}
+{%- assign PARRAFO_2 = '<strong>La intensidad se regula.</strong> Al mínimo es una luz de fondo suave para dormir. Al máximo llena el techo y las paredes. <strong>El techo blanco es el mejor:</strong> cuanto más liso y claro, más definida sale la aurora.' -%}
+{%- assign REMATE  = 'Nuestro ajuste de casa: azul fijo, brillo bajo, ruido de lluvia y temporizador de 1 hora.' -%}
+
+
+{%- assign COLOR_FONDO   = '#FFFFFF' -%}
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign COLOR_ACENTO  = '#0B6FA8' -%}
+{%- assign COLOR_REMATE  = '#222222' -%}
+{%- assign COLOR_HUECO   = '#F5F5F5' -%}
+{%- assign COLOR_HUECO_BORDE = '#E5E5E5' -%}
+{%- assign COLOR_HUECO_TXT   = '#9AA0B4' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-obj{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_TEXTO }};
+  padding-block:64px;
+}
+.k-obj-env{ max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-obj-duo{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(22px,3.4vw,48px);
+  align-items:center;
+}
+.k-obj-media-col{ order:1; }
+.k-obj-txt{ display:flex; flex-direction:column; gap:14px; }
+.k-obj-eyebrow{
+  margin:0;
+  font-size:0.7rem; font-weight:800;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:{{ COLOR_ACENTO }};
+}
+.k-obj-h2{
+  margin:0;
+  font-size:clamp(1.45rem,3.2vw,2rem);
+  font-weight:800; letter-spacing:-0.015em; line-height:1.2;
+  color:{{ COLOR_TITULO }};
+}
+.k-obj-txt p{ margin:0; }
+.k-obj-remate{ color:{{ COLOR_REMATE }}; font-weight:800; }
+.k-obj-media{ width:100%; max-width:100%; height:auto; display:block; border-radius:10px; object-fit:cover; }
+.k-obj-marco{ position:relative; width:100%; border-radius:10px; overflow:hidden; background:#000000; }
+.k-obj-marco iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.k-obj-hueco{
+  width:100%;
+  border:1px dashed {{ COLOR_HUECO_BORDE }};
+  border-radius:10px;
+  background:{{ COLOR_HUECO }};
+  color:{{ COLOR_HUECO_TXT }};
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:6px; text-align:center; padding:18px;
+  font-size:0.78rem; font-weight:700;
+}
+.k-obj-hueco b{ display:block; font-size:0.84rem; }
+
+@media (max-width:768px){
+  .k-obj{ padding-block:44px; }
+  .k-obj-duo{ grid-template-columns:1fr; }
+  .k-obj-media-col{ order:0; }
+}
+</style>
+
+<section class="k-obj">
+  <div class="k-obj-env">
+    <div class="k-obj-duo">
+      <div class="k-obj-media-col">
+        {%- assign _m = MEDIA -%}
+        {%- assign _l = _m | downcase -%}
+        {%- if _m == blank -%}
+          <div class="k-obj-hueco" style="aspect-ratio:4/3"><b>FOTO</b>la misma habitación en brillo mínimo y en máximo<br>1000 × 750 px</div>
+        {%- elsif _l contains 'youtube.com' or _l contains 'youtu.be' -%}
+          {%- assign _id = _m | split: 'v=' | last | split: '/' | last | split: '?' | first -%}
+          <div class="k-obj-marco" style="aspect-ratio:4/3"><iframe src="https://www.youtube-nocookie.com/embed/{{ _id }}?rel=0" title="{{ TITULO | escape }}" loading="lazy" allowfullscreen allow="accelerometer; encrypted-media; picture-in-picture"></iframe></div>
+        {%- elsif _l contains 'vimeo.com' -%}
+          {%- assign _id = _m | split: '/' | last | split: '?' | first -%}
+          <div class="k-obj-marco" style="aspect-ratio:4/3"><iframe src="https://player.vimeo.com/video/{{ _id }}" title="{{ TITULO | escape }}" loading="lazy" allowfullscreen></iframe></div>
+        {%- elsif _l contains '.mp4' or _l contains '.webm' or _l contains '.mov' -%}
+          <video class="k-obj-media" style="aspect-ratio:4/3" src="{{ _m }}" autoplay muted loop playsinline preload="metadata"></video>
+        {%- else -%}
+          <img class="k-obj-media" style="aspect-ratio:4/3" src="{{ _m }}" alt="{{ TITULO | escape }}" loading="lazy" decoding="async">
+        {%- endif -%}
+      </div>
+      <div class="k-obj-txt">
+        <p class="k-obj-eyebrow">{{ EYEBROW }}</p>
+        <h2 class="k-obj-h2">{{ TITULO }}</h2>
+        <p>{{ PARRAFO_1 }}</p>
+        <p>{{ PARRAFO_2 }}</p>
+        <p class="k-obj-remate">{{ REMATE }}</p>
+      </div>
+    </div>
+  </div>
+</section>

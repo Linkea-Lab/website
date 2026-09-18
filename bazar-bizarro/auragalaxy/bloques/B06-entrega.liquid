@@ -1,0 +1,96 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · DISPONIBLE + FECHA DE ENTREGA
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign HORA_CORTE   = 15 -%}
+{%- assign DIAS_HABILES = 2 -%}
+
+{%- assign TEXTO_STOCK   = 'En stock · Lo tienes en casa el' -%}
+{%- assign TEXTO_AGOTADO = 'Agotado temporalmente · escríbenos y te avisamos en cuanto vuelva' -%}
+
+{%- assign COLOR_TITULO = '#222222' -%}
+{%- assign COLOR_VERDE  = '#1FA463' -%}
+{%- assign COLOR_GRIS   = '#C9CEDB' -%}
+{%- assign COLOR_LINEA  = '#E5E5E5' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-ent{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  font-size:0.92rem;
+  font-weight:700;
+  color:{{ COLOR_TITULO }};
+  border-top:1px solid {{ COLOR_LINEA }};
+  padding-top:15px;
+  margin:0;
+}
+.k-ent-punto{
+  width:8px; height:8px;
+  border-radius:50%;
+  background:{{ COLOR_VERDE }};
+  box-shadow:0 0 0 4px rgba(31,164,99,0.18);
+  flex:none;
+}
+.k-ent-punto--no{ background:{{ COLOR_GRIS }}; box-shadow:0 0 0 4px rgba(201,206,219,0.28); }
+.k-ent b{ color:{{ COLOR_VERDE }}; }
+</style>
+
+<div class="k-ent" id="kEnt" data-corte="{{ HORA_CORTE }}" data-habiles="{{ DIAS_HABILES }}">
+  {%- if product.available -%}
+    <span class="k-ent-punto" aria-hidden="true"></span>
+    <span>{{ TEXTO_STOCK }} <b data-r="fecha">en 2 días</b></span>
+  {%- else -%}
+    <span class="k-ent-punto k-ent-punto--no" aria-hidden="true"></span>
+    <span>{{ TEXTO_AGOTADO }}</span>
+  {%- endif -%}
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var caja = document.getElementById('kEnt');
+  if (!caja) { return; }
+  var destino = caja.querySelector('[data-r="fecha"]');
+  if (!destino) { return; }
+
+  var CORTE = parseInt(caja.getAttribute('data-corte'), 10);
+  var HABILES = parseInt(caja.getAttribute('data-habiles'), 10);
+
+  var DIAS = ['domingo', 'lunes', 'martes', 'mi\u00E9rcoles', 'jueves', 'viernes', 's\u00E1bado'];
+  var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto',
+               'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+  var f = new Date();
+  var faltan = HABILES;
+  var d;
+  if (f.getHours() >= CORTE) { faltan = faltan + 1; }
+  while (faltan > 0) {
+    f.setDate(f.getDate() + 1);
+    d = f.getDay();
+    if (d !== 0 && d !== 6) { faltan = faltan - 1; }
+  }
+
+  destino.innerHTML = DIAS[f.getDay()] + ' ' + f.getDate() + ' de ' + MESES[f.getMonth()];
+}());
+</script>

@@ -1,0 +1,123 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · EL PROBLEMA
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign MEDIA = '' -%}
+{%- comment -%} Foto, GIF, .mp4, YouTube o Vimeo. Vacío = hueco gris. 1000x750 px {%- endcomment -%}
+
+{%- assign EYEBROW = 'El problema' -%}
+{%- assign TITULO  = 'Tu habitación está bien. Y ya está.' -%}
+{%- assign PARRAFO_1 = 'Paredes blancas, el plafón del techo, y esa luz de bombilla que lo deja todo igual de plano a las nueve de la noche que a las tres de la tarde. Funciona, pero no apetece estar ahí.' -%}
+{%- assign PARRAFO_2 = 'Cambiarlo en serio cuesta dinero: tiras de LED, lámparas, pintura, un fin de semana de obra. Y al final acabas dejándolo como está.' -%}
+{%- assign REMATE  = 'Esto cuesta lo que una cena para dos y tarda tres segundos: apagas la luz y la habitación es otra.' -%}
+
+
+{%- assign COLOR_FONDO   = '#FFFFFF' -%}
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign COLOR_ACENTO  = '#0B6FA8' -%}
+{%- assign COLOR_REMATE  = '#222222' -%}
+{%- assign COLOR_HUECO   = '#F5F5F5' -%}
+{%- assign COLOR_HUECO_BORDE = '#E5E5E5' -%}
+{%- assign COLOR_HUECO_TXT   = '#9AA0B4' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-pro{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_TEXTO }};
+  padding-block:64px;
+}
+.k-pro-env{ max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-pro-duo{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(22px,3.4vw,48px);
+  align-items:center;
+}
+.k-pro-media-col{ order:1; }
+.k-pro-txt{ display:flex; flex-direction:column; gap:14px; }
+.k-pro-eyebrow{
+  margin:0;
+  font-size:0.7rem; font-weight:800;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:{{ COLOR_ACENTO }};
+}
+.k-pro-h2{
+  margin:0;
+  font-size:clamp(1.45rem,3.2vw,2rem);
+  font-weight:800; letter-spacing:-0.015em; line-height:1.2;
+  color:{{ COLOR_TITULO }};
+}
+.k-pro-txt p{ margin:0; }
+.k-pro-remate{ color:{{ COLOR_REMATE }}; font-weight:800; }
+.k-pro-media{ width:100%; max-width:100%; height:auto; display:block; border-radius:10px; object-fit:cover; }
+.k-pro-marco{ position:relative; width:100%; border-radius:10px; overflow:hidden; background:#000000; }
+.k-pro-marco iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.k-pro-hueco{
+  width:100%;
+  border:1px dashed {{ COLOR_HUECO_BORDE }};
+  border-radius:10px;
+  background:{{ COLOR_HUECO }};
+  color:{{ COLOR_HUECO_TXT }};
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:6px; text-align:center; padding:18px;
+  font-size:0.78rem; font-weight:700;
+}
+.k-pro-hueco b{ display:block; font-size:0.84rem; }
+
+@media (max-width:768px){
+  .k-pro{ padding-block:44px; }
+  .k-pro-duo{ grid-template-columns:1fr; }
+  .k-pro-media-col{ order:0; }
+}
+</style>
+
+<section class="k-pro">
+  <div class="k-pro-env">
+    <div class="k-pro-duo">
+      <div class="k-pro-media-col">
+        {%- assign _m = MEDIA -%}
+        {%- assign _l = _m | downcase -%}
+        {%- if _m == blank -%}
+          <div class="k-pro-hueco" style="aspect-ratio:4/3"><b>FOTO ANTES / DESPUÉS</b>la misma habitación con la luz encendida y con el proyector<br>1000 × 750 px</div>
+        {%- elsif _l contains 'youtube.com' or _l contains 'youtu.be' -%}
+          {%- assign _id = _m | split: 'v=' | last | split: '/' | last | split: '?' | first -%}
+          <div class="k-pro-marco" style="aspect-ratio:4/3"><iframe src="https://www.youtube-nocookie.com/embed/{{ _id }}?rel=0" title="{{ TITULO | escape }}" loading="lazy" allowfullscreen allow="accelerometer; encrypted-media; picture-in-picture"></iframe></div>
+        {%- elsif _l contains 'vimeo.com' -%}
+          {%- assign _id = _m | split: '/' | last | split: '?' | first -%}
+          <div class="k-pro-marco" style="aspect-ratio:4/3"><iframe src="https://player.vimeo.com/video/{{ _id }}" title="{{ TITULO | escape }}" loading="lazy" allowfullscreen></iframe></div>
+        {%- elsif _l contains '.mp4' or _l contains '.webm' or _l contains '.mov' -%}
+          <video class="k-pro-media" style="aspect-ratio:4/3" src="{{ _m }}" autoplay muted loop playsinline preload="metadata"></video>
+        {%- else -%}
+          <img class="k-pro-media" style="aspect-ratio:4/3" src="{{ _m }}" alt="{{ TITULO | escape }}" loading="lazy" decoding="async">
+        {%- endif -%}
+      </div>
+      <div class="k-pro-txt">
+        <p class="k-pro-eyebrow">{{ EYEBROW }}</p>
+        <h2 class="k-pro-h2">{{ TITULO }}</h2>
+        <p>{{ PARRAFO_1 }}</p>
+        <p>{{ PARRAFO_2 }}</p>
+        <p class="k-pro-remate">{{ REMATE }}</p>
+      </div>
+    </div>
+  </div>
+</section>

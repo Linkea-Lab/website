@@ -1,0 +1,147 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  BLOQUE · DUDAS DESPLEGABLES (bajo el botón de comprar)
+██  Tres preguntas que rebaten antes de que el cliente haga scroll.
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+
+{%- assign AVISO = '' -%}
+{%- comment -%} AVISO vacío = no sale nada. Ejemplo si lo quieres:
+                'Pedidos antes de las 15:00 salen hoy' {%- endcomment -%}
+
+{%- comment -%} Cada duda: PREGUNTA | RESPUESTA · separa con ~
+                No uses " dentro del texto, usa «» {%- endcomment -%}
+{%- assign DUDAS = '¿Por qué AuraGalaxy y no otro?|Los baratos proyectan cuatro puntos y un láser plano. Este monta lente de cristal, giro de 360° y catorce combinaciones de aurora, así que llena el techo entero en lugar de dejar un círculo en una esquina. Lo enviamos desde España, no desde Asia.~¿Se ve así de verdad en mi habitación?|Sí, a oscuras. Con la persiana bajada ocupa un techo de hasta 20 m². Con la luz encendida no se ve nada, como cualquier proyector. Los vídeos de esta página están grabados con el móvil, sin retoque.~¿Y si no me convence o llega dañado?|Pagas al repartidor cuando lo tienes en la mano, así que no adelantas dinero. Si llega dañado o con un fallo de fábrica nos encargamos nosotros de la devolución y del reemplazo, sin que pagues el envío.' -%}
+
+{%- assign ABIERTA_1 = false -%}
+{%- comment -%} true = la primera pregunta sale ya desplegada {%- endcomment -%}
+
+{%- assign COLOR_TEXTO    = '#333333' -%}
+{%- assign COLOR_PREGUNTA = '#111111' -%}
+{%- assign COLOR_BORDE    = '#E4E9F2' -%}
+{%- assign COLOR_ACENTO   = '#009BF0' -%}
+{%- assign COLOR_AVISO    = '#0B6FA8' -%}
+{%- assign CARGAR_FUENTE  = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+<style>
+.k-dud{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-text-size-adjust:100%;
+  margin:14px 0 0;
+  color:{{ COLOR_TEXTO }};
+}
+.k-dud .k-dud-aviso{
+  margin:0 0 10px;
+  font-size:0.8rem;
+  font-weight:800;
+  line-height:1.4;
+  letter-spacing:0.01em;
+  text-align:center;
+  color:{{ COLOR_AVISO }};
+}
+.k-dud .k-dud-p{
+  border-top:1px solid {{ COLOR_BORDE }};
+}
+.k-dud .k-dud-p.k-dud-ultima{
+  border-bottom:1px solid {{ COLOR_BORDE }};
+}
+.k-dud .k-dud-p .k-dud-q{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 2px;
+  cursor:pointer;
+  font-size:0.92rem;
+  font-weight:800;
+  line-height:1.35;
+  color:{{ COLOR_PREGUNTA }};
+  list-style:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.k-dud .k-dud-p .k-dud-q::-webkit-details-marker{ display:none; }
+.k-dud .k-dud-p .k-dud-q::marker{ content:""; }
+.k-dud .k-dud-p .k-dud-q:focus-visible{ outline:2px solid {{ COLOR_ACENTO }}; outline-offset:2px; border-radius:6px; }
+.k-dud .k-dud-p .k-dud-ico{
+  width:18px;
+  height:18px;
+  flex:none;
+  fill:{{ COLOR_ACENTO }};
+  display:block;
+  -webkit-transition:-webkit-transform .2s ease;
+  transition:transform .2s ease;
+}
+.k-dud .k-dud-p[open] .k-dud-ico{
+  -webkit-transform:rotate(180deg);
+  transform:rotate(180deg);
+}
+.k-dud .k-dud-p .k-dud-r{
+  margin:0;
+  padding:0 2px 15px;
+  font-size:0.88rem;
+  font-weight:600;
+  line-height:1.6;
+}
+@media (prefers-reduced-motion:reduce){
+  .k-dud .k-dud-p .k-dud-ico{ -webkit-transition:none; transition:none; }
+}
+</style>
+
+{%- assign _lista = DUDAS | split: '~' -%}
+
+<div class="k-dud" data-k-dud>
+  {%- if AVISO != blank -%}
+    <p class="k-dud-aviso">{{ AVISO }}</p>
+  {%- endif -%}
+
+  {%- for d in _lista -%}
+    {%- assign _c = d | split: '|' -%}
+    <details class="k-dud-p{% if forloop.last %} k-dud-ultima{% endif %}"{% if forloop.first and ABIERTA_1 %} open{% endif %}>
+      <summary class="k-dud-q">
+        <span>{{ _c[0] }}</span>
+        <svg class="k-dud-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15.5l-6-6L7.4 8l4.6 4.6L16.6 8 18 9.5z"/></svg>
+      </summary>
+      <p class="k-dud-r">{{ _c[1] }}</p>
+    </details>
+  {%- endfor -%}
+</div>
+
+<script>
+(function(){
+  var cajas = document.querySelectorAll('[data-k-dud]');
+  var n;
+  for (n = 0; n < cajas.length; n++) { arranca(cajas[n]); }
+
+  function arranca(caja){
+    if (caja.getAttribute('data-listo') === '1') { return; }
+    caja.setAttribute('data-listo', '1');
+
+    var piezas = caja.querySelectorAll('.k-dud-p');
+    var i;
+    for (i = 0; i < piezas.length; i++){
+      (function(uno){
+        uno.addEventListener('toggle', function(){
+          if (!uno.open) { return; }
+          var k;
+          for (k = 0; k < piezas.length; k++){
+            if (piezas[k] !== uno && piezas[k].open) { piezas[k].open = false; }
+          }
+        });
+      })(piezas[i]);
+    }
+  }
+})();
+</script>

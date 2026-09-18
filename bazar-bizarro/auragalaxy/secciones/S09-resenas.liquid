@@ -1,0 +1,175 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · RESEÑAS (estrellas Trustpilot)
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- assign EYEBROW = 'Opiniones verificadas' -%}
+{%- assign TITULO  = 'Lo que cuentan quienes ya lo tienen' -%}
+
+{%- assign VISIBLES   = 3 -%}
+{%- assign TEXTO_VER  = 'Ver las {N} opiniones' -%}
+{%- assign TEXTO_OCULTAR = 'Ver menos' -%}
+{%- comment -%} VISIBLES: cuántas se ven de entrada. 0 = todas, sin botón.
+                En {N} se escribe solo el total. {%- endcomment -%}
+
+{%- comment -%} ───────────────────────────────────────────────────
+     Cada reseña:   ORDEN | ESTRELLAS | TITULAR | TEXTO | NOMBRE
+     Se separan entre sí con  ~
+
+     ORDEN manda: el 10 sale antes que el 20. Van de diez en diez
+     para que puedas colar una nueva en medio sin renumerar todo.
+     Cambia un número y la reseña se mueve de sitio sola.
+
+     Deja siempre alguna de 4 estrellas: un muro de cincos convierte
+     peor que un 4,8 con algún pero. Estas ocho dan 4,8 de media.
+     ─────────────────────────────────────────────────── {%- endcomment -%}
+{%- assign RESENAS = '10|5|Llegó el jueves y esa noche no había quien apagara la luz|Pedí el martes por la tarde y el jueves lo tenía en casa. Pagué al repartidor, sin dejar la tarjeta en ningún sitio. Lo estrenamos esa misma noche en el cuarto del peque y acabamos los cuatro tumbados en el suelo mirando el techo. No exagero.|Marta G.~20|4|La caja venía aplastada y me lo cambiaron sin discutir|Llegó con un golpe de la mensajería. Mandé una foto por correo y a los dos días tenía otro en casa sin pagar nada. Le quito una estrella por el susto, pero la tienda respondió como pocas. Eso es lo que hace que vuelva.|Javier R.~30|5|Pensaba que era un chisme y llevo dos meses encendiéndolo cada noche|Lo compré con la mosca detrás de la oreja, de esos que usas una semana y acaban en un cajón. Dos meses después lo pongo para leer todas las noches. Sigue como el primer día.|Cristina M.~40|5|Detrás del monitor cambia la habitación entera|Lo tengo en el setup, en azul y sin giro para que no distraiga. En cámara se ve brutal. Por lo que cuesta, no hay color con ponerse a pegar tiras de LED.|Dani L.~50|5|Escribí un domingo y me contestaron el lunes a primera hora|Tenía dudas con el temporizador y escribí sin muchas esperanzas. Me contestó una persona, no un bot, explicándomelo paso a paso. Da gusto comprar así.|Nuria P.~60|5|Compré uno y a la semana pedí el segundo|Era un regalo de cumpleaños para mi hija. Ahora hay pelea cada noche por dónde ponerlo, así que encargué otro para el salón. Aviso a navegantes.|Rocío S.~70|4|Muy bien, pero hay que bajar la persiana|Que quede claro: con la luz encendida no se ve nada. A oscuras llena el techo entero y es espectacular. Le quito una estrella porque el manual viene flojo, del resto nada que objetar.|Sergio V.~80|5|Lo que no esperaba era la guía|Aparte del proyector te mandan una guía con las combinaciones ya montadas. Parece una tontería, pero te ahorra media hora de trastear a ciegas. Se nota cuando alguien se ha molestado.|Laura B.' -%}
+
+{%- assign COLOR_FONDO   = '#F5F5F5' -%}
+{%- assign COLOR_TARJETA = '#FFFFFF' -%}
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign COLOR_ACENTO  = '#0B6FA8' -%}
+{%- assign COLOR_LINEA   = '#E5E5E5' -%}
+{%- assign COLOR_VERDE   = '#00B67A' -%}
+{%- assign COLOR_APAGADA = '#DCDCE6' -%}
+{%- assign COLOR_AVATAR  = '#38B6FF' -%}
+{%- assign COLOR_SUAVE   = '#8A90A6' -%}
+{%- assign COLOR_BOTON   = '#009BF0' -%}
+
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada. {%- endcomment -%}
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+{%- comment -%} Ordena por el número de delante, rellenando a 3 cifras para que 10 vaya antes que 100 {%- endcomment -%}
+{%- assign _bruto = RESENAS | split: '~' -%}
+{%- assign _cola = '' -%}
+{%- for r in _bruto -%}
+  {%- assign _c = r | split: '|' -%}
+  {%- assign _o = _c[0] | strip -%}
+  {%- if _o.size == 1 -%}{%- assign _o = '00' | append: _o -%}
+  {%- elsif _o.size == 2 -%}{%- assign _o = '0' | append: _o -%}{%- endif -%}
+  {%- assign _cola = _cola | append: _o | append: '|' | append: r | append: '~' -%}
+{%- endfor -%}
+{%- assign _lista = _cola | split: '~' | sort -%}
+{%- assign _total = _lista | size -%}
+
+<style>
+.k-res{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  background:{{ COLOR_FONDO }};
+  color:{{ COLOR_TEXTO }};
+  padding-block:64px;
+}
+.k-res-env{ max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-res .k-res-eyebrow{ margin:0 0 10px; font-size:0.7rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:{{ COLOR_ACENTO }}; }
+.k-res .k-res-h2{ margin:0; font-size:clamp(1.45rem,3.2vw,2rem); font-weight:800; letter-spacing:-0.015em; line-height:1.2; color:{{ COLOR_TITULO }}; }
+.k-res .k-res-rej{ list-style:none; margin:26px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,2vw,20px); }
+.k-res .k-res-t{
+  background:{{ COLOR_TARJETA }};
+  border:1px solid {{ COLOR_LINEA }};
+  border-radius:10px;
+  padding:17px;
+  display:flex; flex-direction:column; gap:11px;
+}
+.k-res .k-res-t[hidden]{ display:none; }
+.k-res .k-res-est{ display:flex; gap:3px; }
+.k-res .k-res-e{ width:18px; height:18px; background:{{ COLOR_VERDE }}; border-radius:2px; display:flex; align-items:center; justify-content:center; flex:none; }
+.k-res .k-res-e--off{ background:{{ COLOR_APAGADA }}; }
+.k-res .k-res-e svg{ width:12px; height:12px; fill:#FFFFFF; display:block; }
+.k-res .k-res-tit{ margin:0; font-weight:800; font-size:1rem; line-height:1.25; color:{{ COLOR_TITULO }}; }
+.k-res .k-res-txt{ margin:0; font-size:0.9rem; line-height:1.5; }
+.k-res .k-res-pie{ display:flex; align-items:center; gap:9px; font-size:0.78rem; color:{{ COLOR_SUAVE }}; font-weight:700; margin-top:auto; }
+.k-res .k-res-av{
+  width:29px; height:29px; border-radius:50%;
+  background:{{ COLOR_AVATAR }}; color:#FFFFFF;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:0.74rem; flex:none;
+}
+.k-res .k-res-ver{ color:{{ COLOR_VERDE }}; }
+.k-res .k-res-mas{
+  display:block;
+  margin:22px auto 0;
+  background:none;
+  border:1.5px solid {{ COLOR_BOTON }};
+  color:{{ COLOR_BOTON }};
+  border-radius:999px;
+  padding:11px 24px;
+  font-family:inherit;
+  font-weight:800;
+  font-size:0.92rem;
+  cursor:pointer;
+}
+.k-res .k-res-mas:hover{ background:{{ COLOR_BOTON }}; color:#FFFFFF; }
+.k-res .k-res-mas:focus-visible{ outline:2px solid {{ COLOR_TITULO }}; outline-offset:3px; }
+@media (max-width:1024px){ .k-res .k-res-rej{ grid-template-columns:1fr; } }
+@media (max-width:768px){ .k-res{ padding-block:44px; } }
+</style>
+
+<section class="k-res" id="kResenas" data-visibles="{{ VISIBLES }}">
+  <div class="k-res-env">
+    <p class="k-res-eyebrow">{{ EYEBROW }}</p>
+    <h2 class="k-res-h2">{{ TITULO }}</h2>
+
+    <ul class="k-res-rej">
+      {%- for r in _lista -%}
+        {%- assign _c = r | split: '|' -%}
+        {%- assign _n = _c[2] | plus: 0 -%}
+        <li class="k-res-t"{% if VISIBLES > 0 and forloop.index > VISIBLES %} hidden{% endif %}>
+          <div class="k-res-est" role="img" aria-label="{{ _n }} de 5">
+            {%- for i in (1..5) -%}
+              <span class="k-res-e{% if i > _n %} k-res-e--off{% endif %}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+            {%- endfor -%}
+          </div>
+          <p class="k-res-tit">{{ _c[3] }}</p>
+          <p class="k-res-txt">{{ _c[4] }}</p>
+          <footer class="k-res-pie">
+            <span class="k-res-av" aria-hidden="true">{{ _c[5] | slice: 0 }}</span>
+            <span>{{ _c[5] }} · <span class="k-res-ver">Verificada</span></span>
+          </footer>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- if VISIBLES > 0 and _total > VISIBLES -%}
+      {%- assign _txtver = TEXTO_VER | replace: '{N}', _total -%}
+      <button class="k-res-mas" type="button" data-ver="{{ _txtver | escape }}" data-ocultar="{{ TEXTO_OCULTAR | escape }}" aria-expanded="false">{{ _txtver }}</button>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var sec = document.getElementById('kResenas');
+  if (!sec) { return; }
+  var btn = sec.querySelector('.k-res-mas');
+  if (!btn) { return; }
+
+  var visibles = parseInt(sec.getAttribute('data-visibles'), 10) || 0;
+  var cartas = sec.querySelectorAll('.k-res-t');
+  var abierto = false;
+  var i;
+
+  btn.addEventListener('click', function () {
+    abierto = !abierto;
+    for (i = 0; i < cartas.length; i++) {
+      cartas[i].hidden = (!abierto && i >= visibles);
+    }
+    btn.innerHTML = abierto ? btn.getAttribute('data-ocultar') : btn.getAttribute('data-ver');
+    btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    if (!abierto) { sec.scrollIntoView({ block: 'start' }); }
+  });
+}());
+</script>

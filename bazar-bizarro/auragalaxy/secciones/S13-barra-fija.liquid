@@ -1,0 +1,136 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · BARRA FIJA DE COMPRA
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+{%- comment -%} ANTES DE PEGAR: desactiva la barra nativa del tema en
+                Personalizar → sección del producto → «Botón fijo de añadir al carrito».
+                Si no, se apilan dos barras abajo. {%- endcomment -%}
+
+{%- assign SOLO_MOVIL = false -%}
+{%- assign DESTINO    = '#kOferta' -%}
+{%- assign BOTON      = 'Lo quiero' -%}
+{%- assign SUBTEXTO   = 'Envío gratis + 3 regalos' -%}
+
+{%- assign COLOR_FONDO   = '#FFFFFF' -%}
+{%- assign COLOR_LINEA   = '#E5E5E5' -%}
+{%- assign COLOR_TITULO  = '#222222' -%}
+{%- assign COLOR_TEXTO   = '#444444' -%}
+{%- assign COLOR_TACHADO = '#9AA0B4' -%}
+{%- assign COLOR_BOTON   = '#009BF0' -%}
+{%- assign COLOR_BOTON_TXT = '#FFFFFF' -%}
+{%- assign CARGAR_FUENTE = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+
+<style>
+.k-bar{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  position:fixed;
+  left:0; right:0; bottom:0;
+  z-index:50;
+  background:{{ COLOR_FONDO }};
+  border-top:1px solid {{ COLOR_LINEA }};
+  box-shadow:0 -3px 16px rgba(0,0,0,0.09);
+  color:{{ COLOR_TEXTO }};
+  padding:10px 16px;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+}
+.k-bar-fila{
+  max-width:1140px;
+  margin-left:auto; margin-right:auto;
+  display:grid;
+  grid-template-columns:44px 1fr auto auto;
+  gap:12px;
+  align-items:center;
+}
+.k-bar-mini{
+  width:44px; height:44px;
+  border-radius:6px;
+  overflow:hidden;
+  background:#F5F5F5;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.1rem;
+  flex:none;
+}
+.k-bar-mini img{ width:100%; height:100%; object-fit:cover; display:block; }
+.k-bar-nom{ font-weight:800; font-size:0.9rem; line-height:1.25; color:{{ COLOR_TITULO }}; }
+.k-bar-sub{ font-size:0.76rem; font-weight:600; }
+.k-bar-pre{ text-align:right; font-weight:900; color:{{ COLOR_TITULO }}; font-variant-numeric:tabular-nums; min-width:0; }
+.k-bar-pre s{ display:block; font-size:0.74rem; color:{{ COLOR_TACHADO }}; font-weight:600; }
+.k-bar-cta{
+  display:inline-block;
+  text-decoration:none;
+  white-space:nowrap;
+  font-family:inherit;
+  font-weight:900;
+  font-size:0.95rem;
+  color:{{ COLOR_BOTON_TXT }};
+  background:{{ COLOR_BOTON }};
+  border-radius:10px;
+  padding:13px 20px;
+  transition:background-color 0.15s ease;
+}
+.k-bar-cta:hover{ background:#00A9FF; }
+.k-bar-cta:focus-visible{ outline:2px solid {{ COLOR_TITULO }}; outline-offset:2px; }
+@media (max-width:768px){
+  .k-bar-fila{ grid-template-columns:1fr auto; }
+  .k-bar-mini{ display:none; }
+  .k-bar-sub{ display:none; }
+}
+{%- if SOLO_MOVIL -%}
+@media (min-width:769px){ .k-bar{ display:none; } }
+{%- endif -%}
+</style>
+
+<div class="k-bar">
+  <div class="k-bar-fila">
+    <span class="k-bar-mini" aria-hidden="true">{% if product.featured_image %}<img src="{{ product.featured_image | image_url: width: 88 }}" alt="" width="44" height="44" loading="lazy" decoding="async">{% else %}🥚{% endif %}</span>
+    <div>
+      <div class="k-bar-nom">{{ product.title }}</div>
+      <div class="k-bar-sub" data-r="sub">{{ SUBTEXTO }}</div>
+    </div>
+    <div class="k-bar-pre">
+      <span data-r="precio">{{ product.selected_or_first_available_variant.price | money }}</span>
+      <s data-r="antes" hidden></s>
+    </div>
+    <a class="k-bar-cta" href="{{ DESTINO }}">{{ BOTON }}</a>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var caja = document.querySelector('.k-bar');
+  if (!caja) { return; }
+  var pre = caja.querySelector('[data-r="precio"]');
+  var ant = caja.querySelector('[data-r="antes"]');
+  var sub = caja.querySelector('[data-r="sub"]');
+  if (!pre) { return; }
+  function eur(n) { return n.toFixed(2).replace('.', ',') + ' \u20AC'; }
+  document.addEventListener('kit:precio', function (e) {
+    pre.innerHTML = eur(e.detail.total);
+    if (ant) {
+      if (e.detail.ahorro >= 0.01) { ant.innerHTML = eur(e.detail.antes); ant.hidden = false; }
+      else { ant.hidden = true; }
+    }
+    if (sub) {
+      sub.innerHTML = (e.detail.n === 1 ? '1 habitaci\u00F3n' : e.detail.n + ' habitaciones') + ' \u00B7 env\u00EDo gratis';
+    }
+  });
+}());
+</script>
