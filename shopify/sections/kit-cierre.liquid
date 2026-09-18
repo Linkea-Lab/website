@@ -1,0 +1,442 @@
+{%- comment -%}
+█████████████████████████████████████████████████████████████████
+██  SECCIÓN · CIERRE (última llamada) — v2 "full bleed"
+██  Todo lo editable está entre las dos rayas de abajo.
+█████████████████████████████████████████████████████████████████
+{%- endcomment -%}
+
+{%- comment -%} ═══════════════════ EDITA AQUÍ ═══════════════════ {%- endcomment -%}
+
+{%- comment -%} ---------- TEXTOS ---------- {%- endcomment -%}
+{%- assign EYEBROW  = 'Última llamada' -%}
+{%- assign TITULO   = 'Esta noche la habitación puede ser otra' -%}
+{%- assign TEXTO    = 'Bajas la persiana, lo enciendes y en 3 segundos el techo deja de ser un techo. Sin app, sin wifi y sin instalar nada.' -%}
+
+{%- assign CHIP_1_ICONO = '🚚' -%}
+{%- assign CHIP_1_TEXTO = 'Envío gratis en 24-48h' -%}
+{%- assign CHIP_2_ICONO = '💶' -%}
+{%- assign CHIP_2_TEXTO = 'Pagas al repartidor' -%}
+{%- assign CHIP_3_ICONO = '🛡️' -%}
+{%- assign CHIP_3_TEXTO = 'Si llega dañado, nos encargamos' -%}
+
+{%- assign REGALOS   = '+ 3 regalos' -%}
+{%- assign BOTON     = 'Lo quiero contra reembolso' -%}
+{%- assign BOTON_SUB = 'Sin pagar nada ahora' -%}
+{%- assign DESTINO   = '#kOferta' -%}
+{%- assign PIE       = 'Atención personalizada: te responde una persona, de lunes a viernes de 9:00 a 18:00.' -%}
+
+{%- comment -%} ---------- PRUEBA SOCIAL (déjalo vacío para ocultarlo) ---------- {%- endcomment -%}
+{%- assign TRUST_TEXTO = '4,8/5 · +590 opiniones' -%}
+{%- assign TRUST_LINK  = '' -%}
+
+{%- comment -%} ---------- URGENCIA HONESTA (corte de envío) ----------
+     Cuenta atrás real hasta la hora de corte en horario de España.
+     Pon URGENCIA_ON en false si algún día no quieres mostrarla.
+     {T} se sustituye solo por el tiempo que queda (ej. "2 h 41 min").
+{%- endcomment -%}
+{%- assign URGENCIA_ON  = true -%}
+{%- assign HORA_CORTE   = 15 -%}
+{%- assign URG_HOY      = 'Pide en {T} y sale hoy de España' -%}
+{%- assign URG_TARDE    = 'El reparto de hoy ya ha salido · el tuyo sale mañana' -%}
+{%- assign URG_FINDE    = 'El próximo reparto sale el lunes de España' -%}
+
+{%- comment -%} ---------- PRECIO ----------
+     Antes de que el selector de packs hable, la sección pinta este PVP.
+     Ponlo en 0 si no quieres precio tachado de arranque.
+{%- endcomment -%}
+{%- assign PVP_MANUAL = 49.90 -%}
+
+{%- comment -%} ---------- IMAGEN DE FONDO ----------
+     Prioridad: URL pegada a mano > archivo de la tienda > foto del producto.
+     IMAGEN_FONDO_INDICE = posición de la foto del producto (0 = la principal).
+{%- endcomment -%}
+{%- assign IMAGEN_FONDO_URL      = '' -%}
+{%- assign IMAGEN_FONDO_ARCHIVO  = '' -%}
+{%- assign IMAGEN_FONDO_INDICE   = 0 -%}
+{%- assign IMAGEN_FOCO           = '50% 38%' -%}
+{%- assign DESENFOQUE            = '2px' -%}
+{%- assign OSCURIDAD             = '0.78' -%}
+{%- assign ANCHO_COMPLETO        = true -%}
+
+{%- comment -%} ---------- COLORES ---------- {%- endcomment -%}
+{%- assign COLOR_FONDO_1   = '#2A2065' -%}
+{%- assign COLOR_FONDO_2   = '#0F1430' -%}
+{%- assign COLOR_TITULO    = '#FFFFFF' -%}
+{%- assign COLOR_TEXTO     = '#C3CBEC' -%}
+{%- assign COLOR_EYEBROW   = '#38B6FF' -%}
+{%- assign COLOR_TACHADO   = '#8891C4' -%}
+{%- assign COLOR_REGALOS   = '#3FD69A' -%}
+{%- assign COLOR_TRUST     = '#00B67A' -%}
+{%- assign COLOR_BOTON     = '#009BF0' -%}
+{%- assign COLOR_BOTON_TXT = '#FFFFFF' -%}
+{%- assign CARGAR_FUENTE   = false -%}
+{%- comment -%} En false porque la fuente ya se carga desde theme.liquid, autoalojada.
+                Ponlo en true solo si pegas este bloque en una tienda que no la tenga. {%- endcomment -%}
+
+{%- comment -%} ══════════ FIN · NO TOQUES NADA MÁS ABAJO ═════════ {%- endcomment -%}
+
+{%- if CARGAR_FUENTE -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+{%- endif -%}
+
+{%- liquid
+  assign var_actual = product.selected_or_first_available_variant
+
+  assign BG_SRC = ''
+  assign BG_SRCSET = ''
+  if IMAGEN_FONDO_URL != blank
+    assign BG_SRC = IMAGEN_FONDO_URL
+  elsif IMAGEN_FONDO_ARCHIVO != blank
+    assign BG_SRC = IMAGEN_FONDO_ARCHIVO | file_url
+  else
+    assign IMG_OBJ = product.images[IMAGEN_FONDO_INDICE] | default: product.featured_image
+    if IMG_OBJ
+      assign BG_SRC = IMG_OBJ | image_url: width: 1600
+      capture BG_SRCSET
+        echo IMG_OBJ | image_url: width: 600
+        echo ' 600w, '
+        echo IMG_OBJ | image_url: width: 900
+        echo ' 900w, '
+        echo IMG_OBJ | image_url: width: 1200
+        echo ' 1200w, '
+        echo IMG_OBJ | image_url: width: 1600
+        echo ' 1600w'
+      endcapture
+    endif
+  endif
+
+  assign ANTES_CENT = 0
+  if var_actual.compare_at_price > var_actual.price
+    assign ANTES_CENT = var_actual.compare_at_price
+  elsif PVP_MANUAL > 0
+    assign ANTES_CENT = PVP_MANUAL | times: 100 | round
+  endif
+
+  assign PCT_INI = 0
+  if ANTES_CENT > var_actual.price
+    assign PCT_INI = ANTES_CENT | minus: var_actual.price | times: 100.0 | divided_by: ANTES_CENT | round
+  endif
+-%}
+
+<style>
+.k-cie{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:{{ COLOR_FONDO_2 }};
+  background:radial-gradient(90% 130% at 50% 0%, {{ COLOR_FONDO_1 }} 0%, {{ COLOR_FONDO_2 }} 62%);
+  color:{{ COLOR_TEXTO }};
+  padding-block:clamp(64px,9vw,104px);
+}
+{%- if ANCHO_COMPLETO -%}
+.k-cie{ width:100vw; max-width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); }
+{%- endif -%}
+.k-cie-bg{
+  position:absolute; inset:0; z-index:-2;
+  filter:blur({{ DESENFOQUE }}) saturate(1.2) brightness(0.95);
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:{{ IMAGEN_FOCO }};
+  transform:scale(1.14);
+  animation:k-cie-zoom 28s ease-in-out infinite alternate;
+}
+@keyframes k-cie-zoom{ from{ transform:scale(1.14); } to{ transform:scale(1.22); } }
+.k-cie::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:
+    radial-gradient(72% 82% at 50% 55%, rgba(7,10,28,{{ OSCURIDAD }}) 0%, rgba(7,10,28,0.46) 62%, rgba(7,10,28,0.14) 100%),
+    linear-gradient(180deg, rgba(10,14,38,0.42) 0%, rgba(10,14,38,0.12) 40%, rgba(10,14,38,0.56) 100%);
+}
+.k-cie,.k-cie *,.k-cie *::before,.k-cie *::after{ box-sizing:border-box; }
+.k-cie-env{ position:relative; max-width:1140px; margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+.k-cie-caja{ text-shadow:0 2px 16px rgba(5,8,24,0.55); max-width:780px; margin-left:auto; margin-right:auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap:18px; }
+.k-cie--anim .k-cie-caja>*{ opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s cubic-bezier(.22,.8,.3,1); }
+.k-cie.is-on .k-cie-caja>*{ opacity:1; transform:none; }
+.k-cie.is-on .k-cie-caja>*:nth-child(2){ transition-delay:.06s; }
+.k-cie.is-on .k-cie-caja>*:nth-child(3){ transition-delay:.12s; }
+.k-cie.is-on .k-cie-caja>*:nth-child(4){ transition-delay:.18s; }
+.k-cie.is-on .k-cie-caja>*:nth-child(5){ transition-delay:.24s; }
+.k-cie.is-on .k-cie-caja>*:nth-child(6){ transition-delay:.30s; }
+.k-cie.is-on .k-cie-caja>*:nth-child(7){ transition-delay:.36s; }
+.k-cie.is-on .k-cie-caja>*:nth-child(8){ transition-delay:.42s; }
+
+.k-cie-eyebrow{
+  margin:0; font-size:0.7rem; font-weight:900;
+  letter-spacing:0.16em; text-transform:uppercase; color:{{ COLOR_EYEBROW }};
+  display:flex; align-items:center; gap:9px;
+}
+.k-cie-eyebrow::before,.k-cie-eyebrow::after{ content:""; width:26px; height:1px; background:currentColor; opacity:0.55; }
+.k-cie-h2{ margin:0; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:900; letter-spacing:-0.02em; line-height:1.15; color:{{ COLOR_TITULO }}; text-wrap:balance; }
+.k-cie-caja p{ margin:0; }
+.k-cie-sub{ font-size:clamp(0.98rem,1.5vw,1.08rem); max-width:54ch; text-wrap:pretty; }
+
+.k-cie-chips{ display:flex; flex-wrap:wrap; justify-content:center; gap:9px; }
+.k-cie-chip{
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:0.84rem; font-weight:800; color:#EAEEFF;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:999px;
+  padding:8px 14px;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+.k-cie-chip i{ font-style:normal; font-size:0.98rem; line-height:1; }
+
+.k-cie-urg{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:0.84rem; font-weight:900; color:#FFD98A;
+  background:rgba(255,183,58,0.10);
+  border:1px solid rgba(255,183,58,0.32);
+  border-radius:999px; padding:7px 15px;
+}
+.k-cie-urg[hidden]{ display:none; }
+.k-cie-punto{ width:8px; height:8px; border-radius:50%; background:#FFB73A; flex:none; box-shadow:0 0 0 0 rgba(255,183,58,0.55); animation:k-cie-lat 2s ease-out infinite; }
+@keyframes k-cie-lat{ 0%{ box-shadow:0 0 0 0 rgba(255,183,58,0.5); } 70%{ box-shadow:0 0 0 9px rgba(255,183,58,0); } 100%{ box-shadow:0 0 0 0 rgba(255,183,58,0); } }
+
+.k-cie-precio{ display:flex; align-items:baseline; justify-content:center; flex-wrap:wrap; gap:11px; }
+.k-cie-precio b{ font-size:clamp(2.1rem,5vw,2.7rem); font-weight:900; color:{{ COLOR_TITULO }}; font-variant-numeric:tabular-nums; line-height:1; letter-spacing:-0.02em; }
+.k-cie-precio s{ color:{{ COLOR_TACHADO }}; font-weight:700; font-size:1.05rem; }
+.k-cie-pct{ text-shadow:none; font-size:0.78rem; font-weight:900; color:#0F1430; background:#FFD166; border-radius:6px; padding:3px 8px; letter-spacing:0.01em; }
+.k-cie-pct[hidden]{ display:none; }
+.k-cie-regalos{ color:{{ COLOR_REGALOS }}; font-weight:900; }
+
+.k-cie-cta{
+  position:relative;
+  text-shadow:none;
+  display:block; overflow:hidden;
+  width:100%; max-width:400px;
+  text-align:center; text-decoration:none;
+  font-family:inherit; font-weight:900; font-size:1.12rem;
+  color:{{ COLOR_BOTON_TXT }};
+  background:{{ COLOR_BOTON }};
+  border-radius:12px;
+  padding:17px 22px;
+  box-shadow:0 10px 26px rgba(0,155,240,0.34), 0 0 0 0 rgba(0,155,240,0.45);
+  transition:background-color .15s ease, transform .15s ease, box-shadow .2s ease;
+  animation:k-cie-pulso 3.4s ease-in-out infinite;
+}
+@keyframes k-cie-pulso{
+  0%,100%{ box-shadow:0 10px 26px rgba(0,155,240,0.34), 0 0 0 0 rgba(0,155,240,0.40); }
+  55%{ box-shadow:0 12px 30px rgba(0,155,240,0.42), 0 0 0 12px rgba(0,155,240,0); }
+}
+.k-cie-cta::after{
+  content:""; position:absolute; top:0; bottom:0; left:-60%; width:45%;
+  background:linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0) 100%);
+  transform:skewX(-18deg);
+  animation:k-cie-brillo 3.4s ease-in-out infinite;
+}
+@keyframes k-cie-brillo{ 0%,62%{ left:-60%; } 92%,100%{ left:120%; } }
+.k-cie-cta:hover{ background:#00A9FF; transform:translateY(-2px); }
+.k-cie-cta:active{ transform:translateY(0); }
+.k-cie-cta:focus-visible{ outline:2px solid #FFFFFF; outline-offset:3px; }
+.k-cie-cta span{ position:relative; z-index:1; display:inline-flex; align-items:center; gap:9px; justify-content:center; }
+.k-cie-cta svg{ width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; flex:none; transition:transform .18s ease; }
+.k-cie-cta:hover svg{ transform:translateX(3px); }
+.k-cie-cta small{ position:relative; z-index:1; display:block; font-size:0.79rem; font-weight:700; opacity:0.92; margin-top:3px; }
+
+.k-cie-trust{ display:inline-flex; align-items:center; gap:9px; font-size:0.82rem; font-weight:800; color:#C6CDE9; text-decoration:none; }
+.k-cie-est{ display:flex; gap:3px; }
+.k-cie-est i{ width:16px; height:16px; border-radius:2px; background:{{ COLOR_TRUST }}; display:flex; align-items:center; justify-content:center; }
+.k-cie-est svg{ width:11px; height:11px; fill:#FFFFFF; display:block; }
+a.k-cie-trust:hover{ color:#FFFFFF; }
+.k-cie-pie{ font-size:0.79rem; color:#A3ACD2; max-width:46ch; }
+
+@media (max-width:768px){
+  .k-cie{ padding-block:52px; }
+  .k-cie-caja{ gap:16px; }
+  .k-cie-chips{ gap:7px; }
+  .k-cie-chip{ font-size:0.8rem; padding:8px 13px; }
+}
+@media (max-width:640px){
+  .k-cie-chips{ flex-direction:column; align-items:stretch; width:100%; max-width:330px; gap:8px; }
+  .k-cie-chip{ justify-content:flex-start; text-align:left; }
+  .k-cie-urg{ font-size:0.78rem; line-height:1.35; padding:9px 14px; align-items:flex-start; }
+  .k-cie-punto{ margin-top:6px; }
+  .k-cie-precio{ gap:9px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .k-cie-bg{ animation:none; transform:none; }
+  .k-cie-cta,.k-cie-cta::after,.k-cie-punto{ animation:none; }
+  .k-cie--anim .k-cie-caja>*{ opacity:1; transform:none; transition:none; }
+  .k-cie-cta::after{ display:none; }
+}
+</style>
+
+<section class="k-cie">
+  {%- if BG_SRC != blank -%}
+  <img class="k-cie-bg" src="{{ BG_SRC }}"{% if BG_SRCSET != blank %} srcset="{{ BG_SRCSET }}" sizes="100vw"{% endif %} alt="" aria-hidden="true" loading="lazy" decoding="async" width="1600" height="900">
+  {%- endif -%}
+  <div class="k-cie-env">
+    <div class="k-cie-caja">
+
+      {%- if EYEBROW != blank -%}<p class="k-cie-eyebrow">{{ EYEBROW }}</p>{%- endif -%}
+
+      <h2 class="k-cie-h2">{{ TITULO }}</h2>
+
+      {%- if TEXTO != blank -%}<p class="k-cie-sub">{{ TEXTO }}</p>{%- endif -%}
+
+      <div class="k-cie-chips">
+        {%- if CHIP_1_TEXTO != blank -%}<span class="k-cie-chip"><i>{{ CHIP_1_ICONO }}</i>{{ CHIP_1_TEXTO }}</span>{%- endif -%}
+        {%- if CHIP_2_TEXTO != blank -%}<span class="k-cie-chip"><i>{{ CHIP_2_ICONO }}</i>{{ CHIP_2_TEXTO }}</span>{%- endif -%}
+        {%- if CHIP_3_TEXTO != blank -%}<span class="k-cie-chip"><i>{{ CHIP_3_ICONO }}</i>{{ CHIP_3_TEXTO }}</span>{%- endif -%}
+      </div>
+
+      {%- if URGENCIA_ON -%}
+      <p class="k-cie-urg" data-r="urg" hidden
+         data-corte="{{ HORA_CORTE }}"
+         data-hoy="{{ URG_HOY | escape }}"
+         data-tarde="{{ URG_TARDE | escape }}"
+         data-finde="{{ URG_FINDE | escape }}"><span class="k-cie-punto"></span><span data-r="urgtxt"></span></p>
+      {%- endif -%}
+
+      <div class="k-cie-precio">
+        <b data-r="precio">{{ var_actual.price | money }}</b>
+        <s data-r="antes"{% if ANTES_CENT <= var_actual.price %} hidden{% endif %}>{{ ANTES_CENT | money }}</s>
+        <span class="k-cie-pct" data-r="pct"{% if PCT_INI < 1 %} hidden{% endif %}>−{{ PCT_INI }}%</span>
+        {%- if REGALOS != blank -%}<span class="k-cie-regalos">{{ REGALOS }}</span>{%- endif -%}
+      </div>
+
+      <a class="k-cie-cta" href="{{ DESTINO }}" data-r="cta">
+        <span>{{ BOTON }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        {%- if BOTON_SUB != blank -%}<small>{{ BOTON_SUB }}</small>{%- endif -%}
+      </a>
+
+      {%- if TRUST_TEXTO != blank -%}
+        {%- if TRUST_LINK != blank -%}<a class="k-cie-trust" href="{{ TRUST_LINK }}" target="_blank" rel="noopener nofollow">{%- else -%}<span class="k-cie-trust">{%- endif -%}
+          <span class="k-cie-est">
+            {%- for i in (1..5) -%}<i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></i>{%- endfor -%}
+          </span>
+          {{ TRUST_TEXTO }}
+        {%- if TRUST_LINK != blank -%}</a>{%- else -%}</span>{%- endif -%}
+      {%- endif -%}
+
+      {%- if PIE != blank -%}<p class="k-cie-pie">{{ PIE }}</p>{%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var sec = document.querySelector('.k-cie');
+  if (!sec) { return; }
+
+  var sinMovi = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!sinMovi) { sec.classList.add('k-cie--anim'); }
+
+  /* --- 1. Precio en vivo (escucha al selector de packs) --- */
+  var pre = sec.querySelector('[data-r="precio"]');
+  var ant = sec.querySelector('[data-r="antes"]');
+  var pct = sec.querySelector('[data-r="pct"]');
+  function eur(n) { return n.toFixed(2).replace('.', ',') + ' €'; }
+  if (pre) {
+    document.addEventListener('kit:precio', function (e) {
+      var d = e.detail || {};
+      pre.innerHTML = eur(d.total);
+      var hayAhorro = d.ahorro >= 0.01 && d.antes > d.total;
+      if (ant) {
+        if (hayAhorro) { ant.innerHTML = eur(d.antes); ant.hidden = false; }
+        else { ant.hidden = true; }
+      }
+      if (pct) {
+        var p = hayAhorro ? Math.round((1 - (d.total / d.antes)) * 100) : 0;
+        if (p >= 1) { pct.innerHTML = '−' + p + '%'; pct.hidden = false; }
+        else { pct.hidden = true; }
+      }
+    });
+  }
+
+  /* --- 2. Ancho completo exacto (sin barra de scroll fantasma) --- */
+  function bleed() {
+    sec.style.marginLeft = '0px';
+    sec.style.marginRight = '0px';
+    sec.style.width = 'auto';
+    var izq = sec.getBoundingClientRect().left;
+    var vw = document.documentElement.clientWidth;
+    sec.style.marginLeft = (-izq) + 'px';
+    sec.style.marginRight = '0px';
+    sec.style.width = vw + 'px';
+  }
+  if (getComputedStyle(sec).marginLeft !== '0px') {
+    var t = null;
+    bleed();
+    window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(bleed, 120); });
+  }
+
+  /* --- 3. Entrada escalonada al aparecer --- */
+  if (sinMovi || !('IntersectionObserver' in window)) { sec.classList.add('is-on'); }
+  else {
+    var io = new IntersectionObserver(function (ent) {
+      ent.forEach(function (x) { if (x.isIntersecting) { sec.classList.add('is-on'); io.disconnect(); } });
+    }, { threshold: 0.18 });
+    io.observe(sec);
+  }
+
+  /* --- 4. Corte de envío: cuenta atrás real en horario de España --- */
+  var urg = sec.querySelector('[data-r="urg"]');
+  if (urg) {
+    var salida = urg.querySelector('[data-r="urgtxt"]');
+    var corte = parseInt(urg.getAttribute('data-corte'), 10);
+    if (isNaN(corte)) { corte = 15; }
+    var dias = { 'lun': 1, 'mar': 2, 'mié': 3, 'mie': 3, 'jue': 4, 'vie': 5, 'sáb': 6, 'sab': 6, 'dom': 0 };
+
+    function madrid() {
+      try {
+        var p = new Intl.DateTimeFormat('es-ES', {
+          timeZone: 'Europe/Madrid', hour12: false,
+          weekday: 'short', hour: '2-digit', minute: '2-digit'
+        }).formatToParts(new Date());
+        var o = {};
+        p.forEach(function (x) { o[x.type] = x.value; });
+        var d = String(o.weekday || '').toLowerCase().replace('.', '');
+        return { dia: dias[d], h: parseInt(o.hour, 10), m: parseInt(o.minute, 10) };
+      } catch (err) {
+        var n = new Date();
+        return { dia: n.getDay(), h: n.getHours(), m: n.getMinutes() };
+      }
+    }
+
+    function pinta() {
+      var a = madrid();
+      if (isNaN(a.h)) { return; }
+      var txt;
+      var finde = (a.dia === 6 || a.dia === 0);
+      if (finde) { txt = urg.getAttribute('data-finde'); }
+      else {
+        var quedan = (corte * 60) - (a.h * 60 + a.m);
+        /* viernes pasado el corte: el siguiente reparto ya es el lunes */
+        if (quedan <= 0) { txt = urg.getAttribute(a.dia === 5 ? 'data-finde' : 'data-tarde'); }
+        else {
+          var hh = Math.floor(quedan / 60), mm = quedan % 60;
+          var reloj = hh > 0 ? (hh + ' h ' + mm + ' min') : (mm + ' min');
+          txt = (urg.getAttribute('data-hoy') || '').replace('{T}', reloj);
+        }
+      }
+      if (salida && txt) { salida.textContent = txt; urg.hidden = false; }
+    }
+    pinta();
+    setInterval(pinta, 30000);
+  }
+
+  /* --- 5. Scroll suave hacia la oferta --- */
+  var cta = sec.querySelector('[data-r="cta"]');
+  if (cta) {
+    cta.addEventListener('click', function (e) {
+      var id = cta.getAttribute('href') || '';
+      if (id.charAt(0) !== '#' || id.length < 2) { return; }
+      var destino = document.querySelector(id);
+      if (!destino) { return; }
+      e.preventDefault();
+      destino.scrollIntoView({ behavior: sinMovi ? 'auto' : 'smooth', block: 'start' });
+      if (history.replaceState) { history.replaceState(null, '', id); }
+    });
+  }
+}());
+</script>
