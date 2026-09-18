@@ -12,6 +12,10 @@
 
 {%- comment -%} Seis vídeos cortos verticales (3-5 s, sin sonido) o fotos, 750x1000 px.
                 Acepta .mp4 .webm .mov, YouTube, Vimeo o foto. Vacío = hueco marcado. {%- endcomment -%}
+{%- comment -%} Qué parte del vídeo 9:16 se conserva al recortarlo a 3:4.
+                'top' corta todo por abajo · 'center' por los dos lados · 'bottom' por arriba. {%- endcomment -%}
+{%- assign ENCUADRE = 'top' -%}
+
 {%- assign MEDIA_1 = '' -%}
 {%- assign MEDIA_2 = '' -%}
 {%- assign MEDIA_3 = '' -%}
@@ -64,7 +68,7 @@
 .k-esc .k-esc-aj{ margin:0; font-size:0.78rem; font-weight:700; letter-spacing:0.01em; color:{{ COLOR_AJUSTES }}; }
 .k-esc .k-esc-q{ font-size:0.64rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; color:{{ COLOR_ETIQUETA }}; }
 .k-esc .k-esc-h3{ margin:0; font-size:1.02rem; font-weight:800; line-height:1.22; color:{{ COLOR_TITULO }}; }
-.k-esc-media{ width:100%; max-width:100%; height:auto; display:block; border-radius:10px; object-fit:cover; }
+.k-esc-media{ width:100%; max-width:100%; height:auto; display:block; border-radius:10px; object-fit:cover; object-position:center {{ ENCUADRE }}; }
 .k-esc-marco{ position:relative; width:100%; border-radius:10px; overflow:hidden; background:#000000; }
 .k-esc-marco iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
 .k-esc-hueco{
