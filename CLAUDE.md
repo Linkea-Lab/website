@@ -1,82 +1,64 @@
-# CLAUDE.md
+# CLAUDE.md · índice
 
-Reglas de trabajo para este repositorio. Escritas a partir de errores reales
-cometidos en sesiones anteriores, no de buenas intenciones.
+Esto es un enrutador, no un manual. Se lee entero al empezar porque es corto.
+El detalle vive en archivos separados que se leen **solo cuando el tema lo pide**.
 
-## Contexto
+## Contexto en tres líneas
 
-Repositorio de trabajo de **Bazar Bizarro**, tienda Shopify de dropshipping en
-España. Propietario: perfil Agile, ex Product Manager, busca proyectos rentables
-con inversión mínima. Espera respuestas directas, con fuentes, sin relleno, y
-prefiere una verdad incómoda a una respuesta cómoda.
+**Bazar Bizarro**, tienda Shopify de dropshipping en España, tema Horizon.
+La lleva Álvaro: perfil Agile, ex Product Manager, busca rentabilidad desde el
+minuto uno con inversión mínima. Proyecto activo: la ficha del proyector
+**AuraGalaxy**.
 
-Proyecto activo: `bazar-bizarro/auragalaxy/` — ficha de producto del proyector
-AuraGalaxy. Ver `bazar-bizarro/auragalaxy/DECISIONES.md`.
+## Dónde está cada cosa
 
-## Reglas de verificación
+| Si se habla de… | Leer |
+|---|---|
+| Modelo de negocio, proveedores, productos, competencia, qué lanzar | `contexto/negocio.md` |
+| Copy, precios, ofertas, regalos, reseñas, SEO, estructura de ficha | `contexto/marketing.md` |
+| Escribir o tocar código: Liquid, CSS, JS, tema, API de Shopify | `contexto/tecnico-shopify.md` |
+| El proyector AuraGalaxy en concreto | `bazar-bizarro/auragalaxy/DECISIONES.md` |
+| Montar la ficha, orden de los bloques, qué falta antes de publicar | `bazar-bizarro/auragalaxy/README.md` |
 
-1. **Lee la fuente antes de opinar sobre ella.** Si existe una URL, un CSS, un
-   HTML o una API a la que se puede acceder, se accede. Diseñar "al estilo de"
-   un competidor cuando su hoja de estilos es pública y descargable costó tres
-   rondas de correcciones en la sesión del 18/09/2026.
-   `curl -s <url> -o fichero` y luego `grep` sobre el CSS real.
+No leas un archivo que no toca. Una conversación de estrategia no necesita las
+restricciones de CSS, y una de código no necesita el perfil del propietario.
+
+---
+
+## Lo que aplica siempre
+
+Estas cinco reglas no dependen del tema. Salen de errores reales, no de buenas
+intenciones.
+
+1. **Lee la fuente antes de opinar sobre ella.** Si hay una URL, un CSS, un HTML
+   o una API accesible, se accede. Diseñar "al estilo de" un competidor teniendo
+   su hoja de estilos descargable costó tres rondas de correcciones el
+   18/09/2026.
 2. **No afirmes que algo está en una web si no lo has visto renderizado.**
-   Extraer texto del HTML no prueba que sea visible: puede ser un carrusel, un
-   bloque oculto o un `display:none`.
+   Extraer texto del HTML no prueba que sea visible.
 3. **Un fallo propio no es un bloqueo del sistema.** Antes de decir "no puedo",
-   reintentar con otra vía y enseñar el error exacto. La escritura de SEO en
-   Shopify se dio por bloqueada durante días: el problema era usar
-   `productUpdate(input:)`, deprecado en favor de `productUpdate(product:)`
-   con `ProductUpdateInput`.
-4. **Datos de producto: nunca los del proveedor sin verificar.** Peso, número de
-   sonidos, combinaciones de color. Si hay conflicto entre dos fuentes, se marca
-   el hueco y se pide medir la unidad real. Un dato falso publicado es una
-   reseña de una estrella garantizada.
+   reintentar por otra vía y enseñar el error exacto. La escritura de SEO en
+   Shopify se dio por bloqueada durante días por usar una mutación deprecada.
+4. **Tutear, con humor, sin adular.** Si una idea del propietario es peor que la
+   alternativa, se dice y se argumenta. Él decide después. Citar la fuente de
+   cada dato: necesita poder explicarlo a terceros.
+5. **Cerrar el ciclo antes de terminar la sesión.** Toda decisión nueva se
+   escribe en el archivo que le toca, y todo error propio del que salga una
+   regla se añade aquí. Sin esperar a que lo pidan: una retro cuyas acciones no
+   se escriben no ha ocurrido. Lo que solo vive en el scratchpad no existe,
+   porque el contenedor se recicla.
 
-## Reglas de entrega
+## Espejo en Notion
 
-5. **Lo que solo vive en el scratchpad, no existe.** El contenedor se recicla.
-   Todo entregable (Liquid, HTML, textos) se commitea en este repositorio además
-   de publicarse como artefacto.
-6. **Cada archivo Liquid es autocontenido.** Sin archivo base compartido: cada
-   bloque lleva su propio `<style>`, porque en Shopify un bloque puede ir solo.
-   Zona de edición al principio, entre dos rayas, con colores, textos, imágenes
-   y vídeos juntos. Sin comentarios de relleno.
-7. **Al crear una variante, no se pisa la anterior.** Sufijo `b` en el nombre
-   (`B07` → `B07b`) y archivo nuevo.
-8. **Regenerar índice y zip tras tocar cualquier `.liquid`.** Si no, el índice
-   sirve código viejo.
+Este mismo índice y sus tres archivos están duplicados en Notion, para los
+chats que no tienen este repositorio enganchado:
+<https://app.notion.com/p/3dfe46a24338811d9846eb4f3502bf1c>
 
-## Restricciones técnicas de los bloques Liquid
+Si el repositorio y Notion dicen cosas distintas, **manda el repositorio**.
+Al cambiar algo aquí, actualizar también la página.
 
-- **Prohibido:** `color-mix()`, `:has()`, anidación CSS nativa, `let`, `const`,
-  funciones flecha. Máxima compatibilidad de navegadores.
-- **Permitido:** `clamp()`, `aspect-ratio`, `gap`, `:focus-visible`,
-  `env(safe-area-inset-*)`, `object-fit`, prefijos `-webkit-`.
-- **Especificidad:** el tema Horizon pisa los selectores de una sola clase.
-  Encadenar dos o tres (`.k-of .k-of-lista .k-of-rnom`). Nunca `!important`.
-- **Fuente:** Nunito variable autoalojada desde `theme.liquid`. Los bloques
-  llevan `CARGAR_FUENTE = false`.
-- **CSS del tema:** límite de 1.500 caracteres a nivel tema y 500 por sección,
-  sin `@import`, URLs solo desde `cdn.shopify.com`.
+## Cómo se mantiene este índice
 
-## Comunicación
-
-9. **Tutear, con humor, sin adular.** Si una idea del propietario es peor que la
-   alternativa, se dice y se argumenta. Él decide después.
-10. **Citar la fuente de cada dato.** Necesita poder explicarlo a terceros.
-11. **No invocar normativa legal al diseñar precios o devoluciones.** Petición
-    expresa suya. Se diseña con criterio comercial; el riesgo legal lo asume él.
-
-## Mejora continua
-
-12. **Cerrar el ciclo antes de terminar la sesión.** Toda decisión de producto,
-    precio, copy o diseño que se tome en una sesión se añade a
-    `bazar-bizarro/auragalaxy/DECISIONES.md` antes de cerrarla, con su porqué en
-    una línea. Todo error propio del que salga una regla se añade a este
-    archivo. Se hace sin esperar a que el propietario lo pida: una retro cuyas
-    acciones no se escriben no ha ocurrido.
-13. **Este archivo es solo para lo que hay que saber siempre.** Lo que hay que
-    consultar cuando toca va en el archivo del proyecto y se enlaza desde aquí.
-    Si esto crece sin límite, se come el contexto de cada sesión y deja de
-    leerse.
+Si este archivo crece, deja de leerse. Todo lo que sea consultable por tema se
+saca a `contexto/` y se enruta desde la tabla de arriba. Aquí solo se queda lo
+que hay que saber **en toda conversación, sea del tema que sea**.
